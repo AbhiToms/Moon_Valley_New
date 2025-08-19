@@ -10,7 +10,7 @@ export default function AboutSection() {
               Your Mountain Sanctuary
             </h2>
             <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-              For over two decades, Moon Valley Resort has been a haven for travelers seeking authentic mountain experiences. Our commitment to sustainable luxury and personalized service has made us a premier destination for those who appreciate nature's finest offerings.
+              For over two decades, Moon Valley Resort has been a haven for travelers seeking authentic mountain experiences. Our commitment to sustainable comfort and personalized service has made us a premier destination for those who appreciate nature's finest offerings.
             </p>
             
             <div className="grid grid-cols-3 gap-8 mb-8">

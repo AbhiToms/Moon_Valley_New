@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Mountain, Facebook, Instagram, Twitter, Youtube, ArrowRight } from "lucide-react";
 
 const quickLinks = ["Home", "Rooms", "Amenities", "Activities", "Gallery", "Contact"];
-const services = ["Restaurant", "Spa & Wellness", "Adventure Sports", "Conference Hall", "Transportation", "Event Planning"];
+const services = ["Restaurant", "Swimming Pool", "Adventure Sports", "Common Kitchen", "Nature Trails", "Free WiFi"];
 const legalLinks = ["Privacy Policy", "Terms & Conditions", "Cookie Policy"];
 
 export default function Footer() {
@@ -60,15 +60,18 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Amenities */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3 className="text-lg font-semibold mb-4">Amenities</h3>
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service}>
-                  <a href="#" className="text-white/60 hover:text-white transition-colors duration-300">
+                  <button 
+                    onClick={() => scrollToSection("amenities")}
+                    className="text-white/60 hover:text-white transition-colors duration-300 text-left"
+                  >
                     {service}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>

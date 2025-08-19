@@ -40,7 +40,7 @@ export default function RoomsSection() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-forest mb-4">
-            Luxurious Accommodations
+            Comfortable Accommodations
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Each room is thoughtfully designed to provide comfort and tranquility while maintaining harmony with the natural surroundings.

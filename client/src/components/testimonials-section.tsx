@@ -3,22 +3,22 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    content: "Our stay at Moon Valley Resort was absolutely magical. The mountain views, exceptional service, and peaceful atmosphere made it the perfect anniversary getaway.",
-    name: "Sarah & Kevin",
-    location: "Mumbai, India",
-    initials: "SK"
-  },
-  {
-    content: "The hiking trails and adventure activities were incredible! Our guide was knowledgeable and the mountain scenery was breathtaking. Highly recommended!",
-    name: "Arjun Mehta",
-    location: "Bangalore, India",
-    initials: "AM"
-  },
-  {
-    content: "Perfect family vacation! Kids loved the pool and activities while we enjoyed the spa and fine dining. Beautiful resort with outstanding hospitality.",
-    name: "Priya Gupta",
+    content: "Breathtaking mountain views and such peaceful surroundings. The common kitchen was well-equipped and the swimming pool area is perfect for relaxation. Great value for money!",
+    name: "Rajesh Kumar",
     location: "Delhi, India",
-    initials: "PG"
+    initials: "RK"
+  },
+  {
+    content: "Amazing hiking experience with knowledgeable local guides. The rooms are comfortable and clean. The resort truly connects you with nature while providing modern amenities.",
+    name: "Anita Sharma",
+    location: "Mumbai, India", 
+    initials: "AS"
+  },
+  {
+    content: "Perfect family getaway! Kids enjoyed the swimming pool and we loved cooking together in the common kitchen. Staff was helpful and the mountain air was so refreshing.",
+    name: "Vikram Singh",
+    location: "Bangalore, India",
+    initials: "VS"
   }
 ];
 

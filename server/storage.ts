@@ -68,7 +68,7 @@ export class MemStorage implements IStorage {
         rating: "5.0",
         beds: 3,
         baths: 3,
-        amenities: ["Private Pool", "Mountain Access", "WiFi", "Full Kitchen", "Spa"],
+        amenities: ["Private Pool", "Mountain Access", "WiFi", "Full Kitchen"],
         image: "https://images.unsplash.com/photo-1595576508898-0ad5c879a061?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
       }
     ];
@@ -93,6 +93,7 @@ export class MemStorage implements IStorage {
     const booking: Booking = {
       ...insertBooking,
       id,
+      specialRequests: insertBooking.specialRequests || null,
       createdAt: new Date(),
     };
     this.bookings.set(id, booking);
