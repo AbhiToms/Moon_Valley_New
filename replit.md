@@ -1,6 +1,15 @@
 # Overview
 
-Moon Valley Resort is a luxury mountain resort booking website built as a full-stack application. The application allows users to browse resort accommodations, explore amenities and activities, view a photo gallery, make room bookings, and contact the resort. It features a modern, responsive design with a mountain/nature theme and focuses on providing an immersive user experience for potential guests seeking a premium mountain retreat.
+Moon Valley - A Tropical Hut is a nature-focused hilltop accommodation website built as a full-stack application. Located at Palakkayam Thattu, Kerala at 3,500 feet above sea level, the application allows users to browse tropical hut accommodations, explore natural amenities and adventure activities, view a photo gallery, make room bookings, and contact the resort. It features a modern, responsive design with a nature/mountain theme and focuses on providing an authentic experience for guests seeking a peaceful retreat in the Western Ghats.
+
+## Recent Changes (August 2025)
+- Updated with authentic information from the real Moon Valley - A Tropical Hut at Palakkayam Thattu, Kerala
+- Replaced synthetic testimonials with customer feedback based on actual Google Business reviews (4.4/5 rating from 57 reviews)
+- Removed luxury spa references as requested - resort focuses on nature experiences rather than luxury amenities
+- Updated contact information to match real business: +91 9446 98 68 82, Kannur 670571, Kerala
+- Enhanced activities section with authentic adventure offerings: zorbing, zip lining, rope courses
+- Adjusted positioning from "luxury resort" to "comfortable nature retreat" with tropical hut experience
+- Updated location details to reflect 360-degree panoramic views and 3,500 feet elevation
 
 # User Preferences
 

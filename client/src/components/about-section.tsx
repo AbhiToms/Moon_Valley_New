@@ -10,21 +10,21 @@ export default function AboutSection() {
               Your Mountain Sanctuary
             </h2>
             <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-              For over two decades, Moon Valley Resort has been a haven for travelers seeking authentic mountain experiences. Our commitment to sustainable comfort and personalized service has made us a premier destination for those who appreciate nature's finest offerings.
+              Moon Valley - A Tropical Hut provides a unique hilltop experience at Palakkayam Thattu, Kerala. Our tropical accommodation offers guests breathtaking views, adventure activities, and an immersive nature experience that connects you with the beauty of the Western Ghats.
             </p>
             
             <div className="grid grid-cols-3 gap-8 mb-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-forest mb-2">25+</div>
-                <div className="text-sm text-gray-600">Years of Excellence</div>
+                <div className="text-3xl font-bold text-forest mb-2">3,500</div>
+                <div className="text-sm text-gray-600">Feet Above Sea Level</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-forest mb-2">10K+</div>
-                <div className="text-sm text-gray-600">Happy Guests</div>
+                <div className="text-3xl font-bold text-forest mb-2">360°</div>
+                <div className="text-sm text-gray-600">Panoramic Views</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-forest mb-2">4.9</div>
-                <div className="text-sm text-gray-600">Average Rating</div>
+                <div className="text-3xl font-bold text-forest mb-2">4.4</div>
+                <div className="text-sm text-gray-600">Google Rating</div>
               </div>
             </div>
             

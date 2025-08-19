@@ -81,8 +81,8 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
             <div className="space-y-2 text-white/80 mb-6">
-              <p><Mountain className="inline mr-2" size={16} />Himachal Pradesh, India</p>
-              <p>📞 +91 98765 43210</p>
+              <p><Mountain className="inline mr-2" size={16} />Palakkayam Thattu, Kannur, Kerala</p>
+              <p>📞 +91 9446 98 68 82</p>
               <p>✉️ info@moonvalleyresort.com</p>
             </div>
             

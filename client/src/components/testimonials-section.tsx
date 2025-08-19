@@ -3,22 +3,22 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    content: "Breathtaking mountain views and such peaceful surroundings. The common kitchen was well-equipped and the swimming pool area is perfect for relaxation. Great value for money!",
-    name: "Rajesh Kumar",
-    location: "Delhi, India",
+    content: "One of the best hill stations with breathtaking 360-degree panoramic views! The experience of being at 3,500 feet above sea level surrounded by mist and clouds is absolutely magical.",
+    name: "Priya M",
+    location: "Kochi, Kerala",
+    initials: "PM"
+  },
+  {
+    content: "Perfect for honeymoon and romantic getaways. The tropical hut provides a unique experience immersing guests in the beauty of nature. The weather changes throughout the day are amazing to witness!",
+    name: "Arun & Divya",
+    location: "Calicut, Kerala", 
+    initials: "AD"
+  },
+  {
+    content: "Adventure activities like zorbing and zip lining were thrilling! The peaceful mountain setting is ideal for escaping city life. Despite the challenging road access, it's totally worth the experience.",
+    name: "Rohit K",
+    location: "Bengaluru, Karnataka",
     initials: "RK"
-  },
-  {
-    content: "Amazing hiking experience with knowledgeable local guides. The rooms are comfortable and clean. The resort truly connects you with nature while providing modern amenities.",
-    name: "Anita Sharma",
-    location: "Mumbai, India", 
-    initials: "AS"
-  },
-  {
-    content: "Perfect family getaway! Kids enjoyed the swimming pool and we loved cooking together in the common kitchen. Staff was helpful and the mountain air was so refreshing.",
-    name: "Vikram Singh",
-    location: "Bangalore, India",
-    initials: "VS"
   }
 ];
 

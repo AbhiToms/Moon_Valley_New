@@ -24,22 +24,22 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Location",
-    content: ["Moon Valley Resort", "Mountain Highway, Valley Point", "Himachal Pradesh 171001, India"]
+    content: ["Moon Valley - A Tropical Hut", "Palakkayam Thattu, Alakode", "Kannur 670571, Kerala, India"]
   },
   {
     icon: Phone,
     title: "Phone",
-    content: ["+91 98765 43210", "Toll-free: 1800 123 4567"]
+    content: ["+91 9446 98 68 82", "24/7 Booking Available"]
   },
   {
     icon: Mail,
     title: "Email",
-    content: ["reservations@moonvalleyresort.com", "info@moonvalleyresort.com"]
+    content: ["info@moonvalleyresort.com", "bookings@moonvalleyresort.com"]
   },
   {
     icon: Clock,
     title: "Hours",
-    content: ["24/7 Front Desk Service", "Reservations: 9:00 AM - 10:00 PM"]
+    content: ["24 Hours Open", "Best visiting: 6-7:30 AM or 5-6:30 PM"]
   }
 ];
 

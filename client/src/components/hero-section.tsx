@@ -30,7 +30,7 @@ export default function HeroSection() {
           Escape to Nature's Perfect Harmony
         </p>
         <p className="text-lg mb-12 max-w-2xl mx-auto leading-relaxed animate-fadeInUp" style={{ animationDelay: "0.4s" }}>
-          Nestled in the heart of pristine mountains, Moon Valley Resort offers a comfortable nature retreat surrounded by breathtaking natural beauty and tranquil serenity.
+          Perched at 3,500 feet above sea level at Palakkayam Thattu, Moon Valley offers a unique tropical hut experience with 360-degree panoramic views and immersive nature encounters.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp" style={{ animationDelay: "0.6s" }}>

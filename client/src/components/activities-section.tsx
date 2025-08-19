@@ -1,17 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Mountain, Bike, Wind, Camera, CheckCircle } from "lucide-react";
+import { Mountain, Bike, Wind, Camera, CheckCircle, Circle } from "lucide-react";
 
 const adventureActivities = [
-  { icon: Mountain, label: "Rock Climbing" },
-  { icon: Bike, label: "Mountain Biking" },
+  { icon: Circle, label: "Zorbing" },
   { icon: Wind, label: "Zip Lining" },
+  { icon: Mountain, label: "Rock Climbing" },
   { icon: Camera, label: "Photography" }
 ];
 
 const hikingFeatures = [
-  "Professional mountain guides",
-  "All difficulty levels available",
-  "Equipment provided"
+  "360-degree panoramic views from 3,500 feet",
+  "Experience mist and clouds throughout the day",
+  "Access to Western Ghats natural beauty"
 ];
 
 export default function ActivitiesSection() {
@@ -73,7 +73,7 @@ export default function ActivitiesSection() {
               Adventure Sports
             </h3>
             <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-              For thrill-seekers, we offer an array of adrenaline-pumping activities including rock climbing, zip-lining, and mountain biking on carefully selected routes.
+              For thrill-seekers, we offer exciting activities including zorbing, zip-lining, and rope courses. Experience the adrenaline rush while enjoying spectacular hilltop views.
             </p>
             
             <div className="grid grid-cols-2 gap-4 mb-8">
