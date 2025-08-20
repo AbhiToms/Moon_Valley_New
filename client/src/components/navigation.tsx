@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Mountain, Menu, X } from "lucide-react";
+import { Palmtree, Menu, X } from "lucide-react";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -8,7 +8,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 80);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -24,40 +24,35 @@ export default function Navigation() {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? "bg-white/95 backdrop-blur-sm shadow-lg" : "bg-white/95 backdrop-blur-sm"
-    } border-b border-gray-200`}>
-      <div className="container mx-auto px-6 py-4">
+    <nav className={`fixed w-full z-50 transition-all duration-500 ${
+      isScrolled 
+        ? "bg-white/90 backdrop-blur-md shadow-xl border-b border-neutral/20" 
+        : "bg-transparent"
+    }`}>
+      <div className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
-          <div className="text-2xl font-playfair font-bold text-forest flex items-center">
-            <Mountain className="text-sage mr-2" size={28} />
-            Moon Valley
+          <div className="text-3xl font-poppins font-bold text-primary flex items-center group cursor-pointer">
+            <Palmtree className="text-tropical mr-3 transition-transform duration-300 group-hover:scale-110" size={32} />
+            <span className="bg-gradient-to-r from-primary to-tropical bg-clip-text text-transparent">
+              Moon Valley
+            </span>
           </div>
           
-          <div className="hidden md:flex items-center space-x-8">
-            <button onClick={() => scrollToSection("home")} className="text-gray-700 hover:text-forest transition-colors duration-300">
-              Home
-            </button>
-            <button onClick={() => scrollToSection("rooms")} className="text-gray-700 hover:text-forest transition-colors duration-300">
-              Rooms
-            </button>
-            <button onClick={() => scrollToSection("amenities")} className="text-gray-700 hover:text-forest transition-colors duration-300">
-              Amenities
-            </button>
-            <button onClick={() => scrollToSection("activities")} className="text-gray-700 hover:text-forest transition-colors duration-300">
-              Activities
-            </button>
-            <button onClick={() => scrollToSection("gallery")} className="text-gray-700 hover:text-forest transition-colors duration-300">
-              Gallery
-            </button>
-            <button onClick={() => scrollToSection("contact")} className="text-gray-700 hover:text-forest transition-colors duration-300">
-              Contact
-            </button>
+          <div className="hidden md:flex items-center space-x-10">
+            {["home", "rooms", "amenities", "activities", "gallery", "contact"].map((section) => (
+              <button 
+                key={section}
+                onClick={() => scrollToSection(section)} 
+                className="text-gray-700 hover:text-primary transition-all duration-300 font-medium capitalize relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tropical after:transition-all after:duration-300 hover:after:w-full"
+              >
+                {section}
+              </button>
+            ))}
             <Button 
               onClick={() => scrollToSection("booking")}
-              className="bg-forest text-white hover:bg-forest/90 rounded-full px-6 py-2 transition-all duration-300 hover:shadow-lg"
+              className="bg-gradient-to-r from-primary to-tropical text-white hover:scale-105 rounded-full px-8 py-3 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
-              Book Now
+              Reserve Now
             </Button>
           </div>
           
@@ -66,40 +61,31 @@ export default function Navigation() {
               variant="ghost"
               size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-forest"
+              className="text-primary hover:bg-tropical/10 rounded-full"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </Button>
           </div>
         </div>
         
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-gray-200">
-            <div className="flex flex-col space-y-4 pt-4">
-              <button onClick={() => scrollToSection("home")} className="text-gray-700 hover:text-forest transition-colors duration-300 text-left">
-                Home
-              </button>
-              <button onClick={() => scrollToSection("rooms")} className="text-gray-700 hover:text-forest transition-colors duration-300 text-left">
-                Rooms
-              </button>
-              <button onClick={() => scrollToSection("amenities")} className="text-gray-700 hover:text-forest transition-colors duration-300 text-left">
-                Amenities
-              </button>
-              <button onClick={() => scrollToSection("activities")} className="text-gray-700 hover:text-forest transition-colors duration-300 text-left">
-                Activities
-              </button>
-              <button onClick={() => scrollToSection("gallery")} className="text-gray-700 hover:text-forest transition-colors duration-300 text-left">
-                Gallery
-              </button>
-              <button onClick={() => scrollToSection("contact")} className="text-gray-700 hover:text-forest transition-colors duration-300 text-left">
-                Contact
-              </button>
+          <div className="md:hidden mt-6 pb-6 border-t border-neutral/20 backdrop-blur-md bg-white/90 rounded-lg">
+            <div className="flex flex-col space-y-6 pt-6">
+              {["home", "rooms", "amenities", "activities", "gallery", "contact"].map((section) => (
+                <button 
+                  key={section}
+                  onClick={() => scrollToSection(section)} 
+                  className="text-gray-700 hover:text-primary transition-colors duration-300 text-left font-medium capitalize"
+                >
+                  {section}
+                </button>
+              ))}
               <Button 
                 onClick={() => scrollToSection("booking")}
-                className="bg-forest text-white hover:bg-forest/90 rounded-full w-fit"
+                className="bg-gradient-to-r from-primary to-tropical text-white rounded-full w-fit px-8 py-3 shadow-lg"
               >
-                Book Now
+                Reserve Now
               </Button>
             </div>
           </div>

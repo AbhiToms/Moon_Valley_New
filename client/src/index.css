@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Merriweather:wght@300;400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -52,13 +52,15 @@
   --tracking-normal: 0em;
   --spacing: 0.25rem;
   
-  /* Moon Valley Resort Custom Colors */
-  --forest: hsl(147 55% 15%);
-  --earth: hsl(25 44% 33%);
-  --sky: hsl(197 71% 73%);
-  --cream: hsl(60 56% 91%);
-  --gold: hsl(45 85% 55%);
-  --sage: hsl(88 25% 62%);
+  /* Moon Valley Tropical Hut Colors */
+  --primary: hsl(155 60% 20%);
+  --secondary: hsl(35 80% 60%);
+  --accent: hsl(280 45% 25%);
+  --neutral: hsl(30 15% 90%);
+  --surface: hsl(0 0% 98%);
+  --tropical: hsl(165 50% 45%);
+  --sunset: hsl(20 85% 65%);
+  --mist: hsl(200 20% 85%);
 }
 
 .dark {
@@ -123,86 +125,86 @@
 }
 
 @layer components {
-  .font-playfair {
-    font-family: 'Playfair Display', serif;
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
   }
   
-  .font-inter {
-    font-family: 'Inter', sans-serif;
+  .font-merriweather {
+    font-family: 'Merriweather', serif;
   }
 }
 
 @layer utilities {
-  .text-forest {
-    color: var(--forest);
+  .text-primary {
+    color: var(--primary);
   }
   
-  .text-earth {
-    color: var(--earth);
+  .text-secondary {
+    color: var(--secondary);
   }
   
-  .text-sky {
-    color: var(--sky);
+  .text-accent {
+    color: var(--accent);
   }
   
-  .text-cream {
-    color: var(--cream);
+  .text-neutral {
+    color: var(--neutral);
   }
   
-  .text-gold {
-    color: var(--gold);
+  .text-tropical {
+    color: var(--tropical);
   }
   
-  .text-sage {
-    color: var(--sage);
+  .text-sunset {
+    color: var(--sunset);
   }
   
-  .bg-forest {
-    background-color: var(--forest);
+  .text-mist {
+    color: var(--mist);
   }
   
-  .bg-earth {
-    background-color: var(--earth);
+  .bg-primary {
+    background-color: var(--primary);
   }
   
-  .bg-sky {
-    background-color: var(--sky);
+  .bg-secondary {
+    background-color: var(--secondary);
   }
   
-  .bg-cream {
-    background-color: var(--cream);
+  .bg-accent {
+    background-color: var(--accent);
   }
   
-  .bg-gold {
-    background-color: var(--gold);
+  .bg-neutral {
+    background-color: var(--neutral);
   }
   
-  .bg-sage {
-    background-color: var(--sage);
+  .bg-surface {
+    background-color: var(--surface);
   }
   
-  .border-forest {
-    border-color: var(--forest);
+  .bg-tropical {
+    background-color: var(--tropical);
   }
   
-  .border-earth {
-    border-color: var(--earth);
+  .bg-sunset {
+    background-color: var(--sunset);
   }
   
-  .border-sky {
-    border-color: var(--sky);
+  .bg-mist {
+    background-color: var(--mist);
   }
   
-  .border-cream {
-    border-color: var(--cream);
+  .border-primary {
+    border-color: var(--primary);
   }
   
-  .border-gold {
-    border-color: var(--gold);
+  .border-secondary {
+    border-color: var(--secondary);
   }
   
-  .border-sage {
-    border-color: var(--sage);
+  .border-tropical {
+    border-color: var(--tropical);
   }
 }
 

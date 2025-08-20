@@ -61,20 +61,22 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
-        // Custom Moon Valley Resort colors
-        forest: "var(--forest)",
-        earth: "var(--earth)",
-        sky: "var(--sky)",
-        cream: "var(--cream)",
-        gold: "var(--gold)",
-        sage: "var(--sage)",
+        // Custom Moon Valley Tropical Hut colors
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        accent: "var(--accent)",
+        neutral: "var(--neutral)",
+        surface: "var(--surface)",
+        tropical: "var(--tropical)",
+        sunset: "var(--sunset)",
+        mist: "var(--mist)",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
-        playfair: ["Playfair Display", "serif"],
-        inter: ["Inter", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+        merriweather: ["Merriweather", "serif"],
       },
       keyframes: {
         "accordion-down": {
