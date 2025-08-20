@@ -16,14 +16,17 @@ const hikingFeatures = [
 
 export default function ActivitiesSection() {
   return (
-    <section id="activities" className="py-20 bg-white">
+    <section id="activities" className="py-24 bg-white dark:bg-bg-primary">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-forest mb-4">
-            Mountain Adventures
+        <div className="text-center mb-20">
+          <div className="inline-block bg-secondary/10 dark:bg-secondary/20 rounded-full px-6 py-2 mb-6">
+            <span className="text-secondary font-semibold text-sm">ADVENTURES</span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
+            Mountain <span className="text-secondary">Adventures</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Immerse yourself in thrilling outdoor experiences designed to create unforgettable memories in nature's playground.
+          <p className="text-xl text-gray-600 dark:text-text-secondary max-w-3xl mx-auto leading-relaxed">
+            Immerse yourself in thrilling outdoor experiences designed to create unforgettable memories in nature's playground at 3,500 feet above sea level.
           </p>
         </div>
 
@@ -37,23 +40,23 @@ export default function ActivitiesSection() {
           </div>
           
           <div>
-            <h3 className="text-3xl font-playfair font-bold text-forest mb-6">
+            <h3 className="text-4xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
               Guided Mountain Hiking
             </h3>
-            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+            <p className="text-xl text-gray-700 dark:text-text-secondary mb-8 leading-relaxed">
               Explore pristine mountain trails with our experienced guides. Discover hidden waterfalls, alpine meadows, and breathtaking viewpoints that showcase the valley's natural beauty.
             </p>
             
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-4 mb-10">
               {hikingFeatures.map((feature, index) => (
-                <li key={index} className="flex items-center text-gray-700">
-                  <CheckCircle className="text-sage mr-3 flex-shrink-0" size={20} />
+                <li key={index} className="flex items-center text-gray-700 dark:text-text-secondary text-lg">
+                  <CheckCircle className="text-tropical mr-4 flex-shrink-0" size={24} />
                   {feature}
                 </li>
               ))}
             </ul>
             
-            <Button className="bg-forest text-white px-8 py-3 rounded-full hover:bg-forest/90 transition-all duration-300 hover:shadow-lg">
+            <Button className="bg-gradient-to-r from-primary to-tropical text-white px-10 py-4 rounded-full hover:scale-105 transition-all duration-300 shadow-lg text-lg font-semibold">
               Book Adventure
             </Button>
           </div>
@@ -69,26 +72,26 @@ export default function ActivitiesSection() {
           </div>
           
           <div className="lg:order-1">
-            <h3 className="text-3xl font-playfair font-bold text-forest mb-6">
+            <h3 className="text-4xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
               Adventure Sports
             </h3>
-            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+            <p className="text-xl text-gray-700 dark:text-text-secondary mb-8 leading-relaxed">
               For thrill-seekers, we offer exciting activities including zorbing, zip-lining, and rope courses. Experience the adrenaline rush while enjoying spectacular hilltop views.
             </p>
             
-            <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-2 gap-6 mb-10">
               {adventureActivities.map((activity, index) => {
                 const IconComponent = activity.icon;
                 return (
-                  <div key={index} className="text-center p-4 bg-sage/10 rounded-lg">
-                    <IconComponent className="text-forest mx-auto mb-2" size={32} />
-                    <div className="font-semibold text-forest">{activity.label}</div>
+                  <div key={index} className="text-center p-6 bg-surface dark:bg-bg-secondary rounded-xl border border-neutral/20 dark:border-mist/20 hover:shadow-lg transition-all duration-300">
+                    <IconComponent className="text-secondary mx-auto mb-3" size={36} />
+                    <div className="font-semibold text-primary dark:text-text-primary text-lg">{activity.label}</div>
                   </div>
                 );
               })}
             </div>
             
-            <Button className="bg-gold text-forest px-8 py-3 rounded-full hover:bg-gold/90 transition-all duration-300 hover:shadow-lg font-semibold">
+            <Button className="bg-gradient-to-r from-secondary to-sunset text-white px-10 py-4 rounded-full hover:scale-105 transition-all duration-300 shadow-lg text-lg font-semibold">
               View All Activities
             </Button>
           </div>

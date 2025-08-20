@@ -42,14 +42,17 @@ const amenities = [
 
 export default function AmenitiesSection() {
   return (
-    <section id="amenities" className="py-20 bg-sage/10">
+    <section id="amenities" className="py-24 bg-gradient-to-br from-neutral to-surface dark:from-bg-primary dark:to-bg-secondary">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-forest mb-4">
-            World-Class Amenities
+        <div className="text-center mb-20">
+          <div className="inline-block bg-tropical/10 dark:bg-tropical/20 rounded-full px-6 py-2 mb-6">
+            <span className="text-tropical font-semibold text-sm">AMENITIES</span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
+            World-Class <span className="text-tropical">Amenities</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Every facility is designed to enhance your connection with nature while providing modern comfort and convenience.
+          <p className="text-xl text-gray-600 dark:text-text-secondary max-w-3xl mx-auto leading-relaxed">
+            Every facility is thoughtfully designed to enhance your connection with nature while providing modern comfort and convenience for an unforgettable stay.
           </p>
         </div>
 
@@ -57,23 +60,24 @@ export default function AmenitiesSection() {
           {amenities.map((amenity, index) => {
             const IconComponent = amenity.icon;
             return (
-              <Card key={index} className="bg-white rounded-2xl card-shadow hover-lift overflow-hidden border-0">
-                <div className="relative">
+              <Card key={index} className="group bg-white dark:bg-bg-secondary rounded-3xl overflow-hidden border-0 shadow-lg hover:shadow-2xl dark:shadow-xl dark:hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                <div className="relative overflow-hidden">
                   <img 
                     src={amenity.image} 
                     alt={amenity.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 
                 <CardContent className="p-6">
-                  <div className="text-forest text-2xl mb-3">
+                  <div className="text-tropical text-2xl mb-3">
                     <IconComponent size={32} />
                   </div>
-                  <h3 className="text-xl font-playfair font-semibold text-forest mb-3">
+                  <h3 className="text-xl font-poppins font-bold text-primary dark:text-text-primary mb-3">
                     {amenity.title}
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 dark:text-text-secondary leading-relaxed">
                     {amenity.description}
                   </p>
                 </CardContent>

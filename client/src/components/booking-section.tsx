@@ -82,20 +82,23 @@ export default function BookingSection() {
   };
 
   return (
-    <section id="booking" className="py-20 bg-forest text-white">
+    <section id="booking" className="py-24 bg-gradient-to-br from-surface to-neutral dark:from-bg-primary dark:to-bg-secondary">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
-            Reserve Your Stay
+        <div className="text-center mb-20">
+          <div className="inline-block bg-secondary/10 dark:bg-secondary/20 rounded-full px-6 py-2 mb-6">
+            <span className="text-secondary font-semibold text-sm">RESERVATIONS</span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
+            Reserve Your <span className="text-secondary">Stay</span>
           </h2>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Book your perfect mountain getaway with our easy reservation system. Special rates and packages available.
+          <p className="text-xl text-gray-600 dark:text-text-secondary max-w-3xl mx-auto leading-relaxed">
+            Book your perfect mountain retreat and experience the tranquility of nature at its finest. Secure your tropical hut experience today.
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <Card className="bg-white/10 backdrop-blur-sm border-0 card-shadow">
-            <CardContent className="p-8">
+          <Card className="bg-white dark:bg-bg-secondary border-0 shadow-2xl dark:shadow-xl rounded-3xl">
+            <CardContent className="p-10">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
@@ -104,15 +107,15 @@ export default function BookingSection() {
                       name="checkIn"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Check-in Date</FormLabel>
+                          <FormLabel className="text-primary dark:text-text-primary font-semibold">Check-in Date</FormLabel>
                           <FormControl>
                             <Input 
                               type="date" 
                               {...field}
-                              className="bg-white text-gray-800 border-gray-300 focus:border-forest focus:ring-forest"
+                              className="bg-surface dark:bg-bg-primary text-gray-800 dark:text-text-primary border-neutral dark:border-mist focus:border-tropical focus:ring-tropical dark:focus:border-tropical dark:focus:ring-tropical rounded-xl"
                             />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -122,15 +125,15 @@ export default function BookingSection() {
                       name="checkOut"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Check-out Date</FormLabel>
+                          <FormLabel className="text-primary dark:text-text-primary font-semibold">Check-out Date</FormLabel>
                           <FormControl>
                             <Input 
                               type="date" 
                               {...field}
-                              className="bg-white text-gray-800 border-gray-300 focus:border-forest focus:ring-forest"
+                              className="bg-surface dark:bg-bg-primary text-gray-800 dark:text-text-primary border-neutral dark:border-mist focus:border-tropical focus:ring-tropical dark:focus:border-tropical dark:focus:ring-tropical rounded-xl"
                             />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -142,10 +145,10 @@ export default function BookingSection() {
                       name="roomType"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Room Type</FormLabel>
+                          <FormLabel className="text-primary dark:text-text-primary font-semibold">Room Type</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="bg-white text-gray-800 border-gray-300 focus:border-forest focus:ring-forest">
+                              <SelectTrigger className="bg-surface dark:bg-bg-primary text-gray-800 dark:text-text-primary border-neutral dark:border-mist focus:border-tropical focus:ring-tropical dark:focus:border-tropical dark:focus:ring-tropical rounded-xl">
                                 <SelectValue placeholder="Select a room" />
                               </SelectTrigger>
                             </FormControl>
@@ -167,10 +170,10 @@ export default function BookingSection() {
                       name="guests"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Number of Guests</FormLabel>
+                          <FormLabel className="text-primary dark:text-text-primary font-semibold">Number of Guests</FormLabel>
                           <Select onValueChange={(value) => field.onChange(parseInt(value))} defaultValue={field.value?.toString()}>
                             <FormControl>
-                              <SelectTrigger className="bg-white text-gray-800 border-gray-300 focus:border-forest focus:ring-forest">
+                              <SelectTrigger className="bg-surface dark:bg-bg-primary text-gray-800 dark:text-text-primary border-neutral dark:border-mist focus:border-tropical focus:ring-tropical dark:focus:border-tropical dark:focus:ring-tropical rounded-xl">
                                 <SelectValue placeholder="Select guests" />
                               </SelectTrigger>
                             </FormControl>
@@ -194,14 +197,14 @@ export default function BookingSection() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Full Name</FormLabel>
+                          <FormLabel className="text-primary dark:text-text-primary font-semibold">Full Name</FormLabel>
                           <FormControl>
                             <Input 
                               {...field}
-                              className="bg-white text-gray-800 border-gray-300 focus:border-forest focus:ring-forest"
+                              className="bg-surface dark:bg-bg-primary text-gray-800 dark:text-text-primary border-neutral dark:border-mist focus:border-tropical focus:ring-tropical dark:focus:border-tropical dark:focus:ring-tropical rounded-xl"
                             />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -211,15 +214,15 @@ export default function BookingSection() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Email Address</FormLabel>
+                          <FormLabel className="text-primary dark:text-text-primary font-semibold">Email Address</FormLabel>
                           <FormControl>
                             <Input 
                               type="email" 
                               {...field}
-                              className="bg-white text-gray-800 border-gray-300 focus:border-forest focus:ring-forest"
+                              className="bg-surface dark:bg-bg-primary text-gray-800 dark:text-text-primary border-neutral dark:border-mist focus:border-tropical focus:ring-tropical dark:focus:border-tropical dark:focus:ring-tropical rounded-xl"
                             />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-red-500" />
                         </FormItem>
                       )}
                     />
@@ -230,15 +233,15 @@ export default function BookingSection() {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Phone Number</FormLabel>
+                        <FormLabel className="text-primary dark:text-text-primary font-semibold">Phone Number</FormLabel>
                         <FormControl>
                           <Input 
                             type="tel" 
                             {...field}
-                            className="bg-white text-gray-800 border-gray-300 focus:border-forest focus:ring-forest"
+                            className="bg-surface dark:bg-bg-primary text-gray-800 dark:text-text-primary border-neutral dark:border-mist focus:border-tropical focus:ring-tropical dark:focus:border-tropical dark:focus:ring-tropical rounded-xl"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-red-500" />
                       </FormItem>
                     )}
                   />
@@ -248,16 +251,16 @@ export default function BookingSection() {
                     name="specialRequests"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-white">Special Requests</FormLabel>
+                        <FormLabel className="text-primary dark:text-text-primary font-semibold">Special Requests</FormLabel>
                         <FormControl>
                           <Textarea 
                             {...field}
                             placeholder="Any special requirements or requests..."
-                            className="bg-white text-gray-800 border-gray-300 focus:border-forest focus:ring-forest"
-                            rows={3}
+                            className="bg-surface dark:bg-bg-primary text-gray-800 dark:text-text-primary border-neutral dark:border-mist focus:border-tropical focus:ring-tropical dark:focus:border-tropical dark:focus:ring-tropical rounded-xl"
+                            rows={4}
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-red-500" />
                       </FormItem>
                     )}
                   />
@@ -271,27 +274,27 @@ export default function BookingSection() {
                           <Checkbox
                             checked={field.value}
                             onCheckedChange={field.onChange}
-                            className="border-white data-[state=checked]:bg-gold data-[state=checked]:border-gold"
+                            className="border-primary dark:border-text-primary data-[state=checked]:bg-tropical data-[state=checked]:border-tropical"
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
-                          <FormLabel className="text-white text-sm">
+                          <FormLabel className="text-primary dark:text-text-primary text-sm">
                             I agree to the{" "}
-                            <span className="text-gold hover:underline cursor-pointer">Terms & Conditions</span>
+                            <span className="text-secondary hover:underline cursor-pointer">Terms & Conditions</span>
                             {" "}and{" "}
-                            <span className="text-gold hover:underline cursor-pointer">Privacy Policy</span>
+                            <span className="text-secondary hover:underline cursor-pointer">Privacy Policy</span>
                           </FormLabel>
-                          <FormMessage />
+                          <FormMessage className="text-red-500" />
                         </div>
                       </FormItem>
                     )}
                   />
 
-                  <div className="text-center">
+                  <div className="text-center pt-4">
                     <Button 
                       type="submit" 
                       disabled={bookingMutation.isPending}
-                      className="bg-gold text-forest px-12 py-4 rounded-full text-lg font-semibold hover:bg-gold/90 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                      className="bg-gradient-to-r from-secondary to-tropical text-white px-16 py-4 rounded-full text-lg font-semibold hover:scale-105 transition-all duration-300 shadow-xl"
                     >
                       {bookingMutation.isPending ? "Processing..." : "Reserve Now"}
                     </Button>
