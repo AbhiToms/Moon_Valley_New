@@ -12,7 +12,7 @@ import Footer from "@/components/footer";
 
 export default function Home() {
   return (
-    <div className="font-inter text-gray-800">
+    <div className="font-poppins text-gray-800 dark:text-text-primary dark:bg-bg-primary min-h-screen">
       <Navigation />
       <HeroSection />
       <AboutSection />

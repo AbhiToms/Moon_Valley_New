@@ -18,15 +18,15 @@ export default function RoomsSection() {
 
   if (isLoading) {
     return (
-      <section id="rooms" className="py-24 bg-gradient-to-br from-surface to-neutral">
+      <section id="rooms" className="py-24 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
-            <div className="w-32 h-8 bg-gray-200 rounded-full mx-auto mb-4 animate-pulse"></div>
-            <div className="w-96 h-6 bg-gray-200 rounded-full mx-auto animate-pulse"></div>
+            <div className="w-32 h-8 bg-gray-200 dark:bg-mist rounded-full mx-auto mb-4 animate-pulse"></div>
+            <div className="w-96 h-6 bg-gray-200 dark:bg-mist rounded-full mx-auto animate-pulse"></div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="bg-gray-200 rounded-3xl animate-pulse h-[450px]" />
+              <div key={i} className="bg-gray-200 dark:bg-mist rounded-3xl animate-pulse h-[450px]" />
             ))}
           </div>
         </div>
@@ -35,17 +35,17 @@ export default function RoomsSection() {
   }
 
   return (
-    <section id="rooms" className="py-24 bg-gradient-to-br from-surface to-neutral">
+    <section id="rooms" className="py-24 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-20">
-          <div className="inline-block bg-primary/10 rounded-full px-6 py-2 mb-6">
-            <span className="text-primary font-semibold text-sm">ACCOMMODATIONS</span>
+          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-6 py-2 mb-6">
+            <span className="text-primary dark:text-tropical font-semibold text-sm">ACCOMMODATIONS</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary mb-6">
+          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
             Tropical <span className="text-tropical">Hut</span> Experiences
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 dark:text-text-secondary max-w-3xl mx-auto leading-relaxed">
             Four uniquely designed accommodations that blend modern comfort with authentic tropical architecture, 
             each offering stunning panoramic views of the Western Ghats.
           </p>
@@ -56,7 +56,7 @@ export default function RoomsSection() {
           {rooms?.map((room, index) => (
             <Card 
               key={room.id} 
-              className="group bg-white rounded-3xl overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              className="group bg-white dark:bg-bg-secondary rounded-3xl overflow-hidden border-0 shadow-lg hover:shadow-2xl dark:shadow-xl dark:hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
             >
               <div className="relative overflow-hidden">
                 <img 
@@ -78,21 +78,21 @@ export default function RoomsSection() {
               </div>
               
               <CardContent className="p-6">
-                <h3 className="text-xl font-poppins font-bold text-primary mb-2">
+                <h3 className="text-xl font-poppins font-bold text-primary dark:text-text-primary mb-2">
                   {room.name}
                 </h3>
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                <p className="text-gray-600 dark:text-text-secondary text-sm mb-4 line-clamp-2">
                   {room.description}
                 </p>
                 
                 {/* Price */}
                 <div className="flex items-baseline mb-4">
-                  <span className="text-3xl font-bold text-primary">₹{room.price.toLocaleString()}</span>
-                  <span className="text-gray-500 text-sm ml-1">/night</span>
+                  <span className="text-3xl font-bold text-primary dark:text-tropical">₹{room.price.toLocaleString()}</span>
+                  <span className="text-gray-500 dark:text-text-secondary text-sm ml-1">/night</span>
                 </div>
                 
                 {/* Amenities */}
-                <div className="flex items-center justify-between text-sm text-gray-600 mb-6">
+                <div className="flex items-center justify-between text-sm text-gray-600 dark:text-text-secondary mb-6">
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center">
                       <Bed size={16} className="mr-1 text-tropical" />
@@ -123,11 +123,11 @@ export default function RoomsSection() {
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto border border-white/20">
-            <h3 className="text-2xl font-poppins font-bold text-primary mb-4">
+          <div className="bg-white/50 dark:bg-bg-secondary/50 backdrop-blur-sm rounded-2xl p-8 max-w-2xl mx-auto border border-white/20 dark:border-mist/20">
+            <h3 className="text-2xl font-poppins font-bold text-primary dark:text-text-primary mb-4">
               Need Help Choosing?
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 dark:text-text-secondary mb-6">
               Our team can help you select the perfect accommodation based on your needs and preferences.
             </p>
             <Button className="bg-secondary text-white px-8 py-3 rounded-full hover:scale-105 transition-all duration-300">
