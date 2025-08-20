@@ -29,7 +29,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    content: ["+91 9446 98 68 82", "24/7 Booking Available"]
+    content: ["+91 9446986882", "24/7 Booking Available"]
   },
   {
     icon: Mail,

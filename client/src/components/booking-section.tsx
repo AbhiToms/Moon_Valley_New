@@ -18,7 +18,7 @@ const bookingSchema = z.object({
   roomType: z.string().min(1, "Please select a room type"),
   checkIn: z.string().min(1, "Check-in date is required"),
   checkOut: z.string().min(1, "Check-out date is required"),
-  guests: z.number().min(1, "Number of guests is required"),
+  guests: z.number().min(1, "Number of guests is required").max(6, "Maximum 6 guests allowed"),
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Valid email is required"),
   phone: z.string().min(1, "Phone number is required"),
@@ -182,7 +182,8 @@ export default function BookingSection() {
                               <SelectItem value="2">2 Guests</SelectItem>
                               <SelectItem value="3">3 Guests</SelectItem>
                               <SelectItem value="4">4 Guests</SelectItem>
-                              <SelectItem value="5">5+ Guests</SelectItem>
+                              <SelectItem value="5">5 Guests</SelectItem>
+                              <SelectItem value="6">6 Guests</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
