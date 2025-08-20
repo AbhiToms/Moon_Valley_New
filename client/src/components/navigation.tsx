@@ -27,7 +27,7 @@ export default function Navigation() {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${
       isScrolled 
-        ? "bg-white/90 dark:bg-bg-primary/90 backdrop-blur-md shadow-xl border-b border-neutral/20 dark:border-mist/20" 
+        ? "bg-white/90 dark:bg-slate-900/95 backdrop-blur-md shadow-xl border-b border-neutral/20 dark:border-slate-700/50" 
         : "bg-transparent"
     }`}>
       <div className="container mx-auto px-6 py-6">
@@ -40,11 +40,11 @@ export default function Navigation() {
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
-            {["home", "rooms", "amenities", "activities", "gallery", "contact"].map((section) => (
+            {["home", "rooms", "amenities", "gallery", "contact"].map((section) => (
               <button 
                 key={section}
                 onClick={() => scrollToSection(section)} 
-                className="text-gray-700 dark:text-text-secondary hover:text-primary dark:hover:text-tropical transition-all duration-300 font-medium capitalize relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tropical after:transition-all after:duration-300 hover:after:w-full"
+                className="text-gray-700 hover:text-primary transition-all duration-300 capitalize relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tropical after:transition-all after:duration-300 hover:after:w-full nav-text-enhanced"
               >
                 {section}
               </button>
@@ -75,13 +75,13 @@ export default function Navigation() {
         
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-6 pb-6 border-t border-neutral/20 dark:border-mist/20 backdrop-blur-md bg-white/90 dark:bg-bg-primary/90 rounded-lg">
+          <div className="md:hidden mt-6 pb-6 border-t border-neutral/20 dark:border-slate-700/50 backdrop-blur-md bg-white/90 dark:bg-slate-900/95 rounded-lg">
             <div className="flex flex-col space-y-6 pt-6">
-              {["home", "rooms", "amenities", "activities", "gallery", "contact"].map((section) => (
+              {["home", "rooms", "amenities", "gallery", "contact"].map((section) => (
                 <button 
                   key={section}
                   onClick={() => scrollToSection(section)} 
-                  className="text-gray-700 dark:text-text-secondary hover:text-primary dark:hover:text-tropical transition-colors duration-300 text-left font-medium capitalize"
+                  className="text-gray-700 hover:text-primary transition-colors duration-300 text-left capitalize nav-text-enhanced"
                 >
                   {section}
                 </button>

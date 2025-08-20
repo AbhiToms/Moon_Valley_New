@@ -16,9 +16,9 @@ export default function AboutSection() {
                 Your Gateway to
                 <span className="block text-tropical">Nature's Paradise</span>
               </h2>
-              <p className="text-xl text-gray-600 dark:text-text-secondary leading-relaxed mb-8">
+              <p className="text-xl text-gray-600 dark:text-white/80 leading-relaxed mb-8">
                 Moon Valley - A Tropical Hut provides a unique hilltop experience at Palakkayam Thattu, Kerala. 
-                Our tropical accommodations offer guests breathtaking views, adventure activities, and an 
+                Our tropical accommodations offer guests breathtaking views, peaceful relaxation, and an 
                 immersive nature experience that connects you with the beauty of the Western Ghats.
               </p>
             </div>
@@ -27,15 +27,15 @@ export default function AboutSection() {
             <div className="grid grid-cols-3 gap-6">
               <div className="text-center p-6 bg-gradient-to-br from-surface to-neutral dark:from-bg-secondary dark:to-mist rounded-2xl">
                 <div className="text-3xl font-bold text-primary dark:text-tropical mb-2">3,500</div>
-                <div className="text-sm text-gray-600 dark:text-text-secondary font-medium">Feet Above Sea Level</div>
+                <div className="text-sm text-gray-600 dark:text-white/70 font-medium">Feet Above Sea Level</div>
               </div>
               <div className="text-center p-6 bg-gradient-to-br from-surface to-neutral dark:from-bg-secondary dark:to-mist rounded-2xl">
                 <div className="text-3xl font-bold text-tropical mb-2">360°</div>
-                <div className="text-sm text-gray-600 dark:text-text-secondary font-medium">Panoramic Views</div>
+                <div className="text-sm text-gray-600 dark:text-white/70 font-medium">Panoramic Views</div>
               </div>
               <div className="text-center p-6 bg-gradient-to-br from-surface to-neutral dark:from-bg-secondary dark:to-mist rounded-2xl">
                 <div className="text-3xl font-bold text-secondary mb-2">4.4★</div>
-                <div className="text-sm text-gray-600 dark:text-text-secondary font-medium">Google Rating</div>
+                <div className="text-sm text-gray-600 dark:text-white/70 font-medium">Google Rating</div>
               </div>
             </div>
             
@@ -45,21 +45,21 @@ export default function AboutSection() {
                 <Award className="text-tropical" size={24} />
                 <div>
                   <h4 className="font-semibold text-primary dark:text-text-primary">Authentic Experience</h4>
-                  <p className="text-gray-600 dark:text-text-secondary text-sm">Unique tropical hut architecture with modern amenities</p>
+                  <p className="text-gray-600 dark:text-white/70 text-sm">Unique tropical hut architecture with modern amenities</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4 p-4 bg-surface dark:bg-bg-secondary rounded-xl">
                 <MapPin className="text-tropical" size={24} />
                 <div>
                   <h4 className="font-semibold text-primary dark:text-text-primary">Prime Location</h4>
-                  <p className="text-gray-600 dark:text-text-secondary text-sm">Heart of Western Ghats with stunning panoramic vistas</p>
+                  <p className="text-gray-600 dark:text-white/70 text-sm">Heart of Western Ghats with stunning panoramic vistas</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4 p-4 bg-surface dark:bg-bg-secondary rounded-xl">
                 <Users className="text-tropical" size={24} />
                 <div>
-                  <h4 className="font-semibold text-primary dark:text-text-primary">Adventure Activities</h4>
-                  <p className="text-gray-600 dark:text-text-secondary text-sm">Zorbing, zip lining, and rope courses for thrill-seekers</p>
+                  <h4 className="font-semibold text-primary dark:text-text-primary">Nature Experiences</h4>
+                  <p className="text-gray-600 dark:text-white/70 text-sm">Hiking trails, scenic viewpoints, and peaceful mountain walks</p>
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@ export default function AboutSection() {
             <div className="absolute -bottom-8 -left-8 bg-white dark:bg-bg-secondary rounded-2xl p-6 shadow-xl border border-neutral/20 dark:border-mist/20">
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary dark:text-tropical mb-1">57</div>
-                <div className="text-sm text-gray-600 dark:text-text-secondary">Happy Reviews</div>
+                <div className="text-sm text-gray-600 dark:text-white/70">Happy Reviews</div>
               </div>
             </div>
             
@@ -93,7 +93,7 @@ export default function AboutSection() {
             <div className="absolute -top-8 -right-8 bg-white dark:bg-bg-secondary rounded-2xl p-6 shadow-xl border border-neutral/20 dark:border-mist/20">
               <div className="text-center">
                 <div className="text-2xl font-bold text-tropical mb-1">24/7</div>
-                <div className="text-sm text-gray-600 dark:text-text-secondary">Open Access</div>
+                <div className="text-sm text-gray-600 dark:text-white/70">Open Access</div>
               </div>
             </div>
           </div>

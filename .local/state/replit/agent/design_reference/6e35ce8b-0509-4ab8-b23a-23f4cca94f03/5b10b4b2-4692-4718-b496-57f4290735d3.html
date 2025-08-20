@@ -1,0 +1,528 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon Valley Resort - Nature's Paradise in the Mountains</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'forest-green': '#2F5233',
+                        'sage-green': '#87A96B',
+                        'warm-brown': '#8B4513',
+                        'soft-blue': '#87CEEB',
+                        'cream': '#F5F5DC',
+                        'warm-gray': '#F8F6F0',
+                        'golden-yellow': '#DAA520'
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'source': ['Source Sans Pro', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-source bg-warm-gray">
+    <!-- @COMPONENT: Header -->
+    <header class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-mountain text-forest-green text-2xl"></i>
+                    <span class="font-playfair text-2xl font-bold text-forest-green">Moon Valley Resort</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-forest-green hover:text-sage-green transition-colors">Home</a>
+                    <a href="#rooms" class="text-forest-green hover:text-sage-green transition-colors">Rooms</a>
+                    <a href="#amenities" class="text-forest-green hover:text-sage-green transition-colors">Amenities</a>
+                    <a href="#activities" class="text-forest-green hover:text-sage-green transition-colors">Activities</a>
+                    <a href="#gallery" class="text-forest-green hover:text-sage-green transition-colors">Gallery</a>
+                    <a href="#contact" class="text-forest-green hover:text-sage-green transition-colors">Contact</a>
+                </div>
+                <button class="bg-forest-green text-white px-6 py-2 rounded-full hover:bg-sage-green transition-colors">Book Now</button>
+                <div class="md:hidden">
+                    <i class="fas fa-bars text-forest-green text-xl cursor-pointer"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center">
+        <!-- Stunning mountain valley panorama with lush greenery and morning mist -->
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080');">
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        </div>
+        <div class="relative text-center text-white z-10 px-6">
+            <h1 class="font-playfair text-5xl md:text-7xl font-bold mb-6">Welcome to Moon Valley</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Escape to nature's embrace in our serene mountain valley resort, where tranquility meets adventure</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <button class="bg-forest-green text-white px-8 py-4 rounded-full text-lg hover:bg-sage-green transition-colors">Explore Rooms</button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-full text-lg hover:bg-white hover:text-forest-green transition-colors">View Gallery</button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Hero Section -->
+
+    <!-- @COMPONENT: Rooms Section -->
+    <section id="rooms" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-forest-green mb-4">Our Accommodations</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Experience comfort and tranquility in our thoughtfully designed rooms, each offering unique views of the mountain valley</p>
+            </div>
+            
+            <!-- @MAP: rooms.map(room => ( -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <!-- Room 1: Valley View Suite -->
+                <div class="bg-warm-gray rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <!-- Luxurious mountain view hotel room with large windows overlooking valley -->
+                    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Valley View Suite" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="font-playfair text-2xl font-bold text-forest-green mb-3">Valley View Suite</h3>
+                        <p class="text-gray-600 mb-4">Spacious suite with panoramic valley views, king-size bed, and private balcony. Perfect for couples seeking romance and tranquility.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-bold text-golden-yellow">₹8,500</span>
+                            <span class="text-gray-500">per night</span>
+                        </div>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>King-size bed</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>Private balcony</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>Mountain views</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Room 2: Forest Retreat -->
+                <div class="bg-warm-gray rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <!-- Cozy wooden cabin-style room with rustic furniture and forest views -->
+                    <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Forest Retreat" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="font-playfair text-2xl font-bold text-forest-green mb-3">Forest Retreat</h3>
+                        <p class="text-gray-600 mb-4">Rustic charm meets modern comfort in this forest-facing room with natural wood interiors and cozy fireplace.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-bold text-golden-yellow">₹6,500</span>
+                            <span class="text-gray-500">per night</span>
+                        </div>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>Queen-size bed</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>Fireplace</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>Forest views</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Room 3: Garden Villa -->
+                <div class="bg-warm-gray rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <!-- Elegant resort room with garden terrace and outdoor seating area -->
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Garden Villa" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="font-playfair text-2xl font-bold text-forest-green mb-3">Garden Villa</h3>
+                        <p class="text-gray-600 mb-4">Ground-floor villa with private garden access, perfect for families or groups seeking space and nature immersion.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-bold text-golden-yellow">₹9,200</span>
+                            <span class="text-gray-500">per night</span>
+                        </div>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>Two beds</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>Private garden</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>Living area</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Room 4: Mountain Lodge -->
+                <div class="bg-warm-gray rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                    <!-- Luxury mountain lodge room with stone accents and premium amenities -->
+                    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Mountain Lodge" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <h3 class="font-playfair text-2xl font-bold text-forest-green mb-3">Mountain Lodge</h3>
+                        <p class="text-gray-600 mb-4">Premium lodge-style accommodation with stone accents, premium amenities, and breathtaking mountain panoramas.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-bold text-golden-yellow">₹12,000</span>
+                            <span class="text-gray-500">per night</span>
+                        </div>
+                        <ul class="mt-4 space-y-2">
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>King-size bed</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>Premium amenities</li>
+                            <li class="flex items-center"><i class="fas fa-check text-sage-green mr-2"></i>Panoramic views</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_MAP )) -->
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Rooms Section -->
+
+    <!-- @COMPONENT: Amenities Section -->
+    <section id="amenities" class="py-20 bg-forest-green text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-4">Resort Amenities</h2>
+                <p class="text-lg max-w-2xl mx-auto">Discover the perfect blend of relaxation and recreation with our carefully curated facilities</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Swimming Pool -->
+                <div class="text-center">
+                    <!-- Crystal clear outdoor swimming pool surrounded by lush tropical vegetation -->
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Swimming Pool" class="rounded-2xl shadow-lg mb-6 w-full h-64 object-cover">
+                    <h3 class="font-playfair text-3xl font-bold mb-4">Natural Swimming Pool</h3>
+                    <p class="text-lg mb-4">Dive into our pristine outdoor pool surrounded by lush greenery and mountain views. Perfect for a refreshing swim or peaceful floating under the stars.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center justify-center"><i class="fas fa-swimming-pool text-soft-blue mr-2"></i>Heated pool</li>
+                        <li class="flex items-center justify-center"><i class="fas fa-sun text-golden-yellow mr-2"></i>Sun deck</li>
+                        <li class="flex items-center justify-center"><i class="fas fa-cocktail text-soft-blue mr-2"></i>Poolside service</li>
+                    </ul>
+                </div>
+
+                <!-- Common Kitchen -->
+                <div class="text-center">
+                    <!-- Modern communal kitchen and dining area with rustic wooden elements -->
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Common Kitchen" class="rounded-2xl shadow-lg mb-6 w-full h-64 object-cover">
+                    <h3 class="font-playfair text-3xl font-bold mb-4">Community Kitchen</h3>
+                    <p class="text-lg mb-4">Share meals and stories in our fully-equipped common kitchen and dining area. Create culinary memories with fellow travelers or enjoy family cooking time.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center justify-center"><i class="fas fa-utensils text-golden-yellow mr-2"></i>Full equipment</li>
+                        <li class="flex items-center justify-center"><i class="fas fa-users text-soft-blue mr-2"></i>Social dining</li>
+                        <li class="flex items-center justify-center"><i class="fas fa-coffee text-warm-brown mr-2"></i>24/7 access</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Amenities Section -->
+
+    <!-- @COMPONENT: Activities Section -->
+    <section id="activities" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-forest-green mb-4">Mountain Adventures</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Immerse yourself in nature with our curated outdoor experiences and adventure activities</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center bg-warm-gray rounded-2xl p-8">
+                    <i class="fas fa-hiking text-4xl text-forest-green mb-4"></i>
+                    <h3 class="font-playfair text-2xl font-bold text-forest-green mb-3">Nature Hiking</h3>
+                    <p class="text-gray-600">Explore scenic mountain trails with guided hikes through pristine valleys and forest paths.</p>
+                </div>
+                
+                <div class="text-center bg-warm-gray rounded-2xl p-8">
+                    <i class="fas fa-binoculars text-4xl text-forest-green mb-4"></i>
+                    <h3 class="font-playfair text-2xl font-bold text-forest-green mb-3">Bird Watching</h3>
+                    <p class="text-gray-600">Discover diverse wildlife and rare bird species in their natural mountain habitat.</p>
+                </div>
+                
+                <div class="text-center bg-warm-gray rounded-2xl p-8">
+                    <i class="fas fa-campfire text-4xl text-forest-green mb-4"></i>
+                    <h3 class="font-playfair text-2xl font-bold text-forest-green mb-3">Evening Bonfires</h3>
+                    <p class="text-gray-600">Gather around crackling fires under starlit skies for storytelling and marshmallow roasting.</p>
+                </div>
+                
+                <div class="text-center bg-warm-gray rounded-2xl p-8">
+                    <i class="fas fa-leaf text-4xl text-forest-green mb-4"></i>
+                    <h3 class="font-playfair text-2xl font-bold text-forest-green mb-3">Nature Photography</h3>
+                    <p class="text-gray-600">Capture breathtaking landscapes and wildlife with guided photography sessions.</p>
+                </div>
+                
+                <div class="text-center bg-warm-gray rounded-2xl p-8">
+                    <i class="fas fa-mountain text-4xl text-forest-green mb-4"></i>
+                    <h3 class="font-playfair text-2xl font-bold text-forest-green mb-3">Rock Climbing</h3>
+                    <p class="text-gray-600">Challenge yourself with guided rock climbing adventures suitable for all skill levels.</p>
+                </div>
+                
+                <div class="text-center bg-warm-gray rounded-2xl p-8">
+                    <i class="fas fa-water text-4xl text-forest-green mb-4"></i>
+                    <h3 class="font-playfair text-2xl font-bold text-forest-green mb-3">Valley Streams</h3>
+                    <p class="text-gray-600">Relax by crystal-clear mountain streams and enjoy peaceful water meditation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Activities Section -->
+
+    <!-- @COMPONENT: Gallery Section -->
+    <section id="gallery" class="py-20 bg-forest-green">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-white mb-4">Photo Gallery</h2>
+                <p class="text-lg text-white max-w-2xl mx-auto">Experience the beauty of Moon Valley through our collection of stunning resort and nature photography</p>
+            </div>
+            
+            <div class="mb-8 text-center">
+                <button class="bg-white text-forest-green px-6 py-3 rounded-full mr-4 hover:bg-gray-100 transition-colors">Resort Views</button>
+                <button class="text-white border border-white px-6 py-3 rounded-full hover:bg-white hover:text-forest-green transition-colors">Nature Scenes</button>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Aerial view of mountain resort nestled in green valley -->
+                <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" alt="Resort Overview" class="rounded-lg shadow-lg w-full h-40 object-cover hover:scale-105 transition-transform cursor-pointer">
+                
+                <!-- Misty mountain peaks at sunrise with golden light -->
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" alt="Mountain Sunrise" class="rounded-lg shadow-lg w-full h-40 object-cover hover:scale-105 transition-transform cursor-pointer">
+                
+                <!-- Lush green forest trail winding through tall trees -->
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" alt="Forest Trail" class="rounded-lg shadow-lg w-full h-40 object-cover hover:scale-105 transition-transform cursor-pointer">
+                
+                <!-- Sparkling mountain stream flowing over smooth rocks -->
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" alt="Mountain Stream" class="rounded-lg shadow-lg w-full h-40 object-cover hover:scale-105 transition-transform cursor-pointer">
+                
+                <!-- Resort swimming pool at sunset with mountain backdrop -->
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" alt="Pool at Sunset" class="rounded-lg shadow-lg w-full h-40 object-cover hover:scale-105 transition-transform cursor-pointer">
+                
+                <!-- Colorful wildflowers in mountain meadow -->
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" alt="Wildflower Meadow" class="rounded-lg shadow-lg w-full h-40 object-cover hover:scale-105 transition-transform cursor-pointer">
+                
+                <!-- Cozy resort room interior with mountain views -->
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" alt="Room Interior" class="rounded-lg shadow-lg w-full h-40 object-cover hover:scale-105 transition-transform cursor-pointer">
+                
+                <!-- Dramatic mountain valley landscape at golden hour -->
+                <img src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400" alt="Valley Landscape" class="rounded-lg shadow-lg w-full h-40 object-cover hover:scale-105 transition-transform cursor-pointer">
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Gallery Section -->
+
+    <!-- @COMPONENT: Booking Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-forest-green mb-4">Book Your Stay</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Plan your perfect mountain getaway with our easy online booking system</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-warm-gray rounded-2xl p-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div>
+                        <label class="block text-forest-green font-semibold mb-2">Check-in Date</label>
+                        <input type="date" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-transparent" data-mock="true">
+                    </div>
+                    <div>
+                        <label class="block text-forest-green font-semibold mb-2">Check-out Date</label>
+                        <input type="date" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-transparent" data-mock="true">
+                    </div>
+                    <div>
+                        <label class="block text-forest-green font-semibold mb-2">Room Type</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-transparent" data-mock="true">
+                            <option>Valley View Suite - ₹8,500</option>
+                            <option>Forest Retreat - ₹6,500</option>
+                            <option>Garden Villa - ₹9,200</option>
+                            <option>Mountain Lodge - ₹12,000</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-forest-green font-semibold mb-2">Guests</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-green focus:border-transparent" data-mock="true">
+                            <option>1 Guest</option>
+                            <option>2 Guests</option>
+                            <option>3 Guests</option>
+                            <option>4 Guests</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <div class="mb-6">
+                        <span class="text-2xl font-bold text-golden-yellow">Total: ₹8,500</span>
+                        <span class="text-gray-600 ml-2">(2 nights)</span>
+                    </div>
+                    <button class="bg-forest-green text-white px-12 py-4 rounded-full text-lg hover:bg-sage-green transition-colors">
+                        <!-- TODO: Implement booking logic and payment processing -->
+                        Reserve Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Booking Section -->
+
+    <!-- @COMPONENT: Contact Section -->
+    <section id="contact" class="py-20 bg-sage-green text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
+                <p class="text-lg max-w-2xl mx-auto">Have questions about your stay? We're here to help make your Moon Valley experience unforgettable</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div>
+                    <h3 class="font-playfair text-2xl font-bold mb-6">Send us a Message</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Your Name" class="w-full p-4 rounded-lg text-gray-900 focus:ring-2 focus:ring-forest-green focus:outline-none" data-mock="true">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Email Address" class="w-full p-4 rounded-lg text-gray-900 focus:ring-2 focus:ring-forest-green focus:outline-none" data-mock="true">
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Phone Number" class="w-full p-4 rounded-lg text-gray-900 focus:ring-2 focus:ring-forest-green focus:outline-none" data-mock="true">
+                        </div>
+                        <div>
+                            <textarea rows="4" placeholder="Your Message" class="w-full p-4 rounded-lg text-gray-900 focus:ring-2 focus:ring-forest-green focus:outline-none resize-none" data-mock="true"></textarea>
+                        </div>
+                        <button type="submit" class="bg-forest-green text-white px-8 py-4 rounded-lg hover:bg-opacity-90 transition-colors">
+                            <!-- TODO: Implement form submission -->
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div>
+                    <h3 class="font-playfair text-2xl font-bold mb-6">Visit Us</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-map-marker-alt text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-2">Address</h4>
+                                <p data-mock="true">Moon Valley Resort<br>Mountain View Road, Valley District<br>Himachal Pradesh, India - 177001</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-phone text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-2">Phone</h4>
+                                <p data-mock="true">+91 98765 43210</p>
+                                <p data-mock="true">+91 98765 43211</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-envelope text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-2">Email</h4>
+                                <p data-mock="true">info@moonvalleyresort.com</p>
+                                <p data-mock="true">bookings@moonvalleyresort.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-clock text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-2">Reception Hours</h4>
+                                <p data-mock="true">24/7 Front Desk Service</p>
+                                <p data-mock="true">Check-in: 2:00 PM</p>
+                                <p data-mock="true">Check-out: 11:00 AM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Contact Section -->
+
+    <!-- @COMPONENT: Footer -->
+    <footer class="bg-forest-green text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-mountain text-2xl"></i>
+                        <span class="font-playfair text-2xl font-bold">Moon Valley Resort</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">Experience the perfect blend of luxury and nature in our serene mountain valley retreat.</p>
+                    <div class="flex space-x-4">
+                        <i class="fab fa-facebook text-xl hover:text-soft-blue cursor-pointer transition-colors"></i>
+                        <i class="fab fa-instagram text-xl hover:text-soft-blue cursor-pointer transition-colors"></i>
+                        <i class="fab fa-twitter text-xl hover:text-soft-blue cursor-pointer transition-colors"></i>
+                        <i class="fab fa-youtube text-xl hover:text-soft-blue cursor-pointer transition-colors"></i>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-playfair text-xl font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#rooms" class="text-gray-300 hover:text-white transition-colors">Our Rooms</a></li>
+                        <li><a href="#amenities" class="text-gray-300 hover:text-white transition-colors">Amenities</a></li>
+                        <li><a href="#activities" class="text-gray-300 hover:text-white transition-colors">Activities</a></li>
+                        <li><a href="#gallery" class="text-gray-300 hover:text-white transition-colors">Gallery</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-playfair text-xl font-bold mb-4">Policies</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Booking Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Cancellation</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-playfair text-xl font-bold mb-4">Newsletter</h4>
+                    <p class="text-gray-300 mb-4">Subscribe for special offers and mountain retreat updates</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="flex-1 p-3 rounded-l-lg text-gray-900 focus:outline-none" data-mock="true">
+                        <button class="bg-sage-green px-6 py-3 rounded-r-lg hover:bg-opacity-90 transition-colors">
+                            <!-- TODO: Implement newsletter subscription -->
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-600 mt-8 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2024 Moon Valley Resort. All rights reserved. | Designed for nature lovers</p>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        // Smooth scrolling for navigation links
+        (function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Gallery image hover effects and modal functionality
+            document.querySelectorAll('#gallery img').forEach(img => {
+                img.addEventListener('click', function() {
+                    // TODO: Implement image modal/lightbox functionality
+                    console.log('Image clicked:', this.alt);
+                });
+            });
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.querySelector('.md\\:hidden i');
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function() {
+                    // TODO: Implement mobile menu functionality
+                    console.log('Mobile menu toggled');
+                });
+            }
+
+            // Booking form calculations
+            const roomSelect = document.querySelector('select');
+            if (roomSelect) {
+                roomSelect.addEventListener('change', function() {
+                    // TODO: Implement dynamic pricing calculation
+                    console.log('Room selection changed');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

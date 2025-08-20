@@ -51,7 +51,7 @@ export default function AmenitiesSection() {
           <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
             World-Class <span className="text-tropical">Amenities</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-text-secondary max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed">
             Every facility is thoughtfully designed to enhance your connection with nature while providing modern comfort and convenience for an unforgettable stay.
           </p>
         </div>
@@ -77,7 +77,7 @@ export default function AmenitiesSection() {
                   <h3 className="text-xl font-poppins font-bold text-primary dark:text-text-primary mb-3">
                     {amenity.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-text-secondary leading-relaxed">
+                  <p className="text-gray-600 dark:text-white/70 leading-relaxed">
                     {amenity.description}
                   </p>
                 </CardContent>

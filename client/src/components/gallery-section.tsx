@@ -55,13 +55,13 @@ export default function GallerySection() {
   };
 
   return (
-    <section id="gallery" className="py-20 bg-gray-50">
+    <section id="gallery" className="py-20 bg-gray-50 dark:bg-bg-secondary">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-forest mb-4">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-forest dark:text-text-primary mb-4">
             Gallery
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-text-secondary max-w-2xl mx-auto">
             Discover the beauty and serenity that awaits you at Moon Valley Resort through our curated collection of moments.
           </p>
         </div>
@@ -83,7 +83,7 @@ export default function GallerySection() {
         </div>
 
         <div className="text-center mt-12">
-          <Button className="bg-forest text-white px-8 py-3 rounded-full hover:bg-forest/90 transition-all duration-300 hover:shadow-lg">
+          <Button className="bg-forest dark:bg-primary text-white px-8 py-3 rounded-full hover:bg-forest/90 dark:hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
             View Full Gallery
           </Button>
         </div>

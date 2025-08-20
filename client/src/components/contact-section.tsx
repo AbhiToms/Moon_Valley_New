@@ -90,13 +90,13 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-white dark:bg-bg-secondary">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-forest mb-4">
+          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-forest dark:text-text-primary mb-4">
             Get In Touch
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-text-secondary max-w-2xl mx-auto">
             Ready to plan your mountain escape? Contact our friendly team for personalized assistance and special offers.
           </p>
         </div>
@@ -108,13 +108,13 @@ export default function ContactSection() {
                 const IconComponent = info.icon;
                 return (
                   <div key={index} className="flex items-start">
-                    <div className="text-forest text-2xl mr-4 mt-1">
+                    <div className="text-forest dark:text-tropical text-2xl mr-4 mt-1">
                       <IconComponent size={28} />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-forest mb-2">{info.title}</h3>
+                      <h3 className="text-xl font-semibold text-forest dark:text-text-primary mb-2">{info.title}</h3>
                       {info.content.map((line, lineIndex) => (
-                        <p key={lineIndex} className="text-gray-700">
+                        <p key={lineIndex} className="text-gray-700 dark:text-text-secondary">
                           {line}
                         </p>
                       ))}
@@ -125,7 +125,7 @@ export default function ContactSection() {
             </div>
 
             <div className="mt-12">
-              <h3 className="text-xl font-semibold text-forest mb-4">Follow Us</h3>
+              <h3 className="text-xl font-semibold text-forest dark:text-text-primary mb-4">Follow Us</h3>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => {
                   const IconComponent = social.icon;
@@ -133,7 +133,7 @@ export default function ContactSection() {
                     <a 
                       key={index}
                       href={social.href} 
-                      className="w-12 h-12 bg-forest text-white rounded-full flex items-center justify-center hover:bg-forest/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                      className="w-12 h-12 bg-forest dark:bg-primary text-white rounded-full flex items-center justify-center hover:bg-forest/90 dark:hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     >
                       <IconComponent size={20} />
                     </a>
@@ -144,9 +144,9 @@ export default function ContactSection() {
           </div>
 
           {/* Contact Form */}
-          <Card className="bg-sage/10 border-0 rounded-2xl">
+          <Card className="bg-sage/10 dark:bg-bg-primary border-0 dark:border dark:border-mist/20 rounded-2xl">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-playfair font-bold text-forest mb-6">Send us a Message</h3>
+              <h3 className="text-2xl font-playfair font-bold text-forest dark:text-text-primary mb-6">Send us a Message</h3>
               
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -156,11 +156,11 @@ export default function ContactSection() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-forest">Name</FormLabel>
+                          <FormLabel className="text-forest dark:text-text-primary">Name</FormLabel>
                           <FormControl>
                             <Input 
                               {...field}
-                              className="bg-white border-gray-300 focus:border-forest focus:ring-forest"
+                              className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-forest dark:focus:border-tropical focus:ring-forest dark:focus:ring-tropical dark:text-text-primary"
                             />
                           </FormControl>
                           <FormMessage />
@@ -173,12 +173,12 @@ export default function ContactSection() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-forest">Email</FormLabel>
+                          <FormLabel className="text-forest dark:text-text-primary">Email</FormLabel>
                           <FormControl>
                             <Input 
                               type="email" 
                               {...field}
-                              className="bg-white border-gray-300 focus:border-forest focus:ring-forest"
+                              className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-forest dark:focus:border-tropical focus:ring-forest dark:focus:ring-tropical dark:text-text-primary"
                             />
                           </FormControl>
                           <FormMessage />
@@ -192,11 +192,11 @@ export default function ContactSection() {
                     name="subject"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-forest">Subject</FormLabel>
+                        <FormLabel className="text-forest dark:text-text-primary">Subject</FormLabel>
                         <FormControl>
                           <Input 
                             {...field}
-                            className="bg-white border-gray-300 focus:border-forest focus:ring-forest"
+                            className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-forest dark:focus:border-tropical focus:ring-forest dark:focus:ring-tropical dark:text-text-primary"
                           />
                         </FormControl>
                         <FormMessage />
@@ -209,12 +209,12 @@ export default function ContactSection() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-forest">Message</FormLabel>
+                        <FormLabel className="text-forest dark:text-text-primary">Message</FormLabel>
                         <FormControl>
                           <Textarea 
                             {...field}
                             placeholder="Tell us how we can help you..."
-                            className="bg-white border-gray-300 focus:border-forest focus:ring-forest"
+                            className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-forest dark:focus:border-tropical focus:ring-forest dark:focus:ring-tropical dark:text-text-primary dark:placeholder:text-text-secondary"
                             rows={5}
                           />
                         </FormControl>
@@ -226,7 +226,7 @@ export default function ContactSection() {
                   <Button 
                     type="submit" 
                     disabled={contactMutation.isPending}
-                    className="w-full bg-forest text-white hover:bg-forest/90 rounded-lg transition-all duration-300 hover:shadow-lg font-semibold"
+                    className="w-full bg-forest dark:bg-primary text-white hover:bg-forest/90 dark:hover:bg-primary/90 rounded-lg transition-all duration-300 hover:shadow-lg font-semibold"
                   >
                     {contactMutation.isPending ? "Sending..." : "Send Message"}
                   </Button>

@@ -51,7 +51,7 @@
   --shadow-2xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
-  
+
   /* Moon Valley Tropical Hut Colors - Light Mode */
   --primary: hsl(155 60% 20%);
   --primary-foreground: hsl(0 0% 100%);
@@ -92,7 +92,7 @@
   --border: hsl(155 10% 20%);
   --input: hsl(155 10% 20%);
   --ring: hsl(155 50% 35%);
-  
+
   /* Moon Valley Dark Mode Colors */
   --neutral: hsl(155 8% 15%);
   --surface: hsl(155 10% 10%);
@@ -115,7 +115,7 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
@@ -125,7 +125,7 @@
   .font-poppins {
     font-family: 'Poppins', sans-serif;
   }
-  
+
   .font-merriweather {
     font-family: 'Merriweather', serif;
   }
@@ -135,101 +135,102 @@
   .text-primary {
     color: var(--primary);
   }
-  
+
   .text-secondary {
     color: var(--secondary);
   }
-  
+
   .text-accent {
     color: var(--accent);
   }
-  
+
   .text-neutral {
     color: var(--neutral);
   }
-  
+
   .text-tropical {
     color: var(--tropical);
   }
-  
+
   .text-sunset {
     color: var(--sunset);
   }
-  
+
   .text-mist {
     color: var(--mist);
   }
-  
+
   .text-text-primary {
     color: var(--text-primary);
   }
-  
+
   .text-text-secondary {
     color: var(--text-secondary);
   }
-  
+
   .bg-primary {
     background-color: var(--primary);
   }
-  
+
   .bg-secondary {
     background-color: var(--secondary);
   }
-  
+
   .bg-accent {
     background-color: var(--accent);
   }
-  
+
   .bg-neutral {
     background-color: var(--neutral);
   }
-  
+
   .bg-surface {
     background-color: var(--surface);
   }
-  
+
   .bg-tropical {
     background-color: var(--tropical);
   }
-  
+
   .bg-sunset {
     background-color: var(--sunset);
   }
-  
+
   .bg-mist {
     background-color: var(--mist);
   }
-  
+
   .bg-bg-primary {
     background-color: var(--bg-primary);
   }
-  
+
   .bg-bg-secondary {
     background-color: var(--bg-secondary);
   }
-  
+
   .border-primary {
     border-color: var(--primary);
   }
-  
+
   .border-secondary {
     border-color: var(--secondary);
   }
-  
+
   .border-tropical {
     border-color: var(--tropical);
   }
-  
+
   /* Enhanced animations for better UX */
   .animate-fadeInUp {
     animation: fadeInUp 0.8s ease-out;
   }
-  
+
   @keyframes fadeInUp {
     from {
       opacity: 0;
       transform: translateY(30px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -243,18 +244,45 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
+/* Enhanced text readability for dark mode navigation */
+.nav-text-enhanced {
+  color: #374151;
+  /* gray-700 for light mode */
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-text-enhanced:hover {
+  color: hsl(155 60% 20%);
+  /* primary color for light mode */
+}
+
+.dark .nav-text-enhanced {
+  color: #f1f5f9 !important;
+  /* Very light color for dark backgrounds */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.dark .nav-text-enhanced:hover {
+  color: hsl(165 40% 50%) !important;
+  /* tropical color for dark mode hover */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
 @keyframes fadeIn {
-  from { 
-    opacity: 0; 
+  from {
+    opacity: 0;
   }
-  to { 
-    opacity: 1; 
+
+  to {
+    opacity: 1;
   }
 }
 
@@ -263,6 +291,7 @@
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -274,6 +303,7 @@
     opacity: 0;
     transform: translateX(30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
