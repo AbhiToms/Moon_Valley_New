@@ -58,10 +58,13 @@ export default function GallerySection() {
     <section id="gallery" className="py-20 bg-gray-50 dark:bg-bg-secondary">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-forest dark:text-text-primary mb-4">
-            Gallery
+          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-6 py-2 mb-6">
+            <span className="text-primary dark:text-tropical font-semibold text-sm">GALLERY</span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
+            Resort <span className="text-tropical">Gallery</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-text-secondary max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed">
             Discover the beauty and serenity that awaits you at Moon Valley Resort through our curated collection of moments.
           </p>
         </div>

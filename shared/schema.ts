@@ -44,6 +44,9 @@ export const insertRoomSchema = createInsertSchema(rooms).omit({
 export const insertBookingSchema = createInsertSchema(bookings).omit({
   id: true,
   createdAt: true,
+}).extend({
+  checkIn: z.string().or(z.date()).transform((val) => typeof val === 'string' ? new Date(val) : val),
+  checkOut: z.string().or(z.date()).transform((val) => typeof val === 'string' ? new Date(val) : val),
 });
 
 export const insertContactSchema = createInsertSchema(contacts).omit({

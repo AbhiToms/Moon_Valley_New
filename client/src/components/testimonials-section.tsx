@@ -4,7 +4,7 @@ import { Star } from "lucide-react";
 const testimonials = [
   {
     content: "Great place to stay with friends! The swimming pool, kitchen, rooms, and toilets were all well-maintained and clean. We grilled chicken with coal arranged by Joby bro. The breakfast was good, and the resort owner is very friendly.",
-    name: "Dhrupath Mk",
+    name: "Dhrupath M K",
     location: "Google Reviewer • 1 month ago",
     initials: "DM"
   },
@@ -27,10 +27,13 @@ export default function TestimonialsSection() {
     <section className="py-20 bg-cream dark:bg-bg-primary">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-forest dark:text-text-primary mb-4">
-            Guest Experiences
+          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-6 py-2 mb-6">
+            <span className="text-primary dark:text-tropical font-semibold text-sm">TESTIMONIALS</span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
+            Guest <span className="text-tropical">Experiences</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-text-secondary max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed">
             Discover why our guests choose Moon Valley Resort for their mountain retreats and memorable experiences.
           </p>
         </div>
@@ -53,10 +56,14 @@ export default function TestimonialsSection() {
                   </p>
                   
                   <div className="flex items-center">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold mr-4 ${
-                      index === 0 ? 'bg-sage dark:bg-primary' : index === 1 ? 'bg-forest dark:bg-secondary' : 'bg-gold dark:bg-tropical'
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold mr-4 ${
+                      index === 0 
+                        ? 'bg-primary text-white dark:bg-primary dark:text-white' 
+                        : index === 1 
+                        ? 'bg-secondary text-white dark:bg-secondary dark:text-white' 
+                        : 'bg-tropical text-white dark:bg-tropical dark:text-white'
                     }`}>
-                      <span>{testimonial.initials}</span>
+                      <span className="text-lg">{testimonial.initials}</span>
                     </div>
                     <div>
                       <div className="font-semibold text-forest dark:text-text-primary">{testimonial.name}</div>

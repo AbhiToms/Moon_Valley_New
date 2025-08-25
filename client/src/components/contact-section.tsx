@@ -93,61 +93,69 @@ export default function ContactSection() {
     <section id="contact" className="py-20 bg-white dark:bg-bg-secondary">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-forest dark:text-text-primary mb-4">
-            Get In Touch
+          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-6 py-2 mb-6">
+            <span className="text-primary dark:text-tropical font-semibold text-sm">CONTACT</span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
+            Get In <span className="text-tropical">Touch</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-text-secondary max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed">
             Ready to plan your mountain escape? Contact our friendly team for personalized assistance and special offers.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
+          {/* Contact Info */}
           <div>
-            <div className="space-y-8">
-              {contactInfo.map((info, index) => {
-                const IconComponent = info.icon;
-                return (
-                  <div key={index} className="flex items-start">
-                    <div className="text-forest dark:text-tropical text-2xl mr-4 mt-1">
-                      <IconComponent size={28} />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-forest dark:text-text-primary mb-2">{info.title}</h3>
-                      {info.content.map((line, lineIndex) => (
-                        <p key={lineIndex} className="text-gray-700 dark:text-text-secondary">
-                          {line}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <Card className="bg-surface dark:bg-bg-primary rounded-2xl card-shadow border-0 dark:border dark:border-mist/20">
+              <CardContent className="p-8">
+                <div className="space-y-6">
+                  {contactInfo.map((info, index) => {
+                    const IconComponent = info.icon;
+                    return (
+                      <div key={index} className="flex items-start">
+                        <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center mr-4 mt-1">
+                          <IconComponent size={22} />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-primary dark:text-text-primary mb-1">{info.title}</h3>
+                          {info.content.map((line, lineIndex) => (
+                            <p key={lineIndex} className="text-gray-700 dark:text-text-secondary">
+                              {line}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
 
-            <div className="mt-12">
-              <h3 className="text-xl font-semibold text-forest dark:text-text-primary mb-4">Follow Us</h3>
-              <div className="flex space-x-4">
-                {socialLinks.map((social, index) => {
-                  const IconComponent = social.icon;
-                  return (
-                    <a 
-                      key={index}
-                      href={social.href} 
-                      className="w-12 h-12 bg-forest dark:bg-primary text-white rounded-full flex items-center justify-center hover:bg-forest/90 dark:hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-                    >
-                      <IconComponent size={20} />
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
+                <div className="mt-10">
+                  <h3 className="text-lg font-semibold text-primary dark:text-text-primary mb-4">Follow Us</h3>
+                  <div className="flex gap-3">
+                    {socialLinks.map((social, index) => {
+                      const IconComponent = social.icon;
+                      return (
+                        <a 
+                          key={index}
+                          href={social.href}
+                          className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                          aria-label="Follow us"
+                        >
+                          <IconComponent size={20} />
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Contact Form */}
-          <Card className="bg-sage/10 dark:bg-bg-primary border-0 dark:border dark:border-mist/20 rounded-2xl">
+          <Card className="bg-sage/10 dark:bg-bg-primary border-0 dark:border dark:border-mist/20 rounded-2xl card-shadow">
             <CardContent className="p-8">
-              <h3 className="text-2xl font-playfair font-bold text-forest dark:text-text-primary mb-6">Send us a Message</h3>
-              
+              <h3 className="text-2xl font-poppins font-bold text-primary dark:text-text-primary mb-6">Send us a Message</h3>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
@@ -156,11 +164,11 @@ export default function ContactSection() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-forest dark:text-text-primary">Name</FormLabel>
+                          <FormLabel className="text-primary dark:text-text-primary">Name</FormLabel>
                           <FormControl>
                             <Input 
                               {...field}
-                              className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-forest dark:focus:border-tropical focus:ring-forest dark:focus:ring-tropical dark:text-text-primary"
+                              className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-primary dark:focus:border-tropical focus:ring-primary dark:focus:ring-tropical dark:text-text-primary"
                             />
                           </FormControl>
                           <FormMessage />
@@ -173,12 +181,12 @@ export default function ContactSection() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-forest dark:text-text-primary">Email</FormLabel>
+                          <FormLabel className="text-primary dark:text-text-primary">Email</FormLabel>
                           <FormControl>
                             <Input 
                               type="email" 
                               {...field}
-                              className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-forest dark:focus:border-tropical focus:ring-forest dark:focus:ring-tropical dark:text-text-primary"
+                              className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-primary dark:focus:border-tropical focus:ring-primary dark:focus:ring-tropical dark:text-text-primary"
                             />
                           </FormControl>
                           <FormMessage />
@@ -192,11 +200,11 @@ export default function ContactSection() {
                     name="subject"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-forest dark:text-text-primary">Subject</FormLabel>
+                        <FormLabel className="text-primary dark:text-text-primary">Subject</FormLabel>
                         <FormControl>
                           <Input 
                             {...field}
-                            className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-forest dark:focus:border-tropical focus:ring-forest dark:focus:ring-tropical dark:text-text-primary"
+                            className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-primary dark:focus:border-tropical focus:ring-primary dark:focus:ring-tropical dark:text-text-primary"
                           />
                         </FormControl>
                         <FormMessage />
@@ -209,12 +217,12 @@ export default function ContactSection() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-forest dark:text-text-primary">Message</FormLabel>
+                        <FormLabel className="text-primary dark:text-text-primary">Message</FormLabel>
                         <FormControl>
                           <Textarea 
                             {...field}
                             placeholder="Tell us how we can help you..."
-                            className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-forest dark:focus:border-tropical focus:ring-forest dark:focus:ring-tropical dark:text-text-primary dark:placeholder:text-text-secondary"
+                            className="bg-white dark:bg-bg-secondary border-gray-300 dark:border-mist/30 focus:border-primary dark:focus:border-tropical focus:ring-primary dark:focus:ring-tropical dark:text-text-primary dark:placeholder:text-text-secondary"
                             rows={5}
                           />
                         </FormControl>
@@ -226,7 +234,7 @@ export default function ContactSection() {
                   <Button 
                     type="submit" 
                     disabled={contactMutation.isPending}
-                    className="w-full bg-forest dark:bg-primary text-white hover:bg-forest/90 dark:hover:bg-primary/90 rounded-lg transition-all duration-300 hover:shadow-lg font-semibold"
+                    className="w-full bg-gradient-to-r from-primary to-tropical text-white hover:opacity-90 rounded-lg transition-all duration-300 hover:shadow-lg font-semibold"
                   >
                     {contactMutation.isPending ? "Sending..." : "Send Message"}
                   </Button>

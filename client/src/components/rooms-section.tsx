@@ -18,7 +18,7 @@ export default function RoomsSection() {
 
   if (isLoading) {
     return (
-      <section id="rooms" className="py-24 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
+      <section id="accommodations" className="py-24 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
             <div className="w-32 h-8 bg-gray-200 dark:bg-mist rounded-full mx-auto mb-4 animate-pulse"></div>
@@ -35,7 +35,7 @@ export default function RoomsSection() {
   }
 
   return (
-    <section id="rooms" className="py-24 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
+    <section id="accommodations" className="py-24 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-20">
