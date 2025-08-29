@@ -1,10 +1,15 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Bed, Bath, Wifi, Star, Users, Eye } from "lucide-react";
+import RoomGallery from "@/components/room-gallery";
 import type { Room } from "@shared/schema";
 
 export default function RoomsSection() {
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+
   const { data: rooms, isLoading } = useQuery<Room[]>({
     queryKey: ["/api/rooms"],
   });
@@ -14,6 +19,21 @@ export default function RoomsSection() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const openRoomGallery = (room: Room) => {
+    setSelectedRoom(room);
+    setIsGalleryOpen(true);
+  };
+
+  const closeRoomGallery = () => {
+    setIsGalleryOpen(false);
+    setSelectedRoom(null);
+  };
+
+  const handleBookFromGallery = () => {
+    closeRoomGallery();
+    scrollToBooking();
   };
 
   if (isLoading) {
@@ -67,7 +87,11 @@ export default function RoomsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Button size="sm" className="bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white hover:text-primary">
+                  <Button 
+                    size="sm" 
+                    onClick={() => openRoomGallery(room)}
+                    className="bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white hover:text-primary"
+                  >
                     <Eye size={16} className="mr-2" />
                     View Details
                   </Button>
@@ -118,7 +142,13 @@ export default function RoomsSection() {
           ))}
         </div>
 
-
+        {/* Room Gallery Modal */}
+        <RoomGallery
+          room={selectedRoom}
+          isOpen={isGalleryOpen}
+          onClose={closeRoomGallery}
+          onBookNow={handleBookFromGallery}
+        />
       </div>
     </section>
   );
