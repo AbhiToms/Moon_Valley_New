@@ -55,25 +55,25 @@ export default function GallerySection() {
   };
 
   return (
-    <section id="gallery" className="py-20 bg-gray-50 dark:bg-bg-secondary">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-6 py-2 mb-6">
-            <span className="text-primary dark:text-tropical font-semibold text-sm">GALLERY</span>
+    <section id="gallery" className="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-bg-secondary">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
+            <span className="text-primary dark:text-tropical font-semibold text-xs sm:text-sm">GALLERY</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-4 sm:mb-6">
             Resort <span className="text-tropical">Gallery</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
             Discover the beauty and serenity that awaits you at Moon Valley Resort through our curated collection of moments.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
           {galleryImages.map((image, index) => (
             <div 
               key={index}
-              className="aspect-square overflow-hidden rounded-xl hover-lift cursor-pointer"
+              className="aspect-square overflow-hidden rounded-lg sm:rounded-xl hover-lift cursor-pointer"
               onClick={() => openLightbox(index)}
             >
               <img 
@@ -85,8 +85,8 @@ export default function GallerySection() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <Button className="bg-forest dark:bg-primary text-white px-8 py-3 rounded-full hover:bg-forest/90 dark:hover:bg-primary/90 transition-all duration-300 hover:shadow-lg">
+        <div className="text-center mt-8 sm:mt-12">
+          <Button className="bg-forest dark:bg-primary text-white px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base rounded-full hover:bg-forest/90 dark:hover:bg-primary/90 transition-all duration-300 hover:shadow-lg w-full sm:w-auto">
             View Full Gallery
           </Button>
         </div>

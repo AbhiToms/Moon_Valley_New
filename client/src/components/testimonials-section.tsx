@@ -24,50 +24,50 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-20 bg-cream dark:bg-bg-primary">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-6 py-2 mb-6">
-            <span className="text-primary dark:text-tropical font-semibold text-sm">TESTIMONIALS</span>
+    <section className="py-12 sm:py-16 lg:py-20 bg-cream dark:bg-bg-primary">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
+            <span className="text-primary dark:text-tropical font-semibold text-xs sm:text-sm">TESTIMONIALS</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-4 sm:mb-6">
             Guest <span className="text-tropical">Experiences</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
             Discover why our guests choose Moon Valley Resort for their mountain retreats and memorable experiences.
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
               <Card key={index} className="bg-white dark:bg-bg-secondary rounded-2xl card-shadow hover-lift border-0 dark:border dark:border-mist/20">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="flex text-gold dark:text-secondary">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex items-center mb-3 sm:mb-4">
+                    <div className="flex text-gold dark:text-gold">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="fill-current" size={16} />
+                        <Star key={i} className="fill-current" size={14} />
                       ))}
                     </div>
                   </div>
                   
-                  <p className="text-gray-700 dark:text-text-secondary mb-6 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-700 dark:text-text-secondary mb-4 sm:mb-6 leading-relaxed">
                     "{testimonial.content}"
                   </p>
                   
                   <div className="flex items-center">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold mr-4 ${
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold mr-3 sm:mr-4 flex-shrink-0 ${
                       index === 0 
                         ? 'bg-primary text-white dark:bg-primary dark:text-white' 
                         : index === 1 
                         ? 'bg-secondary text-white dark:bg-secondary dark:text-white' 
                         : 'bg-tropical text-white dark:bg-tropical dark:text-white'
                     }`}>
-                      <span className="text-lg">{testimonial.initials}</span>
+                      <span className="text-sm sm:text-lg">{testimonial.initials}</span>
                     </div>
-                    <div>
-                      <div className="font-semibold text-forest dark:text-text-primary">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600 dark:text-text-secondary">{testimonial.location}</div>
+                    <div className="min-w-0">
+                      <div className="font-semibold text-sm sm:text-base text-forest dark:text-text-primary truncate">{testimonial.name}</div>
+                      <div className="text-xs sm:text-sm text-gray-600 dark:text-text-secondary">{testimonial.location}</div>
                     </div>
                   </div>
                 </CardContent>

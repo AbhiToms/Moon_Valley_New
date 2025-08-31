@@ -36,49 +36,49 @@ export default function HeroSection() {
           </div>
         </div>
         
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-poppins font-bold mb-6 sm:mb-8 leading-tight">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-poppins font-bold mb-4 sm:mb-6 leading-tight">
           <span className="block bg-gradient-to-r from-white via-white to-secondary dark:from-white dark:via-neutral dark:to-tropical bg-clip-text text-transparent animate-fadeInUp">
             Moon Valley
           </span>
-          <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mt-2 text-white animate-fadeInUp" style={{ animationDelay: "0.2s" }}>
+          <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mt-1 sm:mt-2 text-white animate-fadeInUp" style={{ animationDelay: "0.2s" }}>
             A Tropical Hut Experience
           </span>
         </h1>
         
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 md:mb-12 max-w-3xl mx-auto leading-relaxed font-light animate-fadeInUp" style={{ animationDelay: "0.4s" }}>
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed font-light animate-fadeInUp px-4" style={{ animationDelay: "0.4s" }}>
           Perched at <strong>3,500 feet</strong> above sea level, experience breathtaking 360° panoramic views, 
           luxury accommodations, and immersive nature encounters in the heart of Kerala's Western Ghats.
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-fadeInUp" style={{ animationDelay: "0.6s" }}>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fadeInUp px-4" style={{ animationDelay: "0.6s" }}>
           <Button 
             onClick={scrollToRooms}
-            className="bg-white dark:bg-neutral text-primary dark:text-primary px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-neutral dark:hover:bg-white hover:scale-105 transition-all duration-300 shadow-2xl"
+            className="bg-white dark:bg-neutral text-primary dark:text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-neutral dark:hover:bg-white hover:scale-105 transition-all duration-300 shadow-2xl w-full sm:w-auto"
           >
             Discover Rooms
           </Button>
           <Button 
             variant="outline"
-            className="border-2 border-white/50 dark:border-white/40 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/20 dark:hover:bg-white/10 backdrop-blur-sm transition-all duration-300 bg-transparent"
+            className="border-2 border-white/50 dark:border-white/40 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-white/20 dark:hover:bg-white/10 backdrop-blur-sm transition-all duration-300 bg-transparent w-full sm:w-auto"
           >
-            <Play className="mr-2" size={18} />
+            <Play className="mr-2" size={16} />
             Virtual Tour
           </Button>
         </div>
         
         {/* Statistics */}
-        <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-2xl mx-auto animate-fadeInUp" style={{ animationDelay: "0.8s" }}>
+        <div className="mt-6 sm:mt-8 md:mt-12 grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 max-w-lg sm:max-w-xl mx-auto animate-fadeInUp px-4" style={{ animationDelay: "0.8s" }}>
           <div className="text-center">
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary">4.4★</div>
-            <div className="text-xs sm:text-sm opacity-80">Google Rating</div>
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-secondary">4.4★</div>
+            <div className="text-xs opacity-80 leading-tight">Google Rating</div>
           </div>
           <div className="text-center">
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary">360°</div>
-            <div className="text-xs sm:text-sm opacity-80">Panoramic Views</div>
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-secondary">360°</div>
+            <div className="text-xs opacity-80 leading-tight">Panoramic Views</div>
           </div>
           <div className="text-center">
-            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary">3,500ft</div>
-            <div className="text-xs sm:text-sm opacity-80">Above Sea Level</div>
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-secondary">3,500ft</div>
+            <div className="text-xs opacity-80 leading-tight">Above Sea Level</div>
           </div>
         </div>
       </div>

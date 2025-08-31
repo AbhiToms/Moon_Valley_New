@@ -14,6 +14,7 @@ interface BookingDetails {
   checkIn: string;
   checkOut: string;
   guests: number;
+  totalAmount?: number;
   specialRequests?: string;
   createdAt: string;
 }
@@ -49,6 +50,7 @@ export default function BookingSuccess() {
         checkIn: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 7 days from now
         checkOut: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 10 days from now
         guests: 2,
+        totalAmount: 4500, // Demo amount for 3 nights
         specialRequests: "Mountain view preferred",
         createdAt: new Date().toISOString(),
       };
@@ -232,6 +234,28 @@ export default function BookingSuccess() {
                   </div>
                 </div>
               </div>
+
+              {/* Pricing Information */}
+              {bookingDetails.totalAmount && (
+                <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-2 border-green-200 dark:border-green-700 rounded-2xl">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-primary dark:text-text-primary mb-1">Total Amount</h4>
+                      <p className="text-sm text-gray-600 dark:text-text-secondary">
+                        {nights} night{nights > 1 ? 's' : ''} • {bookingDetails.guests} guest{bookingDetails.guests > 1 ? 's' : ''}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-3xl font-bold text-green-600 dark:text-green-400">
+                        ₹{bookingDetails.totalAmount.toLocaleString()}
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-text-secondary">
+                        ₹{Math.round(bookingDetails.totalAmount / nights).toLocaleString()}/night
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {bookingDetails.specialRequests && (
                 <div className="mt-8 p-6 bg-tropical/10 dark:bg-bg-primary rounded-2xl">

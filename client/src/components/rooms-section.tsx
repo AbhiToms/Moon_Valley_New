@@ -55,24 +55,24 @@ export default function RoomsSection() {
   }
 
   return (
-    <section id="accommodations" className="py-24 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
-      <div className="container mx-auto px-6">
+    <section id="accommodations" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-6 py-2 mb-6">
-            <span className="text-primary dark:text-tropical font-semibold text-sm">ACCOMMODATIONS</span>
+        <div className="text-center mb-8 sm:mb-12 lg:mb-20">
+          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
+            <span className="text-primary dark:text-tropical font-semibold text-xs sm:text-sm">ACCOMMODATIONS</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-4 sm:mb-6">
             Tropical <span className="text-tropical">Hut</span> Experiences
           </h2>
-          <p className="text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
             Four uniquely designed accommodations that blend modern comfort with authentic tropical architecture,
             each offering stunning panoramic views of the Western Ghats.
           </p>
         </div>
 
         {/* Rooms Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {rooms?.map((room, index) => (
             <Card
               key={room.id}
@@ -82,7 +82,7 @@ export default function RoomsSection() {
                 <img
                   src={room.image}
                   alt={room.name}
-                  className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-48 sm:h-56 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -98,42 +98,42 @@ export default function RoomsSection() {
                 </div>
               </div>
 
-              <CardContent className="p-6">
-                <h3 className="text-xl font-poppins font-bold text-primary dark:text-text-primary mb-2">
+              <CardContent className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-poppins font-bold text-primary dark:text-text-primary mb-2">
                   {room.name}
                 </h3>
-                <p className="text-gray-600 dark:text-white/70 text-sm mb-4 line-clamp-2">
+                <p className="text-gray-600 dark:text-white/70 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
                   {room.description}
                 </p>
 
                 {/* Price */}
-                <div className="flex items-baseline mb-4">
-                  <span className="text-3xl font-bold text-primary dark:text-tropical">₹{room.price.toLocaleString()}</span>
-                  <span className="text-gray-500 dark:text-white/60 text-sm ml-1">/night</span>
+                <div className="flex items-baseline mb-3 sm:mb-4">
+                  <span className="text-2xl sm:text-3xl font-bold text-primary dark:text-tropical">₹{room.price.toLocaleString()}</span>
+                  <span className="text-gray-500 dark:text-white/60 text-xs sm:text-sm ml-1">/night</span>
                 </div>
 
                 {/* Amenities */}
-                <div className="flex items-center justify-between text-sm text-gray-600 dark:text-white/70 mb-6">
-                  <div className="flex items-center space-x-4">
+                <div className="flex items-center justify-between text-xs sm:text-sm text-gray-600 dark:text-white/70 mb-4 sm:mb-6">
+                  <div className="flex items-center space-x-2 sm:space-x-4">
                     <div className="flex items-center">
-                      <Bed size={16} className="mr-1 text-tropical" />
+                      <Bed size={14} className="mr-1 text-tropical" />
                       <span>{index < 3 ? 2 : room.beds}</span>
                     </div>
                     <div className="flex items-center">
-                      <Bath size={16} className="mr-1 text-tropical" />
+                      <Bath size={14} className="mr-1 text-tropical" />
                       <span>{room.baths}</span>
                     </div>
                     <div className="flex items-center">
-                      <Users size={16} className="mr-1 text-tropical" />
+                      <Users size={14} className="mr-1 text-tropical" />
                       <span>{index < 3 ? 6 : room.beds * 2}</span>
                     </div>
                   </div>
-                  <Wifi size={16} className="text-tropical" />
+                  <Wifi size={14} className="text-tropical" />
                 </div>
 
                 <Button
                   onClick={scrollToBooking}
-                  className="w-full bg-gradient-to-r from-primary to-tropical text-white rounded-full py-3 font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
+                  className="w-full bg-gradient-to-r from-primary to-tropical text-white rounded-full py-2 sm:py-3 text-sm sm:text-base font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
                 >
                   Reserve Now
                 </Button>

@@ -34,7 +34,7 @@ export default function AuthSlideToggle({ currentView, className = "", onToggle 
                 className="relative w-14 h-7 bg-gray-200 dark:bg-gray-700 rounded-full cursor-pointer transition-all duration-400 ease-out hover:bg-gray-300 dark:hover:bg-gray-600 hover:scale-105 active:scale-95"
                 onClick={handleToggle}
             >
-                <div className={`absolute top-1 w-5 h-5 bg-gradient-to-r from-primary to-tropical rounded-full shadow-lg transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:shadow-xl ${
+                <div className={`absolute top-1 w-5 h-5 bg-gradient-to-r from-primary to-tropical rounded-full shadow-lg transition-all duration-500 ease-out hover:shadow-xl ${
                     currentView === 'login' ? 'translate-x-1' : 'translate-x-7'
                 }`} />
             </div>

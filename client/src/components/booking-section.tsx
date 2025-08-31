@@ -16,7 +16,7 @@ import { DatePicker } from "@/components/ui/date-picker";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import type { Room } from "@shared/schema";
-import { Lock, Calendar, Users, User, Mail, Phone, MessageSquare, Shield, MapPin, Star, Clock } from "lucide-react";
+import { Lock, Calendar, Users, User, Mail, Phone, Shield, MapPin, Star, Clock } from "lucide-react";
 import { Link } from "wouter";
 
 const bookingSchema = z.object({
@@ -41,7 +41,7 @@ const bookingSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Valid email is required"),
   phone: z.string().min(1, "Phone number is required"),
-  specialRequests: z.string().optional(),
+  address: z.string().min(1, "Address is required"),
   terms: z.boolean().refine(val => val === true, "You must accept the terms and conditions"),
 }).refine((data) => {
   const checkIn = new Date(data.checkIn);
@@ -88,7 +88,7 @@ export default function BookingSection() {
       name: "",
       email: "",
       phone: "",
-      specialRequests: "",
+      address: "",
       terms: false,
     },
   });
@@ -116,6 +116,7 @@ export default function BookingSection() {
       const bookingDetails = {
         id: response?.id || "MV-" + Math.random().toString(36).substring(2, 11).toUpperCase(),
         ...form.getValues(),
+        totalAmount: totalAmount,
         createdAt: new Date().toISOString(),
       };
       sessionStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
@@ -133,7 +134,7 @@ export default function BookingSection() {
         guestName: form.getValues().name,
         guestEmail: form.getValues().email,
         guestPhone: form.getValues().phone,
-        specialRequests: form.getValues().specialRequests
+        address: form.getValues().address
       };
 
       // Get existing bookings from localStorage
@@ -161,40 +162,40 @@ export default function BookingSection() {
 
   if (!user) {
     return (
-      <section id="booking" className="py-24 bg-gradient-to-br from-surface to-neutral dark:from-bg-primary dark:to-bg-secondary">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
-            <div className="inline-block bg-secondary/10 dark:bg-secondary/20 rounded-full px-6 py-2 mb-6">
-              <span className="text-secondary font-semibold text-sm">RESERVATIONS</span>
+      <section id="booking" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-surface to-neutral dark:from-bg-primary dark:to-bg-secondary">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-20">
+            <div className="inline-block bg-secondary/10 dark:bg-secondary/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
+              <span className="text-secondary font-semibold text-xs sm:text-sm">RESERVATIONS</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-4 sm:mb-6">
               Reserve Your <span className="text-secondary">Stay</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
               Book your perfect mountain retreat and experience the tranquility of nature at its finest. Secure your tropical hut experience today.
             </p>
           </div>
 
-          <div className="max-w-2xl mx-auto">
-            <Card className="bg-white dark:bg-bg-secondary border-0 shadow-2xl dark:shadow-xl rounded-3xl">
-              <CardContent className="p-12 text-center">
-                <div className="w-20 h-20 bg-primary/10 dark:bg-tropical/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Lock className="text-primary dark:text-tropical" size={32} />
+          <div className="max-w-2xl mx-auto px-2 sm:px-0">
+            <Card className="bg-white dark:bg-bg-secondary border-0 shadow-2xl dark:shadow-xl rounded-2xl sm:rounded-3xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12 text-center">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-primary/10 dark:bg-tropical/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                  <Lock className="text-tropical dark:text-tropical" size={24} />
                 </div>
-                <h3 className="text-2xl font-poppins font-bold text-primary dark:text-text-primary mb-4">
+                <h3 className="text-xl sm:text-2xl font-poppins font-bold text-primary dark:text-text-primary mb-3 sm:mb-4">
                   Sign In Required
                 </h3>
-                <p className="text-gray-600 dark:text-text-secondary mb-8 text-lg">
+                <p className="text-gray-600 dark:text-text-secondary mb-6 sm:mb-8 text-base sm:text-lg px-4">
                   Please sign in or create an account to book your stay at Moon Valley Resort.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <Link href="/login">
-                    <Button className="bg-gradient-to-r from-primary to-tropical text-white hover:opacity-90 rounded-lg transition-all duration-300 hover:shadow-lg font-semibold px-8 py-3">
+                    <Button className="bg-gradient-to-r from-primary to-tropical text-white hover:opacity-90 rounded-lg transition-all duration-300 hover:shadow-lg font-semibold px-6 sm:px-8 py-3 w-full sm:w-auto">
                       Sign In
                     </Button>
                   </Link>
                   <Link href="/signup">
-                    <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white dark:border-tropical dark:text-tropical dark:hover:bg-tropical dark:hover:text-white rounded-lg px-8 py-3">
+                    <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white dark:border-tropical dark:text-tropical dark:hover:bg-tropical dark:hover:text-white rounded-lg px-6 sm:px-8 py-3 w-full sm:w-auto">
                       Create Account
                     </Button>
                   </Link>
@@ -208,24 +209,24 @@ export default function BookingSection() {
   }
 
   return (
-    <section id="booking" className="py-24 bg-gradient-to-br from-surface to-neutral dark:from-bg-primary dark:to-bg-secondary">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-20">
-          <div className="inline-block bg-secondary/10 dark:bg-secondary/20 rounded-full px-6 py-2 mb-6">
-            <span className="text-secondary font-semibold text-sm">RESERVATIONS</span>
+    <section id="booking" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-surface to-neutral dark:from-bg-primary dark:to-bg-secondary">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-20">
+          <div className="inline-block bg-secondary/10 dark:bg-secondary/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
+            <span className="text-secondary font-semibold text-xs sm:text-sm">RESERVATIONS</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-4 sm:mb-6">
             Reserve Your <span className="text-secondary">Stay</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
             Welcome back, {user.firstName}! Book your perfect mountain retreat and experience the tranquility of nature at its finest.
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto">
-          <Card className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-0 shadow-2xl dark:shadow-xl rounded-3xl overflow-hidden">
+        <div className="max-w-5xl mx-auto px-2 sm:px-0">
+          <Card className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-0 shadow-2xl dark:shadow-xl rounded-2xl sm:rounded-3xl overflow-hidden">
             {/* Header Section */}
-            <div className="bg-gradient-to-r from-primary/10 via-tropical/10 to-secondary/10 dark:from-primary/20 dark:via-tropical/20 dark:to-secondary/20 p-8 border-b border-primary/10 dark:border-gray-600/30">
+            <div className="bg-gradient-to-r from-primary/10 via-tropical/10 to-secondary/10 dark:from-primary/20 dark:via-tropical/20 dark:to-secondary/20 p-4 sm:p-6 lg:p-8 border-b border-primary/10 dark:border-gray-600/30">
               <div className="flex items-center justify-center mb-4">
                 <div className="w-16 h-16 bg-gradient-to-r from-primary to-tropical rounded-full flex items-center justify-center shadow-lg">
                   <Calendar className="text-white" size={28} />
@@ -239,25 +240,25 @@ export default function BookingSection() {
               </p>
             </div>
 
-            <CardContent className="p-10">
+            <CardContent className="p-4 sm:p-6 lg:p-10">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3 sm:space-y-4">
                   {/* Dates Section */}
-                  <div className="bg-gradient-to-r from-surface/50 to-neutral/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl p-6 border border-primary/10 dark:border-gray-600/30">
+                  <div className="bg-gradient-to-r from-surface/50 to-neutral/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl p-3 sm:p-4 lg:p-6 border border-primary/10 dark:border-gray-600/30">
                     <div className="flex items-center mb-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-primary/20 to-tropical/20 rounded-lg flex items-center justify-center mr-3">
-                        <Clock className="text-primary dark:text-tropical" size={20} />
+                        <Clock className="text-tropical dark:text-tropical" size={20} />
                       </div>
                       <h4 className="text-lg font-semibold text-primary dark:text-text-primary">Stay Duration</h4>
                     </div>
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
                       <FormField
                         control={form.control}
                         name="checkIn"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-primary dark:text-white font-semibold flex items-center">
-                              <Calendar className="mr-2" size={16} />
+                              <Calendar className="mr-2 text-tropical dark:text-tropical" size={16} />
                               Check-in Date
                             </FormLabel>
                             <FormControl>
@@ -288,7 +289,7 @@ export default function BookingSection() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-primary dark:text-white font-semibold flex items-center">
-                              <Calendar className="mr-2" size={16} />
+                              <Calendar className="mr-2 text-tropical dark:text-tropical" size={16} />
                               Check-out Date
                             </FormLabel>
                             <FormControl>
@@ -324,21 +325,21 @@ export default function BookingSection() {
                   </div>
 
                   {/* Room & Guests Section */}
-                  <div className="bg-gradient-to-r from-surface/50 to-neutral/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl p-6 border border-primary/10 dark:border-gray-600/30">
+                  <div className="bg-gradient-to-r from-surface/50 to-neutral/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl p-3 sm:p-4 lg:p-6 border border-primary/10 dark:border-gray-600/30">
                     <div className="flex items-center mb-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-secondary/20 to-tropical/20 rounded-lg flex items-center justify-center mr-3">
-                        <MapPin className="text-secondary dark:text-tropical" size={20} />
+                        <MapPin className="text-tropical dark:text-tropical" size={20} />
                       </div>
                       <h4 className="text-lg font-semibold text-primary dark:text-text-primary">Accommodation Details</h4>
                     </div>
-                    <div className="grid md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
                       <FormField
                         control={form.control}
                         name="roomType"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-primary dark:text-white font-semibold flex items-center">
-                              <Star className="mr-2" size={16} />
+                              <Star className="mr-2 text-tropical dark:text-tropical" size={16} />
                               Room Type
                             </FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -369,7 +370,7 @@ export default function BookingSection() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-primary dark:text-white font-semibold flex items-center">
-                              <Users className="mr-2" size={16} />
+                              <Users className="mr-2 text-tropical dark:text-tropical" size={16} />
                               Guests
                             </FormLabel>
                             <Select onValueChange={(value) => field.onChange(parseInt(value))} defaultValue={field.value?.toString()}>
@@ -391,12 +392,12 @@ export default function BookingSection() {
                         )}
                       />
 
-                      <div className="flex flex-col justify-end">
+                      <div className="flex flex-col justify-end sm:col-span-2 lg:col-span-1">
                         <label className="text-primary dark:text-white font-semibold block mb-2 flex items-center">
-                          <Shield className="mr-2" size={16} />
+                          <Shield className="mr-2 text-tropical dark:text-tropical" size={16} />
                           Total Amount
                         </label>
-                        <div className="bg-gradient-to-r from-primary/5 to-tropical/5 dark:from-primary/10 dark:to-tropical/10 border-2 border-primary/20 dark:border-tropical/30 rounded-xl px-4 py-3 shadow-sm">
+                        <div className="bg-gradient-to-r from-primary/5 to-tropical/5 dark:from-primary/10 dark:to-tropical/10 border-2 border-primary/20 dark:border-tropical/30 rounded-xl px-3 sm:px-4 py-3 shadow-sm">
                           <div className="text-sm text-gray-600 dark:text-text-secondary mb-1">
                             {(() => {
                               const checkIn = form.watch('checkIn');
@@ -413,7 +414,7 @@ export default function BookingSection() {
                               return `${Math.max(1, nights)} Night${Math.max(1, nights) > 1 ? 's' : ''}`;
                             })()}
                           </div>
-                          <div className="text-xl font-bold text-primary dark:text-tropical">
+                          <div className="text-lg sm:text-xl font-bold text-primary dark:text-tropical">
                             {(() => {
                               const selectedRoom = rooms?.find(r => r.name === form.watch('roomType'));
                               const checkIn = form.watch('checkIn');
@@ -437,11 +438,11 @@ export default function BookingSection() {
                   </div>
 
                   {/* Guest Information Section */}
-                  <div className="bg-gradient-to-r from-surface/50 to-neutral/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl p-6 border border-primary/10 dark:border-gray-600/30">
-                    <div className="flex items-center justify-between mb-4">
+                  <div className="bg-gradient-to-r from-surface/50 to-neutral/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl p-3 sm:p-4 lg:p-6 border border-primary/10 dark:border-gray-600/30">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
                       <div className="flex items-center">
                         <div className="w-10 h-10 bg-gradient-to-r from-tropical/20 to-secondary/20 rounded-lg flex items-center justify-center mr-3">
-                          <User className="text-tropical dark:text-secondary" size={20} />
+                          <User className="text-tropical dark:text-tropical" size={20} />
                         </div>
                         <h4 className="text-lg font-semibold text-primary dark:text-text-primary">Guest Information</h4>
                       </div>
@@ -455,26 +456,26 @@ export default function BookingSection() {
                             form.setValue('email', user.email || '');
                             form.setValue('phone', user.phone || '');
                           }}
-                          className="text-xs bg-primary/5 hover:bg-primary/10 border-primary/30 text-primary dark:bg-tropical/10 dark:hover:bg-tropical/20 dark:border-tropical/40 dark:text-tropical"
+                          className="text-xs bg-primary/5 hover:bg-primary/10 border-primary/30 text-primary dark:bg-tropical/10 dark:hover:bg-tropical/20 dark:border-tropical/40 dark:text-tropical w-full sm:w-auto"
                         >
                           Use My Info
                         </Button>
                       )}
                     </div>
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
                       <FormField
                         control={form.control}
                         name="name"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-primary dark:text-white font-semibold flex items-center">
-                              <User className="mr-2" size={16} />
+                              <User className="mr-2 text-tropical dark:text-tropical" size={16} />
                               Full Name
                             </FormLabel>
                             <FormControl>
                               <Input
                                 {...field}
-                                className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white border-2 border-neutral/30 dark:border-gray-600/50 focus:border-tropical focus:ring-2 focus:ring-tropical/20 dark:focus:border-tropical dark:focus:ring-tropical/20 rounded-xl h-12 shadow-sm hover:shadow-md transition-all duration-300"
+                                className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white border-2 border-neutral/30 dark:border-gray-600/50 focus:border-tropical focus:ring-2 focus:ring-tropical/20 dark:focus:border-tropical dark:focus:ring-tropical/20 rounded-xl h-10 sm:h-12 shadow-sm hover:shadow-md transition-all duration-300"
                                 placeholder="Enter your full name"
                               />
                             </FormControl>
@@ -489,14 +490,14 @@ export default function BookingSection() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-primary dark:text-white font-semibold flex items-center">
-                              <Mail className="mr-2" size={16} />
+                              <Mail className="mr-2 text-tropical dark:text-tropical" size={16} />
                               Email Address
                             </FormLabel>
                             <FormControl>
                               <Input
                                 type="email"
                                 {...field}
-                                className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white border-2 border-neutral/30 dark:border-gray-600/50 focus:border-tropical focus:ring-2 focus:ring-tropical/20 dark:focus:border-tropical dark:focus:ring-tropical/20 rounded-xl h-12 shadow-sm hover:shadow-md transition-all duration-300"
+                                className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white border-2 border-neutral/30 dark:border-gray-600/50 focus:border-tropical focus:ring-2 focus:ring-tropical/20 dark:focus:border-tropical dark:focus:ring-tropical/20 rounded-xl h-10 sm:h-12 shadow-sm hover:shadow-md transition-all duration-300"
                                 placeholder="Enter your email address"
                               />
                             </FormControl>
@@ -510,16 +511,16 @@ export default function BookingSection() {
                       control={form.control}
                       name="phone"
                       render={({ field }) => (
-                        <FormItem className="mt-6">
+                        <FormItem className="mt-3 sm:mt-4 lg:mt-6">
                           <FormLabel className="text-primary dark:text-white font-semibold flex items-center">
-                            <Phone className="mr-2" size={16} />
+                            <Phone className="mr-2 text-tropical dark:text-tropical" size={16} />
                             Phone Number
                           </FormLabel>
                           <FormControl>
                             <Input
                               type="tel"
                               {...field}
-                              className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white border-2 border-neutral/30 dark:border-gray-600/50 focus:border-tropical focus:ring-2 focus:ring-tropical/20 dark:focus:border-tropical dark:focus:ring-tropical/20 rounded-xl h-12 shadow-sm hover:shadow-md transition-all duration-300"
+                              className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white border-2 border-neutral/30 dark:border-gray-600/50 focus:border-tropical focus:ring-2 focus:ring-tropical/20 dark:focus:border-tropical dark:focus:ring-tropical/20 rounded-xl h-10 sm:h-12 shadow-sm hover:shadow-md transition-all duration-300"
                               placeholder="Enter your phone number"
                             />
                           </FormControl>
@@ -527,31 +528,22 @@ export default function BookingSection() {
                         </FormItem>
                       )}
                     />
-                  </div>
 
-                  {/* Special Requests Section */}
-                  <div className="bg-gradient-to-r from-surface/50 to-neutral/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl p-6 border border-primary/10 dark:border-gray-600/30">
-                    <div className="flex items-center mb-4">
-                      <div className="w-10 h-10 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg flex items-center justify-center mr-3">
-                        <MessageSquare className="text-primary dark:text-secondary" size={20} />
-                      </div>
-                      <h4 className="text-lg font-semibold text-primary dark:text-text-primary">Additional Requests</h4>
-                    </div>
                     <FormField
                       control={form.control}
-                      name="specialRequests"
+                      name="address"
                       render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="mt-3 sm:mt-4 lg:mt-6">
                           <FormLabel className="text-primary dark:text-white font-semibold flex items-center">
-                            <MessageSquare className="mr-2" size={16} />
-                            Special Requests (optional)
+                            <MapPin className="mr-2 text-tropical dark:text-tropical" size={16} />
+                            Complete Address
                           </FormLabel>
                           <FormControl>
                             <Textarea
                               {...field}
-                              placeholder="Any special requirements, dietary preferences, or requests for your stay..."
+                              placeholder="Enter your complete address including street, city, state, and postal code..."
                               className="bg-white dark:bg-gray-800 text-gray-800 dark:text-white border-2 border-neutral/30 dark:border-gray-600/50 focus:border-tropical focus:ring-2 focus:ring-tropical/20 dark:focus:border-tropical dark:focus:ring-tropical/20 rounded-xl placeholder:text-gray-500 dark:placeholder:text-gray-400 shadow-sm hover:shadow-md transition-all duration-300"
-                              rows={4}
+                              rows={3}
                             />
                           </FormControl>
                           <FormMessage className="text-red-500" />
@@ -561,7 +553,7 @@ export default function BookingSection() {
                   </div>
 
                   {/* Terms & Conditions */}
-                  <div className="bg-gradient-to-r from-surface/30 to-neutral/30 dark:from-gray-800/30 dark:to-gray-700/30 rounded-2xl p-6 border border-primary/10 dark:border-gray-600/30">
+                  <div className="bg-gradient-to-r from-surface/30 to-neutral/30 dark:from-gray-800/30 dark:to-gray-700/30 rounded-2xl p-3 sm:p-4 lg:p-6 border border-primary/10 dark:border-gray-600/30">
                     <FormField
                       control={form.control}
                       name="terms"
@@ -589,11 +581,11 @@ export default function BookingSection() {
                   </div>
 
                   {/* Submit Button */}
-                  <div className="text-center pt-6">
+                  <div className="text-center pt-4 sm:pt-6">
                     <Button
                       type="submit"
                       disabled={bookingMutation.isPending}
-                      className="bg-gradient-to-r from-secondary via-tropical to-primary text-white px-20 py-4 rounded-full text-lg font-bold hover:scale-105 hover:shadow-2xl transition-all duration-300 shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 min-w-[200px]"
+                      className="bg-gradient-to-r from-secondary via-tropical to-primary text-white px-8 sm:px-12 lg:px-20 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover:scale-105 hover:shadow-2xl transition-all duration-300 shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 w-full sm:w-auto min-w-[200px]"
                     >
                       {bookingMutation.isPending ? (
                         <div className="flex items-center">
@@ -602,7 +594,7 @@ export default function BookingSection() {
                         </div>
                       ) : (
                         <div className="flex items-center">
-                          <Shield className="mr-2" size={20} />
+                          <Shield className="mr-2 text-white" size={20} />
                           Reserve Now
                         </div>
                       )}
