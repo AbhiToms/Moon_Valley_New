@@ -41,6 +41,7 @@ interface User {
   email: string;
   phone: string;
   name: string;
+  address?: string;
   profilePicture?: string;
 }
 
@@ -56,6 +57,8 @@ interface Booking {
   guestName?: string;
   guestEmail?: string;
   guestPhone?: string;
+  guestAddress?: string;
+  address?: string;
   specialRequests?: string;
 }
 
@@ -362,7 +365,11 @@ export default function DashboardPage() {
       const allBookings = [...bookings.filter(b => b.id !== bookingId), cancelledBooking];
       localStorage.setItem('userBookings', JSON.stringify(allBookings));
 
-      toast({ title: 'Booking Cancelled', description: 'Your booking has been moved to cancelled bookings.' });
+      toast({
+        title: 'Booking Cancelled',
+        description: 'Your booking has been cancelled and the refund will be credited to the original payment method within 4 to 5 working days.',
+        duration: 6000
+      });
     }
   };
 
@@ -444,18 +451,76 @@ export default function DashboardPage() {
         // Fallback to mock data if no bookings data found
         const mockBookings: Booking[] = [
           {
-            id: '1',
-            roomName: 'Mountain View Suite',
-            checkIn: '2024-12-25',
-            checkOut: '2024-12-28',
+            id: "MV-" + Math.random().toString(36).substring(2, 8).toUpperCase(),
+            roomName: 'Tropical Hut Deluxe',
+            checkIn: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+            checkOut: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
             guests: 2,
-            totalAmount: 25500,
+            totalAmount: 4500,
             status: 'confirmed',
-            createdAt: '2024-11-15',
-            guestName: 'John Doe',
-            guestEmail: 'john.doe@example.com',
-            guestPhone: '+91 9876543210'
+            createdAt: new Date().toISOString(),
+            guestName: 'Demo Guest',
+            guestEmail: 'demo@moonvalleyresort.com',
+            guestPhone: '+91 9446986882',
+            guestAddress: '123 Demo Street, Demo City, Kerala 670001',
+            specialRequests: 'Mountain view preferred'
           },
+          {
+            id: "MV-" + Math.random().toString(36).substring(2, 8).toUpperCase(),
+            roomName: 'Ocean Breeze Room',
+            checkIn: '2024-12-30',
+            checkOut: '2025-01-02',
+            guests: 3,
+            totalAmount: 18000,
+            status: 'confirmed',
+            createdAt: '2024-11-20',
+            guestName: 'Sarah Wilson',
+            guestEmail: 'sarah.wilson@example.com',
+            guestPhone: '+91 8765432109',
+            guestAddress: '456 Beach Road, Thiruvananthapuram, Kerala 695001'
+          },
+          {
+            id: "MV-" + Math.random().toString(36).substring(2, 8).toUpperCase(),
+            roomName: 'Garden Villa',
+            checkIn: '2025-01-15',
+            checkOut: '2025-01-18',
+            guests: 4,
+            totalAmount: 32000,
+            status: 'confirmed',
+            createdAt: '2024-11-25',
+            guestName: 'Mike Johnson',
+            guestEmail: 'mike.johnson@example.com',
+            guestPhone: '+91 7654321098',
+            guestAddress: '789 Hill View, Munnar, Kerala 685612'
+          },
+          {
+            id: "MV-" + Math.random().toString(36).substring(2, 8).toUpperCase(),
+            roomName: 'Lakeside Cottage',
+            checkIn: '2025-02-10',
+            checkOut: '2025-02-14',
+            guests: 2,
+            totalAmount: 28000,
+            status: 'confirmed',
+            createdAt: '2024-12-01',
+            guestName: 'Emily Davis',
+            guestEmail: 'emily.davis@example.com',
+            guestPhone: '+91 6543210987',
+            guestAddress: '321 Lake Side, Kumarakom, Kerala 686563'
+          },
+          {
+            id: "MV-" + Math.random().toString(36).substring(2, 8).toUpperCase(),
+            roomName: 'Forest Retreat',
+            checkIn: '2025-03-05',
+            checkOut: '2025-03-08',
+            guests: 3,
+            totalAmount: 24000,
+            status: 'confirmed',
+            createdAt: '2024-12-05',
+            guestName: 'David Brown',
+            guestEmail: 'david.brown@example.com',
+            guestPhone: '+91 5432109876',
+            guestAddress: '654 Forest View, Wayanad, Kerala 673121'
+          }
         ];
 
         // Apply the same logic to mock data
@@ -700,15 +765,23 @@ export default function DashboardPage() {
   }), [bookings, pastBookings, cancelledBookings]);
 
   const currentTabBookings = useMemo(() => {
+    const sortByDate = (bookingList: Booking[]) => {
+      return [...bookingList].sort((a, b) => {
+        const dateA = new Date(a.checkIn);
+        const dateB = new Date(b.checkIn);
+        return dateA.getTime() - dateB.getTime(); // Earliest dates first
+      });
+    };
+
     switch (activeTab) {
       case 'confirmed':
-        return bookings;
+        return sortByDate(bookings);
       case 'past':
-        return pastBookings;
+        return sortByDate(pastBookings);
       case 'cancelled':
-        return cancelledBookings;
+        return sortByDate(cancelledBookings);
       default:
-        return bookings;
+        return sortByDate(bookings);
     }
   }, [activeTab, bookings, pastBookings, cancelledBookings]);
 
@@ -1195,6 +1268,17 @@ export default function DashboardPage() {
                             </p>
                           </div>
                         </div>
+                        <div className="flex items-start">
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-tropical/10 dark:bg-tropical/20 rounded-full flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0 mt-1">
+                            <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-tropical" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-xs sm:text-sm text-gray-600 dark:text-text-secondary">Address</p>
+                            <p className="font-semibold text-sm sm:text-base text-primary dark:text-text-primary">
+                              {selectedBooking?.address || selectedBooking?.guestAddress || user?.address || 'N/A'}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                       <div className="space-y-3 sm:space-y-4">
                         <div className="flex items-center">
@@ -1407,41 +1491,33 @@ export default function DashboardPage() {
 
         {/* Cancel Confirmation Dialog */}
         <Dialog open={isCancelOpen} onOpenChange={setIsCancelOpen}>
-          <DialogContent className="max-w-[95vw] sm:max-w-md max-h-[90vh] overflow-y-auto bg-white dark:bg-bg-secondary border-0 rounded-3xl shadow-2xl mx-4 sm:mx-auto">
-            <div className="text-center p-4 sm:p-6">
+          <DialogContent className="max-w-[90vw] w-full sm:max-w-sm max-h-[80vh] overflow-y-auto dialog-no-scrollbar bg-white dark:bg-bg-secondary border-0 rounded-xl sm:rounded-2xl shadow-xl" style={{ marginLeft: '5vw', marginRight: '5vw' }}>
+            <div className="text-center p-4 sm:p-4">
               {/* Warning Icon */}
-              <div className="w-20 h-20 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
               </div>
 
               {/* Title */}
-              <h3 className="text-2xl font-poppins font-bold text-red-600 dark:text-red-400 mb-4">
+              <h3 className="text-xl font-poppins font-bold text-red-600 dark:text-red-400 mb-4">
                 Cancel Booking?
               </h3>
 
               {/* Booking Details */}
               {bookingToCancel && (
-                <div className="bg-gray-50 dark:bg-bg-primary rounded-2xl p-4 mb-6 text-left">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm text-gray-500 dark:text-text-secondary">Booking ID</span>
-                    <span className="font-mono font-semibold text-primary dark:text-text-primary">{bookingToCancel?.id}</span>
-                  </div>
+                <div className="bg-gray-50 dark:bg-bg-primary rounded-xl p-4 mb-5 text-left">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm text-gray-500 dark:text-text-secondary">Room</span>
-                    <span className="font-semibold text-primary dark:text-text-primary">{bookingToCancel?.roomName}</span>
+                    <span className="font-semibold text-base text-primary dark:text-text-primary">{bookingToCancel?.roomName}</span>
                   </div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-sm text-gray-500 dark:text-text-secondary">Dates</span>
-                    <span className="font-semibold text-primary dark:text-text-primary">
+                    <span className="font-semibold text-base text-primary dark:text-text-primary">
                       {bookingToCancel?.checkIn && bookingToCancel?.checkOut &&
                         `${new Date(bookingToCancel.checkIn).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })} - ${new Date(bookingToCancel.checkOut).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}`}
                     </span>
-                  </div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm text-gray-500 dark:text-text-secondary">Guests</span>
-                    <span className="font-semibold text-primary dark:text-text-primary">{bookingToCancel?.guests}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-500 dark:text-text-secondary">Total Amount</span>
@@ -1451,24 +1527,24 @@ export default function DashboardPage() {
               )}
 
               {/* Warning Message */}
-              <p className="text-gray-600 dark:text-text-secondary mb-6 leading-relaxed">
-                This action cannot be undone. Your booking will be marked as cancelled and you may be subject to our cancellation policy.
+              <p className="text-base text-gray-600 dark:text-text-secondary mb-6 leading-relaxed">
+                This action cannot be undone. Your booking will be cancelled and you may be subject to our cancellation policy.
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col gap-3">
                 <Button
                   onClick={() => setIsCancelOpen(false)}
                   variant="outline"
-                  className="flex-1 border-primary text-primary hover:bg-primary hover:text-white rounded-xl py-3 font-semibold"
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-white rounded-xl py-3 font-semibold text-base"
                 >
-                  Keep My Booking
+                  Keep Booking
                 </Button>
                 <Button
                   onClick={confirmCancel}
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white rounded-xl py-3 font-semibold"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white rounded-xl py-3 font-semibold text-base"
                 >
-                  Yes, Cancel It
+                  Yes, Cancel
                 </Button>
               </div>
             </div>
@@ -1477,23 +1553,23 @@ export default function DashboardPage() {
 
         {/* Cancellation Policy Confirmation Dialog */}
         <Dialog open={isPolicyOpen} onOpenChange={setIsPolicyOpen}>
-          <DialogContent className="max-w-[95vw] sm:max-w-md max-h-[90vh] overflow-y-auto bg-white dark:bg-bg-secondary border-0 rounded-3xl shadow-2xl mx-4 sm:mx-auto">
-            <div className="text-center p-4">
+          <DialogContent className="max-w-[90vw] w-full sm:max-w-sm max-h-[85vh] overflow-y-auto dialog-no-scrollbar bg-white dark:bg-bg-secondary border-0 rounded-xl shadow-xl" style={{ marginLeft: '5vw', marginRight: '5vw' }}>
+            <div className="text-center p-4 sm:p-4">
               {/* Info Icon */}
-              <div className="w-14 h-14 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
-                <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-poppins font-bold text-blue-600 dark:text-blue-400 mb-2">
+              <h3 className="text-lg font-poppins font-bold text-blue-600 dark:text-blue-400 mb-3">
                 Cancellation Policy
               </h3>
 
               {/* Policy Details */}
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-2 mb-3 text-left">
-                <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2 text-sm">Please review our cancellation policy:</h4>
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3 text-left">
+                <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2 text-xs">Review cancellation policy:</h4>
                 {bookingToCancel && (() => {
                   const refundInfo = calculateRefundAmount(bookingToCancel.checkIn, bookingToCancel.totalAmount);
                   const now = new Date();
@@ -1504,41 +1580,41 @@ export default function DashboardPage() {
                   return (
                     <div className="space-y-2">
                       {/* Time Remaining */}
-                      <div className="bg-white dark:bg-blue-900/30 rounded-xl p-1.5">
+                      <div className="bg-white dark:bg-blue-900/30 rounded-lg p-2 mb-2">
                         <div className="text-center mb-1">
                           <span className="text-xs text-blue-600 dark:text-blue-300">Time until check-in</span>
                         </div>
                         <div className="text-center">
-                          <span className="text-base font-bold text-blue-800 dark:text-blue-200">
+                          <span className="text-sm font-bold text-blue-800 dark:text-blue-200">
                             {daysUntilCheckIn > 0 ? `${daysUntilCheckIn} day${daysUntilCheckIn > 1 ? 's' : ''}` : `${Math.ceil(hoursUntilCheckIn)} hour${Math.ceil(hoursUntilCheckIn) > 1 ? 's' : ''}`}
                           </span>
                         </div>
                       </div>
 
                       {/* Policy Breakdown */}
-                      <div className="space-y-1 text-xs text-blue-700 dark:text-blue-300">
-                        <div className={`flex items-center justify-between p-1 rounded-lg ${hoursUntilCheckIn >= 48 ? 'bg-green-100 dark:bg-green-900/30' : 'bg-gray-100 dark:bg-gray-700'}`}>
+                      <div className="space-y-1 text-xs text-blue-700 dark:text-blue-300 mb-2">
+                        <div className={`flex items-center justify-between p-2 rounded ${hoursUntilCheckIn >= 48 ? 'bg-green-100 dark:bg-green-900/30' : 'bg-gray-100 dark:bg-gray-700'}`}>
                           <span className="flex items-center">
-                            <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                            <strong>48+ hours before:</strong> Full refund
+                            <span className="w-2 h-2 bg-green-500 rounded-full mr-1"></span>
+                            <strong>48+ hrs:</strong> Full refund
                           </span>
                           <span className={`font-semibold ${hoursUntilCheckIn >= 48 ? 'text-green-700 dark:text-green-300' : 'text-gray-500'}`}>
                             {hoursUntilCheckIn >= 48 ? '✓' : '✗'}
                           </span>
                         </div>
-                        <div className={`flex items-center justify-between p-1 rounded-lg ${hoursUntilCheckIn >= 24 && hoursUntilCheckIn < 48 ? 'bg-yellow-100 dark:bg-yellow-900/30' : 'bg-gray-100 dark:bg-gray-700'}`}>
+                        <div className={`flex items-center justify-between p-2 rounded ${hoursUntilCheckIn >= 24 && hoursUntilCheckIn < 48 ? 'bg-yellow-100 dark:bg-yellow-900/30' : 'bg-gray-100 dark:bg-gray-700'}`}>
                           <span className="flex items-center">
-                            <span className="w-2 h-2 bg-yellow-500 rounded-full mr-2"></span>
-                            <strong>24-48 hours before:</strong> 50% refund
+                            <span className="w-2 h-2 bg-yellow-500 rounded-full mr-1"></span>
+                            <strong>24-48 hrs:</strong> 50% refund
                           </span>
                           <span className={`font-semibold ${hoursUntilCheckIn >= 24 && hoursUntilCheckIn < 48 ? 'text-yellow-700 dark:text-yellow-300' : 'text-gray-500'}`}>
                             {hoursUntilCheckIn >= 24 && hoursUntilCheckIn < 48 ? '✓' : '✗'}
                           </span>
                         </div>
-                        <div className={`flex items-center justify-between p-1 rounded-lg ${hoursUntilCheckIn < 24 ? 'bg-red-100 dark:bg-red-900/30' : 'bg-gray-100 dark:bg-gray-700'}`}>
+                        <div className={`flex items-center justify-between p-2 rounded ${hoursUntilCheckIn < 24 ? 'bg-red-100 dark:bg-red-900/30' : 'bg-gray-100 dark:bg-gray-700'}`}>
                           <span className="flex items-center">
-                            <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
-                            <strong>Less than 24 hours:</strong> No refund
+                            <span className="w-2 h-2 bg-red-500 rounded-full mr-1"></span>
+                            <strong>&lt;24 hrs:</strong> No refund
                           </span>
                           <span className={`font-semibold ${hoursUntilCheckIn < 24 ? 'text-red-700 dark:text-red-300' : 'text-gray-500'}`}>
                             {hoursUntilCheckIn < 24 ? '✓' : '✗'}
@@ -1547,39 +1623,34 @@ export default function DashboardPage() {
                       </div>
 
                       {/* Detailed Calculation Breakdown */}
-                      <div className="bg-white dark:bg-blue-900/30 rounded-xl p-1.5">
-                        <h5 className="font-semibold text-blue-800 dark:text-blue-200 mb-2 text-center text-sm">Refund Calculation Breakdown</h5>
+                      <div className="bg-white dark:bg-blue-900/30 rounded-lg p-2">
+                        <h5 className="font-semibold text-blue-800 dark:text-blue-200 mb-2 text-center text-xs">Refund Calculation</h5>
                         <div className="space-y-1 text-xs">
                           <div className="flex justify-between items-center py-1 border-b border-blue-100 dark:border-blue-800">
-                            <span className="text-blue-700 dark:text-blue-300">Total Booking Amount:</span>
-                            <span className="font-semibold text-blue-800 dark:text-blue-200">₹{bookingToCancel?.totalAmount?.toLocaleString()}</span>
+                            <span className="text-blue-700 dark:text-blue-300">Total Amount:</span>
+                            <span className="font-semibold text-blue-800 dark:text-blue-200 text-sm">₹{bookingToCancel?.totalAmount?.toLocaleString()}</span>
                           </div>
 
                           {hoursUntilCheckIn >= 48 ? (
                             <div className="flex justify-between items-center py-1 border-b border-blue-100 dark:border-blue-800">
-                              <span className="text-green-600 dark:text-green-400">Cancellation Charges:</span>
-                              <span className="font-semibold text-green-600 dark:text-green-400">₹0 (Free cancellation)</span>
+                              <span className="text-green-600 dark:text-green-400">Charges:</span>
+                              <span className="font-semibold text-green-600 dark:text-green-400 text-sm">₹0</span>
                             </div>
                           ) : hoursUntilCheckIn >= 24 ? (
                             <div className="flex justify-between items-center py-1 border-b border-blue-100 dark:border-blue-800">
-                              <span className="text-yellow-600 dark:text-yellow-400">Cancellation Charges:</span>
-                              <span className="font-semibold text-yellow-600 dark:text-yellow-400">₹{((bookingToCancel?.totalAmount || 0) * 0.5).toLocaleString()}</span>
+                              <span className="text-yellow-600 dark:text-yellow-400">Charges:</span>
+                              <span className="font-semibold text-yellow-600 dark:text-yellow-400 text-sm">₹{((bookingToCancel?.totalAmount || 0) * 0.5).toLocaleString()}</span>
                             </div>
                           ) : (
                             <div className="flex justify-between items-center py-1 border-b border-blue-100 dark:border-blue-800">
-                              <span className="text-red-600 dark:text-red-400">Cancellation Charges:</span>
-                              <span className="font-semibold text-red-600 dark:text-red-400">₹{bookingToCancel?.totalAmount?.toLocaleString()}</span>
+                              <span className="text-red-600 dark:text-red-400">Charges:</span>
+                              <span className="font-semibold text-red-600 dark:text-red-400 text-sm">₹{bookingToCancel?.totalAmount?.toLocaleString()}</span>
                             </div>
                           )}
 
-                          <div className="flex justify-between items-center py-1 border-b border-blue-100 dark:border-blue-800">
-                            <span className="text-blue-700 dark:text-blue-300">Processing Fee:</span>
-                            <span className="font-semibold text-blue-800 dark:text-blue-200">₹0</span>
-                          </div>
-
-                          <div className="flex justify-between items-center py-1 bg-green-50 dark:bg-green-900/20 rounded-lg px-2">
-                            <span className="font-bold text-green-700 dark:text-green-300">Final Refund Amount:</span>
-                            <span className="font-bold text-lg text-green-600 dark:text-green-400">₹{refundInfo.amount.toLocaleString()}</span>
+                          <div className="flex justify-between items-center py-2 bg-green-50 dark:bg-green-900/20 rounded px-2 mt-2">
+                            <span className="font-bold text-green-700 dark:text-green-300 text-sm">Refund:</span>
+                            <span className="font-bold text-base text-green-600 dark:text-green-400">₹{refundInfo.amount.toLocaleString()}</span>
                           </div>
                         </div>
                       </div>
@@ -1589,24 +1660,24 @@ export default function DashboardPage() {
               </div>
 
               {/* Final Warning */}
-              <p className="text-gray-600 dark:text-text-secondary mb-3 leading-relaxed text-sm">
-                <strong>Final confirmation:</strong> Are you absolutely sure you want to cancel this booking? This action will be processed immediately.
+              <p className="text-gray-600 dark:text-text-secondary mb-4 leading-relaxed text-sm">
+                <strong>Final confirmation:</strong> Are you sure you want to cancel? This will be processed immediately.
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col gap-3">
                 <Button
                   onClick={closeAllDialogs}
                   variant="outline"
-                  className="flex-1 border-primary text-primary hover:bg-primary hover:text-white rounded-xl py-3 font-semibold"
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-white rounded-xl py-3 font-semibold text-base"
                 >
-                  Keep My Booking
+                  Keep Booking
                 </Button>
                 <Button
                   onClick={finalCancel}
-                  className="flex-1 bg-red-600 hover:bg-red-700 text-white rounded-xl py-3 font-semibold"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white rounded-xl py-3 font-semibold text-base"
                 >
-                  Yes, Cancel & Process Refund
+                  Cancel & Refund
                 </Button>
               </div>
             </div>
