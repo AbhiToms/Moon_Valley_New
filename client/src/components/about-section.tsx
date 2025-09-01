@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Award, Users, MapPin } from "lucide-react";
+import { Award, Users, MapPin } from "lucide-react";
 
 export default function AboutSection() {
   return (
@@ -64,10 +63,7 @@ export default function AboutSection() {
               </div>
             </div>
             
-            <Button className="bg-gradient-to-r from-primary to-tropical text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:scale-105 transition-all duration-300 shadow-lg group w-full sm:w-auto">
-              Explore Our Story
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-            </Button>
+
           </div>
           
           {/* Image */}

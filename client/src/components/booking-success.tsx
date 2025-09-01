@@ -10,6 +10,7 @@ interface BookingDetails {
   name: string;
   email: string;
   phone: string;
+  address?: string;
   roomType: string;
   checkIn: string;
   checkOut: string;
@@ -25,6 +26,9 @@ export default function BookingSuccess() {
   const [bookingDetails, setBookingDetails] = useState<BookingDetails | null>(null);
 
   useEffect(() => {
+    // Scroll to top when component loads
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
     // Get booking details from sessionStorage
     const storedDetails = sessionStorage.getItem('bookingDetails');
     if (storedDetails) {
@@ -46,6 +50,7 @@ export default function BookingSuccess() {
         name: "Demo Guest",
         email: "demo@moonvalleyresort.com",
         phone: "+91 9446986882",
+        address: "123 Demo Street, Demo City, Kerala 670001",
         roomType: "Tropical Hut Deluxe",
         checkIn: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 7 days from now
         checkOut: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 10 days from now
@@ -159,6 +164,17 @@ export default function BookingSuccess() {
                       <p className="font-semibold text-primary dark:text-text-primary">{bookingDetails.email}</p>
                     </div>
                   </div>
+                  {bookingDetails.address && (
+                    <div className="flex items-start">
+                      <div className="w-12 h-12 bg-tropical/10 dark:bg-tropical/20 rounded-full flex items-center justify-center mr-4 mt-1">
+                        <MapPin className="w-6 h-6 text-tropical" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-600 dark:text-text-secondary">Address</p>
+                        <p className="font-semibold text-primary dark:text-text-primary">{bookingDetails.address}</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center">

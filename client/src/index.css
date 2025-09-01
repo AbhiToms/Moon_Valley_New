@@ -2086,4 +2086,27 @@ textarea:not(:placeholder-shown) {
   .booking-details-modal .text-lg {
     font-size: 1rem;
   }
+}/* F
+orce hide scrollbars in dialogs */
+[data-radix-dialog-content] {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+[data-radix-dialog-content]::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Specific class for dialog scrollbar hiding */
+.dialog-no-scrollbar {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.dialog-no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }

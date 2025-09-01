@@ -3,7 +3,7 @@ import { ChevronDown, Play, Sparkles } from "lucide-react";
 
 export default function HeroSection() {
   const scrollToRooms = () => {
-    const element = document.getElementById("rooms");
+    const element = document.getElementById("accommodations");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -59,7 +59,7 @@ export default function HeroSection() {
           </Button>
           <Button 
             variant="outline"
-            className="border-2 border-white/50 dark:border-white/40 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-white/20 dark:hover:bg-white/10 backdrop-blur-sm transition-all duration-300 bg-transparent w-full sm:w-auto"
+            className="hidden border-2 border-white/50 dark:border-white/40 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-white/20 dark:hover:bg-white/10 backdrop-blur-sm transition-all duration-300 bg-transparent w-full sm:w-auto"
           >
             <Play className="mr-2" size={16} />
             Virtual Tour
