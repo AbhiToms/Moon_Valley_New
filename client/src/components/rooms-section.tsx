@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Bed, Bath, Wifi, Star, Users, Eye } from "lucide-react";
-import RoomGallery from "@/components/room-gallery";
+import LazyImage from "./lazy-image";
 import type { Room } from "@shared/schema";
+
+const RoomGallery = lazy(() => import("@/components/room-gallery"));
 
 export default function RoomsSection() {
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
@@ -79,7 +81,7 @@ export default function RoomsSection() {
               className="group bg-white dark:bg-bg-secondary rounded-3xl overflow-hidden border-0 shadow-lg hover:shadow-2xl dark:shadow-xl dark:hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
             >
               <div className="relative overflow-hidden">
-                <img
+                <LazyImage
                   src={room.image}
                   alt={room.name}
                   className="w-full h-48 sm:h-56 object-cover transition-transform duration-700 group-hover:scale-110"
@@ -143,12 +145,16 @@ export default function RoomsSection() {
         </div>
 
         {/* Room Gallery Modal */}
-        <RoomGallery
-          room={selectedRoom}
-          isOpen={isGalleryOpen}
-          onClose={closeRoomGallery}
-          onBookNow={handleBookFromGallery}
-        />
+        <Suspense fallback={<div />}>
+          {isGalleryOpen && selectedRoom && (
+            <RoomGallery
+              room={selectedRoom}
+              isOpen={isGalleryOpen}
+              onClose={closeRoomGallery}
+              onBookNow={handleBookFromGallery}
+            />
+          )}
+        </Suspense>
       </div>
     </section>
   );

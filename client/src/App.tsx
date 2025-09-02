@@ -4,23 +4,35 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
-import Home from "@/pages/home";
-import BookingSuccessPage from "@/pages/booking-success";
-import LoginPage from "@/pages/login";
-import SignupPage from "@/pages/signup";
-import DashboardPage from "@/pages/dashboard";
-import NotFound from "@/pages/not-found";
+import { lazy, Suspense } from "react";
+
+// Lazy load pages for better performance
+const Home = lazy(() => import("@/pages/home"));
+const BookingSuccessPage = lazy(() => import("@/pages/booking-success"));
+const LoginPage = lazy(() => import("@/pages/login"));
+const SignupPage = lazy(() => import("@/pages/signup"));
+const DashboardPage = lazy(() => import("@/pages/dashboard"));
+const NotFound = lazy(() => import("@/pages/not-found"));
+
+// Loading component
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+  </div>
+);
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/login" component={LoginPage} />
-      <Route path="/signup" component={SignupPage} />
-      <Route path="/dashboard" component={DashboardPage} />
-      <Route path="/booking-success" component={BookingSuccessPage} />
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<PageLoader />}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/signup" component={SignupPage} />
+        <Route path="/dashboard" component={DashboardPage} />
+        <Route path="/booking-success" component={BookingSuccessPage} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 

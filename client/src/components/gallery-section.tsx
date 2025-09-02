@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import ImageLightbox from "./image-lightbox";
+import { useState, lazy, Suspense } from "react";
+import LazyImage from "./lazy-image";
+
+const ImageLightbox = lazy(() => import("./image-lightbox"));
 
 const galleryImages = [
   {
@@ -71,34 +72,34 @@ export default function GallerySection() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
           {galleryImages.map((image, index) => (
-            <div 
+            <div
               key={index}
               className="aspect-square overflow-hidden rounded-lg sm:rounded-xl hover-lift cursor-pointer"
               onClick={() => openLightbox(index)}
             >
-              <img 
-                src={image.thumb} 
-                alt={image.alt} 
+              <LazyImage
+                src={image.thumb}
+                alt={image.alt}
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-8 sm:mt-12">
-          <Button className="bg-forest dark:bg-primary text-white px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base rounded-full hover:bg-forest/90 dark:hover:bg-primary/90 transition-all duration-300 hover:shadow-lg w-full sm:w-auto">
-            View Full Gallery
-          </Button>
-        </div>
+
       </div>
 
-      <ImageLightbox
-        images={galleryImages}
-        currentIndex={currentImageIndex}
-        isOpen={lightboxOpen}
-        onClose={() => setLightboxOpen(false)}
-        onNavigate={setCurrentImageIndex}
-      />
+      <Suspense fallback={<div />}>
+        {lightboxOpen && (
+          <ImageLightbox
+            images={galleryImages}
+            currentIndex={currentImageIndex}
+            isOpen={lightboxOpen}
+            onClose={() => setLightboxOpen(false)}
+            onNavigate={setCurrentImageIndex}
+          />
+        )}
+      </Suspense>
     </section>
   );
 }

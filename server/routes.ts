@@ -3,11 +3,30 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertBookingSchema, insertContactSchema } from "@shared/schema";
 
+// Simple in-memory cache for rooms data
+let roomsCache: any = null;
+let roomsCacheTime = 0;
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Get all rooms
+  // Get all rooms with caching
   app.get("/api/rooms", async (req, res) => {
     try {
+      const now = Date.now();
+      
+      // Return cached data if still valid
+      if (roomsCache && (now - roomsCacheTime) < CACHE_DURATION) {
+        res.setHeader('X-Cache', 'HIT');
+        return res.json(roomsCache);
+      }
+      
+      // Fetch fresh data
       const rooms = await storage.getRooms();
+      roomsCache = rooms;
+      roomsCacheTime = now;
+      
+      res.setHeader('X-Cache', 'MISS');
+      res.setHeader('Cache-Control', 'public, max-age=300'); // 5 minutes
       res.json(rooms);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch rooms" });

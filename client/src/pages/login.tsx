@@ -96,27 +96,28 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-surface to-neutral dark:from-bg-primary dark:to-bg-secondary flex items-center justify-center p-6">
-      <div className={`w-full max-w-md transition-all duration-300 ease-out ${
-        isTransitioning 
-          ? 'opacity-0 transform scale-95 translate-y-4' 
-          : 'opacity-100 transform scale-100 translate-y-0'
-      }`}>
+    <div className="min-h-screen bg-gradient-to-br from-surface to-neutral dark:from-bg-primary dark:to-bg-secondary">
+      <div className="min-h-screen flex items-center justify-center p-4 sm:p-6" style={{ alignItems: 'center', paddingTop: '5vh', paddingBottom: '20vh' }}>
+        <div className={`w-full max-w-md mx-auto transition-all duration-300 ease-out ${
+          isTransitioning 
+            ? 'opacity-0 transform scale-95 translate-y-4' 
+            : 'opacity-100 transform scale-100 translate-y-0'
+        }`}>
         {/* Back Button */}
-        <Link href="/" className="inline-flex items-center text-primary dark:text-tropical hover:text-primary/80 dark:hover:text-tropical/80 mb-6 transition-colors">
+        <Link href="/" className="inline-flex items-center text-primary dark:text-tropical hover:text-primary/80 dark:hover:text-tropical/80 mb-4 sm:mb-6 transition-colors">
           <ArrowLeft size={18} className="mr-2" />
           Back
         </Link>
 
         {/* Header */}
-        <div className="text-center mb-6">
-          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-4 py-1 mb-4">
+        <div className="text-center mb-4 sm:mb-6">
+          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-4 py-1 mb-3 sm:mb-4">
             <span className="text-primary dark:text-tropical font-semibold text-xs">WELCOME BACK</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-poppins font-bold text-primary dark:text-text-primary mb-3">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-poppins font-bold text-primary dark:text-text-primary mb-2 sm:mb-3">
             Sign In to <span className="text-tropical">Moon Valley</span>
           </h1>
-          <p className="text-sm text-gray-600 dark:text-text-secondary mb-4">
+          <p className="text-sm text-gray-600 dark:text-text-secondary mb-3 sm:mb-4 px-2">
             Welcome back! Please sign in to your account to continue.
           </p>
           
@@ -130,7 +131,7 @@ export default function LoginPage() {
         {/* Login Form */}
         <Card className="bg-white dark:bg-bg-secondary rounded-2xl card-shadow border-0 dark:border dark:border-mist/20">
           <CardContent 
-            className="p-6"
+            className="p-4 sm:p-6"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
@@ -208,6 +209,7 @@ export default function LoginPage() {
             </Form>
           </CardContent>
         </Card>
+        </div>
       </div>
     </div>
   );
