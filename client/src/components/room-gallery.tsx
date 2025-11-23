@@ -3,7 +3,7 @@ import { Dialog, DialogTitle, DialogPortal, DialogOverlay } from "@/components/u
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { X, ChevronLeft, ChevronRight, Bed, Bath, Users, Wifi, Star, MapPin, Heart } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Bed, Bath, Users, Star, MapPin, Heart } from "lucide-react";
 import type { Room } from "@shared/schema";
 
 interface RoomGalleryProps {

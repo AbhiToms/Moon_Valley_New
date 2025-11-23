@@ -2,7 +2,7 @@ import { useState, lazy, Suspense } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Bed, Bath, Wifi, Star, Users, Eye } from "lucide-react";
+import { Bed, Bath, Star, Users, Eye } from "lucide-react";
 import LazyImage from "./lazy-image";
 import type { Room } from "@shared/schema";
 
@@ -115,22 +115,19 @@ export default function RoomsSection() {
                 </div>
 
                 {/* Amenities */}
-                <div className="flex items-center justify-between text-xs sm:text-sm text-gray-600 dark:text-white/70 mb-4 sm:mb-6">
-                  <div className="flex items-center space-x-2 sm:space-x-4">
-                    <div className="flex items-center">
-                      <Bed size={14} className="mr-1 text-tropical" />
-                      <span>{index < 3 ? 2 : room.beds}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Bath size={14} className="mr-1 text-tropical" />
-                      <span>{room.baths}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Users size={14} className="mr-1 text-tropical" />
-                      <span>{index < 3 ? 6 : room.beds * 2}</span>
-                    </div>
+                <div className="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm text-gray-600 dark:text-white/70 mb-4 sm:mb-6">
+                  <div className="flex items-center">
+                    <Bed size={14} className="mr-1 text-tropical" />
+                    <span>{index < 3 ? 2 : room.beds}</span>
                   </div>
-                  <Wifi size={14} className="text-tropical" />
+                  <div className="flex items-center">
+                    <Bath size={14} className="mr-1 text-tropical" />
+                    <span>{room.baths}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Users size={14} className="mr-1 text-tropical" />
+                    <span>{index < 3 ? 6 : room.beds * 2}</span>
+                  </div>
                 </div>
 
                 <Button
