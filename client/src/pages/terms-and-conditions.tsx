@@ -37,9 +37,9 @@ export default function TermsAndConditions() {
             <section>
               <h2 className="text-2xl font-semibold text-primary dark:text-text-primary mb-4">3. Cancellation and Refund Policy</h2>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Cancellations made 14 days before check-in: Full refund</li>
-                <li>Cancellations made 7-14 days before check-in: 50% refund</li>
-                <li>Cancellations made less than 7 days before check-in: No refund</li>
+                <li>Cancellations made 5 days before check-in: Full refund</li>
+                <li>Cancellations made 3 days before check-in: 50% refund</li>
+                <li>Cancellations made less than 2 days before check-in: No refund</li>
               </ul>
               <p className="mt-4">
                 Refunds will be processed within 5-7 business days to the original payment method.
