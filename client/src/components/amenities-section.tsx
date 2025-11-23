@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Waves, Utensils, Dumbbell, ChefHat, Wifi, Trees } from "lucide-react";
+import { Waves, Flame, Heart, ChefHat, Wifi, Trees } from "lucide-react";
 
 const amenities = [
   {
@@ -27,16 +27,16 @@ const amenities = [
     image: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   },
   {
-    icon: Dumbbell,
-    title: "Fitness Area",
-    description: "Basic fitness equipment with stunning mountain views for your workout routine",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
+    icon: Heart,
+    title: "Yoga & Meditation",
+    description: "Peaceful pavilion with morning yoga sessions and meditation overlooking the valley",
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   },
   {
-    icon: Utensils,
-    title: "Dining Options",
-    description: "On-site dining with local cuisine featuring fresh mountain ingredients",
-    image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
+    icon: Flame,
+    title: "Bonfire & Stargazing",
+    description: "Cozy bonfire gatherings with stargazing experiences and mountain night skies",
+    image: "https://images.unsplash.com/photo-1551599810-f817eab40491?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   }
 ];
 
