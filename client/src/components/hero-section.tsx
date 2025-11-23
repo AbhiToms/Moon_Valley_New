@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Play, Sparkles } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
   const scrollToRooms = () => {
@@ -10,81 +10,97 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative h-[70vh] sm:h-[80vh] md:h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax Effect */}
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-tropical/30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1.5s" }}></div>
+      </div>
+
+      {/* Background Image - subtle */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110 transition-transform duration-1000"
+        className="absolute inset-0 bg-cover bg-center opacity-10"
         style={{
           backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
         }}
       />
       
-      {/* Premium Gradient Overlay with Sophistication */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-primary/50 to-tropical/40 dark:from-black/50 dark:via-primary/40 dark:to-tropical/30" />
-      
-      {/* Animated Gradient Glow */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-tropical/20 to-secondary/10 rounded-full blur-3xl opacity-50 animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-tl from-primary/20 to-accent/10 rounded-full blur-3xl opacity-50 animate-pulse" style={{ animationDelay: "1s" }}></div>
-      
-      <div className="relative z-10 text-center text-white max-w-5xl px-6">
-        <div className="mb-6 flex justify-center">
-          <div className="bg-white/15 backdrop-blur-xl rounded-full px-6 py-3 border border-white/20 shadow-lg hover:bg-white/20 transition-all duration-300">
-            <span className="text-sm font-medium flex items-center text-white tracking-wide">
-              <Sparkles className="mr-2" size={16} />
-              Palakkayam Thattu, Kerala
-            </span>
+      <div className="relative z-10 max-w-7xl px-6 sm:px-12 w-full py-20 lg:py-0 lg:min-h-screen lg:flex lg:items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
+          {/* Left Content */}
+          <div className="space-y-8 animate-fadeInUp">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-3 bg-tropical/10 px-4 py-2 rounded-full border border-tropical/30">
+                <span className="w-2 h-2 bg-tropical rounded-full"></span>
+                <span className="text-sm font-semibold text-tropical">Welcome to Paradise</span>
+              </div>
+              
+              <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+                Moon Valley
+                <span className="block text-tropical mt-2">Tropical Huts</span>
+              </h1>
+
+              <p className="text-lg text-gray-300 max-w-xl leading-relaxed">
+                Perched at 3,500 feet above sea level in Kerala's Western Ghats, experience authentic luxury with breathtaking panoramic views, immersive nature encounters, and world-class amenities designed for unforgettable mountain retreats.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-4 pt-8">
+              <Button
+                onClick={scrollToRooms}
+                className="bg-gradient-to-r from-tropical to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center gap-2 group"
+              >
+                Explore Rooms
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button
+                variant="outline"
+                className="border-2 border-white/30 text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-all duration-300"
+              >
+                Learn More
+              </Button>
+            </div>
+
+            {/* Stats Row */}
+            <div className="grid grid-cols-3 gap-4 pt-8 border-t border-white/10">
+              <div>
+                <div className="text-3xl font-bold text-tropical">4.4★</div>
+                <p className="text-sm text-gray-400 mt-1">Google Rating</p>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-tropical">360°</div>
+                <p className="text-sm text-gray-400 mt-1">Panoramic Views</p>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-tropical">3,500ft</div>
+                <p className="text-sm text-gray-400 mt-1">Altitude</p>
+              </div>
+            </div>
           </div>
-        </div>
-        
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-poppins font-extrabold mb-4 sm:mb-6 leading-tight">
-          <span className="block bg-gradient-to-r from-white via-amber-100 to-yellow-200 dark:from-white dark:via-yellow-300 dark:to-secondary bg-clip-text text-transparent animate-fadeInUp drop-shadow-lg">
-            Moon Valley
-          </span>
-          <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mt-1 sm:mt-2 text-white/95 animate-fadeInUp tracking-widest" style={{ animationDelay: "0.2s" }}>
-            A Tropical Hut Experience
-          </span>
-        </h1>
-        
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto leading-relaxed font-light animate-fadeInUp px-4 text-white/90" style={{ animationDelay: "0.4s" }}>
-          Perched at <strong>3,500 feet</strong> above sea level, experience breathtaking 360° panoramic views, 
-          luxury accommodations, and immersive nature encounters in the heart of Kerala's Western Ghats.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center animate-fadeInUp px-4" style={{ animationDelay: "0.6s" }}>
-          <Button 
-            onClick={scrollToRooms}
-            className="bg-gradient-to-r from-white to-amber-50 text-primary px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-xl w-full sm:w-auto border border-white/30"
-          >
-            Discover Rooms
-          </Button>
-          <Button 
-            variant="outline"
-            className="hidden border-2 border-white/40 text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-white/15 backdrop-blur-md transition-all duration-300 bg-white/10 w-full sm:w-auto hover:shadow-xl"
-          >
-            <Play className="mr-2" size={16} />
-            Virtual Tour
-          </Button>
-        </div>
-        
-        {/* Statistics */}
-        <div className="mt-8 sm:mt-10 md:mt-16 grid grid-cols-3 gap-3 sm:gap-5 md:gap-8 max-w-lg sm:max-w-2xl mx-auto animate-fadeInUp px-4" style={{ animationDelay: "0.8s" }}>
-          <div className="text-center backdrop-blur-md bg-white/10 rounded-xl p-3 sm:p-4 border border-white/20 hover:bg-white/15 transition-all">
-            <div className="text-lg sm:text-xl md:text-2xl font-bold text-amber-300">4.4★</div>
-            <div className="text-xs opacity-85 leading-tight text-white">Google Rating</div>
-          </div>
-          <div className="text-center backdrop-blur-md bg-white/10 rounded-xl p-3 sm:p-4 border border-white/20 hover:bg-white/15 transition-all">
-            <div className="text-lg sm:text-xl md:text-2xl font-bold text-amber-300">360°</div>
-            <div className="text-xs opacity-85 leading-tight text-white">Panoramic Views</div>
-          </div>
-          <div className="text-center backdrop-blur-md bg-white/10 rounded-xl p-3 sm:p-4 border border-white/20 hover:bg-white/15 transition-all">
-            <div className="text-lg sm:text-xl md:text-2xl font-bold text-amber-300">3,500ft</div>
-            <div className="text-xs opacity-85 leading-tight text-white">Above Sea Level</div>
+
+          {/* Right Image */}
+          <div className="relative hidden lg:block">
+            <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600"
+                alt="Moon Valley Luxury Hut"
+                className="w-full h-full object-cover animate-fadeInUp"
+                style={{ animationDelay: "0.2s" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent"></div>
+              {/* Floating Card */}
+              <div className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md rounded-xl p-4 shadow-2xl max-w-xs animate-fadeInUp" style={{ animationDelay: "0.4s" }}>
+                <p className="text-sm font-semibold text-gray-900">Unwind in Paradise</p>
+                <p className="text-xs text-gray-600 mt-1">Experience luxury tropical living with modern comfort in Kerala's most stunning mountain retreat.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/70 animate-bounce hover:text-white transition-colors">
-        <ChevronDown size={40} strokeWidth={1.5} />
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <ChevronDown size={32} className="text-tropical" />
       </div>
     </section>
   );

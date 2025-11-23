@@ -2,20 +2,33 @@ import { Award, Users, MapPin } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-24 bg-white dark:bg-bg-primary">
+    <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-gray-50 to-white dark:from-slate-900 dark:to-bg-primary">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Image First on Desktop */}
+          <div className="order-2 lg:order-1">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
+              <img 
+                src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                alt="Moon Valley tropical hut surrounded by lush greenery" 
+                className="w-full h-96 sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-tropical/30 via-transparent to-transparent"></div>
+            </div>
+          </div>
+
           {/* Content */}
-          <div className="space-y-6 sm:space-y-8">
+          <div className="order-1 lg:order-2 space-y-8">
             <div>
-              <div className="inline-block bg-tropical/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
-                <span className="text-tropical font-semibold text-xs sm:text-sm">ABOUT MOON VALLEY</span>
+              <div className="inline-flex items-center gap-2 bg-tropical/10 px-4 py-2 rounded-full border border-tropical/30 mb-6">
+                <span className="w-2 h-2 bg-tropical rounded-full"></span>
+                <span className="text-tropical font-semibold text-sm">ABOUT MOON VALLEY</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-4 sm:mb-6 leading-tight">
-                Your Gateway to
-                <span className="block text-tropical">Nature's Paradise</span>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+                Your Gateway to<br/>
+                <span className="text-tropical">Nature's Paradise</span>
               </h2>
-              <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-white/80 leading-relaxed mb-6 sm:mb-8">
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
                 Moon Valley - A Tropical Hut provides a unique hilltop experience at Palakkayam Thattu, Kerala. 
                 Our tropical accommodations offer guests breathtaking views, peaceful relaxation, and an 
                 immersive nature experience that connects you with the beauty of the Western Ghats.

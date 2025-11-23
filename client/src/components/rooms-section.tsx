@@ -57,93 +57,94 @@ export default function RoomsSection() {
   }
 
   return (
-    <section id="accommodations" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
+    <section id="accommodations" className="py-12 sm:py-16 lg:py-24 bg-white dark:bg-bg-primary">
       <div className="container mx-auto px-4 sm:px-6">
         {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-12 lg:mb-20">
-          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
-            <span className="text-primary dark:text-tropical font-semibold text-xs sm:text-sm">ACCOMMODATIONS</span>
+        <div className="max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 bg-tropical/10 px-4 py-2 rounded-full border border-tropical/30 mb-6">
+            <span className="w-2 h-2 bg-tropical rounded-full"></span>
+            <span className="text-tropical font-semibold text-sm">PREMIUM ACCOMMODATIONS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-4 sm:mb-6">
-            Tropical <span className="text-tropical">Hut</span> Experiences
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+            Luxury Tropical <span className="text-tropical">Huts</span>
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
-            Four uniquely designed accommodations that blend modern comfort with authentic tropical architecture,
-            each offering stunning panoramic views of the Western Ghats.
+          <p className="text-lg text-gray-600 dark:text-gray-300">
+            Four uniquely designed accommodations that blend modern comfort with authentic tropical architecture, each offering stunning panoramic views of the Western Ghats.
           </p>
         </div>
 
         {/* Rooms Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-7 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {rooms?.map((room, index) => (
-            <Card
+            <div
               key={room.id}
-              className="group bg-white dark:bg-bg-secondary rounded-3xl overflow-hidden border border-neutral/10 dark:border-mist/20 shadow-xl hover:shadow-2xl dark:shadow-2xl dark:hover:shadow-2xl transition-all duration-500 hover:-translate-y-3"
+              className="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-gray-100 dark:border-slate-700 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
             >
-              <div className="relative overflow-hidden h-56 sm:h-64">
+              {/* Image Section */}
+              <div className="relative overflow-hidden h-48 sm:h-56">
                 <LazyImage
                   src={room.image}
                   alt={room.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-115"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-300" />
+                
+                {/* Price Badge */}
+                <div className="absolute top-4 right-4 bg-tropical text-white px-4 py-2 rounded-lg font-bold">
+                  ₹{room.price.toLocaleString()}
+                  <span className="text-xs font-normal ml-1">/night</span>
+                </div>
 
-                <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+                {/* View Details Button */}
+                <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <Button 
                     size="sm" 
                     onClick={() => openRoomGallery(room)}
-                    className="bg-white/95 backdrop-blur-md text-primary border-0 hover:bg-white shadow-lg hover:shadow-xl font-semibold"
+                    className="bg-white text-primary hover:bg-gray-100 shadow-lg font-semibold"
                   >
-                    <Eye size={16} className="mr-2" />
-                    View Details
+                    <Eye size={16} className="mr-1" />
+                    View
                   </Button>
                 </div>
               </div>
 
-              <CardContent className="p-5 sm:p-6 space-y-4">
+              {/* Content Section */}
+              <div className="p-5 sm:p-6 space-y-4">
                 <div>
-                  <h3 className="text-lg sm:text-xl font-poppins font-bold text-primary dark:text-text-primary mb-1">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
                     {room.name}
                   </h3>
-                  <p className="text-gray-500 dark:text-white/60 text-xs sm:text-sm line-clamp-2 font-medium">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
                     {room.description}
                   </p>
                 </div>
 
-                {/* Price */}
-                <div className="flex items-baseline py-2 border-t border-b border-neutral/20 dark:border-mist/20">
-                  <span className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-tropical bg-clip-text text-transparent">₹{room.price.toLocaleString()}</span>
-                  <span className="text-gray-500 dark:text-white/60 text-xs sm:text-sm ml-1 font-medium">/night</span>
-                </div>
-
-                {/* Amenities */}
-                <div className="flex items-center justify-between text-xs sm:text-sm text-gray-600 dark:text-white/70 bg-gradient-to-r from-tropical/10 to-secondary/10 dark:from-tropical/5 dark:to-secondary/5 rounded-xl p-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="flex items-center">
-                      <Bed size={15} className="mr-1 text-tropical font-bold" />
-                      <span className="font-semibold">{index < 3 ? 2 : room.beds}</span>
+                {/* Amenities Icons */}
+                <div className="flex items-center justify-between py-3 border-t border-gray-100 dark:border-slate-700 border-b">
+                  <div className="flex items-center gap-4">
+                    <div className="flex flex-col items-center">
+                      <Bed size={18} className="text-tropical mb-1" />
+                      <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">{index < 3 ? 2 : room.beds}</span>
                     </div>
-                    <div className="w-px h-4 bg-neutral/30"></div>
-                    <div className="flex items-center">
-                      <Bath size={15} className="mr-1 text-tropical font-bold" />
-                      <span className="font-semibold">{room.baths}</span>
+                    <div className="flex flex-col items-center">
+                      <Bath size={18} className="text-tropical mb-1" />
+                      <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">{room.baths}</span>
                     </div>
-                    <div className="w-px h-4 bg-neutral/30"></div>
-                    <div className="flex items-center">
-                      <Users size={15} className="mr-1 text-tropical font-bold" />
-                      <span className="font-semibold">{index < 3 ? 6 : room.beds * 2}</span>
+                    <div className="flex flex-col items-center">
+                      <Users size={18} className="text-tropical mb-1" />
+                      <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">{index < 3 ? 6 : room.beds * 2}</span>
                     </div>
                   </div>
                 </div>
 
                 <Button
                   onClick={scrollToBooking}
-                  className="w-full bg-gradient-to-r from-primary via-tropical to-secondary text-white rounded-xl py-3 sm:py-3.5 text-sm sm:text-base font-bold hover:shadow-lg transition-all duration-300 hover:-translate-y-1 uppercase tracking-wider"
+                  className="w-full bg-gradient-to-r from-tropical to-emerald-600 text-white rounded-lg py-3 font-bold hover:shadow-lg transition-all duration-300 hover:scale-105"
                 >
                   Reserve Now
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
 

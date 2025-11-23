@@ -42,37 +42,40 @@ const amenities = [
 
 export default function AmenitiesSection() {
   return (
-    <section id="amenities" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-neutral to-surface dark:from-bg-primary dark:to-bg-secondary">
+    <section id="amenities" className="py-12 sm:py-16 lg:py-24 bg-white dark:bg-bg-primary">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-8 sm:mb-12 lg:mb-20">
-          <div className="inline-block bg-tropical/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
-            <span className="text-tropical font-semibold text-xs sm:text-sm">AMENITIES</span>
+        <div className="max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 bg-tropical/10 px-4 py-2 rounded-full border border-tropical/30 mb-6">
+            <span className="w-2 h-2 bg-tropical rounded-full"></span>
+            <span className="text-tropical font-semibold text-sm">WORLD-CLASS FACILITIES</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-4 sm:mb-6">
-            World-Class <span className="text-tropical">Amenities</span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+            Premium <span className="text-tropical">Amenities</span>
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
+          <p className="text-lg text-gray-600 dark:text-gray-300">
             Every facility is thoughtfully designed to enhance your connection with nature while providing modern comfort and convenience for an unforgettable stay.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {amenities.map((amenity, index) => {
             const IconComponent = amenity.icon;
             return (
-              <Card key={index} className="group bg-white dark:bg-bg-secondary rounded-3xl overflow-hidden border-0 shadow-lg hover:shadow-2xl dark:shadow-xl dark:hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                <div className="relative overflow-hidden">
+              <div key={index} className="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-gray-100 dark:border-slate-700 hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+                <div className="relative overflow-hidden h-48 sm:h-56">
                   <img 
                     src={amenity.image} 
                     alt={amenity.title}
-                    className="w-full h-48 sm:h-56 object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300" />
+                  <div className="absolute top-4 left-4 p-3 bg-tropical/90 rounded-lg">
+                    <IconComponent size={24} className="text-white" />
+                  </div>
                 </div>
                 
-                <CardContent className="p-4 sm:p-6">
-                  <div className="text-tropical text-xl sm:text-2xl mb-2 sm:mb-3">
-                    <IconComponent size={28} />
+                <div className="p-5 sm:p-6">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{amenity.title}</h3>
                   </div>
                   <h3 className="text-lg sm:text-xl font-poppins font-bold text-primary dark:text-text-primary mb-2 sm:mb-3">
                     {amenity.title}
