@@ -1,37 +1,44 @@
-const CACHE_NAME = 'moon-valley-v1';
+const CACHE_NAME = 'moon-valley-v2';
 const urlsToCache = [
   '/',
   '/src/main.tsx',
   '/src/index.css',
-  // Add other critical resources
 ];
 
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        return cache.addAll(urlsToCache);
+        return cache.addAll(urlsToCache).catch(() => {
+          // Continue even if cache.addAll fails
+        });
       })
   );
 });
 
 self.addEventListener('fetch', (event) => {
-  // Only cache GET requests
   if (event.request.method !== 'GET') {
     return;
   }
 
-  // Skip API requests
   if (event.request.url.includes('/api/')) {
+    event.respondWith(fetch(event.request));
     return;
   }
 
   event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request);
-      })
+    fetch(event.request).then((response) => {
+      if (response && response.status === 200) {
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, responseClone);
+        });
+      }
+      return response;
+    }).catch(() => {
+      return caches.match(event.request);
+    })
   );
 });
 
@@ -47,4 +54,5 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
+  self.clients.claim();
 });
