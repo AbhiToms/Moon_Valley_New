@@ -89,8 +89,7 @@ export default function ContactSection() {
                 style={{ 
                   height: '320px', 
                   border: 'none',
-                  filter: isDark ? 'invert(0.95) hue-rotate(180deg) brightness(1.1)' : 'none',
-                  transition: 'filter 0.3s ease-in-out'
+                  filter: isDark ? 'invert(0.95) hue-rotate(180deg) brightness(1.1)' : 'none'
                 }}
                 allowFullScreen={true}
                 loading="lazy"
