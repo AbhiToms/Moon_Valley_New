@@ -3,16 +3,16 @@ import { Waves, Flame, Mountain, ChefHat, Wifi, Trees } from "lucide-react";
 
 const amenities = [
   {
+    icon: Mountain,
+    title: "Scenic Viewpoints",
+    description: "Breathtaking panoramic vistas with stunning sunset and sunrise views over the Western Ghats",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
+  },
+  {
     icon: Waves,
     title: "Swimming Pool",
     description: "Large swimming pool with mountain views perfect for relaxation and family fun",
     image: "https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
-  },
-  {
-    icon: ChefHat,
-    title: "Common Kitchen",
-    description: "Fully equipped communal kitchen with dining area for cooking enthusiasts and families",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   },
   {
     icon: Trees,
@@ -21,22 +21,22 @@ const amenities = [
     image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   },
   {
-    icon: Wifi,
-    title: "Free WiFi",
-    description: "High-speed internet connectivity throughout the resort for your convenience",
-    image: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
-  },
-  {
     icon: Flame,
     title: "Campfire & BBQ Nights",
     description: "Cozy campfire gatherings with BBQ grilling and authentic outdoor dining experiences",
     image: "https://images.unsplash.com/photo-1555939594-58d7cb561e1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   },
   {
-    icon: Mountain,
-    title: "Scenic Viewpoints",
-    description: "Breathtaking panoramic vistas with stunning sunset and sunrise views over the Western Ghats",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
+    icon: ChefHat,
+    title: "Common Kitchen",
+    description: "Fully equipped communal kitchen with dining area for cooking enthusiasts and families",
+    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
+  },
+  {
+    icon: Wifi,
+    title: "Free WiFi",
+    description: "High-speed internet connectivity throughout the resort for your convenience",
+    image: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   }
 ];
 
