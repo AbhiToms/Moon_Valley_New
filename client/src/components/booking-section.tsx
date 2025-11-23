@@ -16,9 +16,7 @@ import { DatePicker } from "@/components/ui/date-picker";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import type { Room } from "@shared/schema";
-import { Lock, Calendar, Users, User, Mail, Phone, Shield, MapPin, Star, Clock } from "lucide-react";
-import { Link } from "wouter";
-import { useAuth } from "@/lib/auth";
+import { Lock, Calendar, Users, Mail, Phone, Shield, MapPin, Star, Clock } from "lucide-react";
 
 const bookingSchema = z.object({
   roomType: z.string().min(1, "Please select a room type"),
@@ -59,7 +57,6 @@ export default function BookingSection() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [, setLocation] = useLocation();
-  const { user } = useAuth();
 
   const { data: rooms } = useQuery<Room[]>({
     queryKey: ["/api/rooms"],

@@ -1,4 +1,4 @@
-import { type Room, type InsertRoom, type Booking, type InsertBooking, type Contact, type InsertContact, type User, type InsertUser } from "@shared/schema";
+import { type Room, type InsertRoom, type Contact, type InsertContact } from "@shared/schema";
 import { randomUUID } from "crypto";
 
 export interface IStorage {
@@ -6,32 +6,20 @@ export interface IStorage {
   getRooms(): Promise<Room[]>;
   getRoom(id: string): Promise<Room | undefined>;
 
-  // Booking methods
-  createBooking(booking: InsertBooking): Promise<Booking>;
-  getBookings(): Promise<Booking[]>;
-  getBookingsByEmail(email: string): Promise<Booking[]>;
-
   // Contact methods
   createContact(contact: InsertContact): Promise<Contact>;
   getContacts(): Promise<Contact[]>;
-
-  // User methods
-  getUser(id: string): Promise<User | undefined>;
-  getUserByEmail(email: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
 }
 
 export class MemStorage implements IStorage {
   private rooms: Map<string, Room>;
-  private bookings: Map<string, Booking>;
   private contacts: Map<string, Contact>;
-  private users: Map<string, User>;
+  sessionStore: any;
 
   constructor() {
     this.rooms = new Map();
-    this.bookings = new Map();
     this.contacts = new Map();
-    this.users = new Map();
+    this.sessionStore = null;
 
     // Initialize with resort rooms
     this.initializeRooms();
@@ -96,38 +84,6 @@ export class MemStorage implements IStorage {
     return this.rooms.get(id);
   }
 
-  async createBooking(insertBooking: InsertBooking): Promise<Booking> {
-    // Generate custom booking ID with MV- prefix
-    // Format: MV-TIMESTAMP-RANDOM (e.g., MV-L8K9M2N3-4A5B6C7D)
-    const timestamp = Date.now().toString(36).toUpperCase(); // Convert timestamp to base36
-    const randomPart = randomUUID().substring(0, 8).toUpperCase().replace(/-/g, ''); // 8 chars from UUID
-    const id = `MV-${timestamp}-${randomPart}`;
-
-    console.log(`[Storage] Creating booking with custom ID: ${id}`);
-
-    const booking: Booking = {
-      ...insertBooking,
-      id,
-      address: insertBooking.address || null,
-      status: "confirmed",
-      specialRequests: insertBooking.specialRequests || null,
-      createdAt: new Date(),
-    };
-    this.bookings.set(id, booking);
-    console.log(`[Storage] Booking created successfully:`, { id: booking.id, roomType: booking.roomType, email: booking.email });
-    return booking;
-  }
-
-  async getBookings(): Promise<Booking[]> {
-    return Array.from(this.bookings.values());
-  }
-
-  async getBookingsByEmail(email: string): Promise<Booking[]> {
-    return Array.from(this.bookings.values()).filter(
-      (booking) => booking.email.toLowerCase() === email.toLowerCase()
-    );
-  }
-
   async createContact(insertContact: InsertContact): Promise<Contact> {
     const id = randomUUID();
     const contact: Contact = {
@@ -141,27 +97,6 @@ export class MemStorage implements IStorage {
 
   async getContacts(): Promise<Contact[]> {
     return Array.from(this.contacts.values());
-  }
-
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
-  }
-
-  async getUserByEmail(email: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.email === email,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = {
-      ...insertUser,
-      id,
-      createdAt: new Date(),
-    };
-    this.users.set(id, user);
-    return user;
   }
 }
 
