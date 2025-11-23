@@ -54,6 +54,8 @@ export default defineConfig({
       strict: false,
       allow: [".."],
     },
+    middlewareMode: false,
+    allowedHosts: true,
   },
   // Performance optimizations
   optimizeDeps: {
