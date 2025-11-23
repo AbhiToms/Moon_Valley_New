@@ -75,25 +75,6 @@ export default function ContactSection() {
                     );
                   })}
                 </div>
-
-                <div className="mt-6 sm:mt-8 lg:mt-10">
-                  <h3 className="text-base sm:text-lg font-semibold text-primary dark:text-text-primary mb-3 sm:mb-4">Follow Us</h3>
-                  <div className="flex gap-2 sm:gap-3">
-                    {socialLinks.map((social, index) => {
-                      const IconComponent = social.icon;
-                      return (
-                        <a
-                          key={index}
-                          href={social.href}
-                          className="w-10 h-10 sm:w-12 sm:h-12 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary/40"
-                          aria-label={`Follow us on ${social.name}`}
-                        >
-                          <IconComponent size={18} className="sm:w-[20px] sm:h-[20px]" />
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
               </CardContent>
             </Card>
           </div>
