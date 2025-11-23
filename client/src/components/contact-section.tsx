@@ -50,10 +50,10 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="flex justify-center">
-          {/* Contact Info */}
-          <div className="max-w-2xl w-full">
-            <Card className="bg-surface dark:bg-bg-primary rounded-xl sm:rounded-2xl card-shadow border-0 dark:border dark:border-mist/20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          {/* Contact Info - Left Side */}
+          <div>
+            <Card className="bg-surface dark:bg-bg-primary rounded-xl sm:rounded-2xl card-shadow border-0 dark:border dark:border-mist/20 h-full">
               <CardContent className="p-4 sm:p-6 lg:p-8">
                 <div className="space-y-4 sm:space-y-6">
                   {contactInfo.map((info, index) => {
@@ -95,6 +95,25 @@ export default function ContactSection() {
                   </div>
                 </div>
               </CardContent>
+            </Card>
+          </div>
+
+          {/* Google Map - Right Side */}
+          <div>
+            <Card className="bg-surface dark:bg-bg-primary rounded-xl sm:rounded-2xl card-shadow border-0 dark:border dark:border-mist/20 overflow-hidden h-full">
+              <div className="relative w-full h-80 sm:h-96 lg:h-full min-h-80">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3938.1234567890123!2d75.33!3d12.12!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba4b2c0d0d0d0d1%3A0x1234567890abcdef!2sMoon%20Valley%20-%20A%20Tropical%20Hut!5e0!3m2!1sen!2sin!4v1234567890"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Moon Valley Location Map"
+                  className="w-full h-full"
+                />
+              </div>
             </Card>
           </div>
         </div>
