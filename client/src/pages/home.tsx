@@ -8,7 +8,6 @@ const AboutSection = lazy(() => import("@/components/about-section"));
 const RoomsSection = lazy(() => import("@/components/rooms-section"));
 const AmenitiesSection = lazy(() => import("@/components/amenities-section"));
 const GallerySection = lazy(() => import("@/components/gallery-section"));
-const BookingSection = lazy(() => import("@/components/booking-section"));
 const TestimonialsSection = lazy(() => import("@/components/testimonials-section"));
 const ContactSection = lazy(() => import("@/components/contact-section"));
 const Footer = lazy(() => import("@/components/footer"));
@@ -42,10 +41,6 @@ export default function Home() {
       
       <Suspense fallback={<SectionLoader />}>
         <GallerySection />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <BookingSection />
       </Suspense>
       
       <Suspense fallback={<SectionLoader />}>
