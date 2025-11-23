@@ -76,15 +76,11 @@ export default function AmenitiesSection() {
                 
                 <div className="p-5 sm:p-6">
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{amenity.title}</h3>
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-poppins font-bold text-primary dark:text-text-primary mb-2 sm:mb-3">
-                    {amenity.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-white/70 leading-relaxed">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     {amenity.description}
                   </p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             );
           })}
         </div>
