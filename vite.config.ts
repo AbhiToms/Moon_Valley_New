@@ -50,10 +50,9 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000,
   },
   server: {
-    middlewareMode: true,
     fs: {
-      strict: true,
-      deny: ["**/.*"],
+      strict: false,
+      allow: [".."],
     },
   },
   // Performance optimizations
