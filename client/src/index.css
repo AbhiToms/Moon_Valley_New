@@ -109,26 +109,6 @@
 @layer base {
   * {
     @apply border-border;
-    transition: background-color 0.8s ease-in-out,
-                color 0.8s ease-in-out,
-                border-color 0.8s ease-in-out,
-                box-shadow 0.8s ease-in-out,
-                fill 0.8s ease-in-out,
-                stroke 0.8s ease-in-out,
-                filter 0.8s ease-in-out;
-  }
-
-  /* Smooth theme transition */
-  html.theme-transitioning,
-  html.theme-transitioning body,
-  html.theme-transitioning * {
-    transition: background-color 0.8s ease-in-out,
-                color 0.8s ease-in-out,
-                border-color 0.8s ease-in-out,
-                box-shadow 0.8s ease-in-out,
-                fill 0.8s ease-in-out,
-                stroke 0.8s ease-in-out,
-                filter 0.8s ease-in-out !important;
   }
 
   html,

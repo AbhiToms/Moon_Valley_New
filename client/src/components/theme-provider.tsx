@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { ThemeTransitionOverlay } from "./theme-transition-overlay";
 
 type Theme = "light" | "dark" | "system";
 
@@ -33,21 +34,15 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.add("theme-transitioning");
     
-    // Force a reflow to ensure transitions are active before the change
-    void root.offsetHeight;
+    // Dispatch event to trigger overlay fade-in
+    window.dispatchEvent(new Event("theme-transition-start"));
     
-    requestAnimationFrame(() => {
+    // Wait for overlay to fade in, then change theme
+    setTimeout(() => {
       root.classList.remove("light", "dark");
       root.classList.add(theme);
-      
-      const timer = setTimeout(() => {
-        root.classList.remove("theme-transitioning");
-      }, 700);
-      
-      return () => clearTimeout(timer);
-    });
+    }, 150);
   }, [theme]);
 
   const setTheme = (newTheme: Theme) => {
@@ -61,6 +56,7 @@ export function ThemeProvider({
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
+      <ThemeTransitionOverlay />
       {children}
     </ThemeContext.Provider>
   );
