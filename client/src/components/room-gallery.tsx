@@ -150,7 +150,7 @@ export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGa
             <Dialog open={isOpen}>
                 <DialogPortal>
                     <DialogOverlay />
-                    <DialogPrimitive.Content className="fixed inset-0 md:left-8 md:right-8 md:top-2 md:bottom-2 lg:left-12 lg:right-12 lg:top-4 lg:bottom-4 xl:left-16 xl:right-16 xl:top-6 xl:bottom-6 2xl:left-20 2xl:right-20 2xl:top-8 2xl:bottom-8 z-50 w-full md:w-auto border-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-2xl dark:shadow-xl duration-150 data-[state=open]:fade-in-0 rounded-none md:rounded-2xl lg:rounded-3xl p-0 max-h-screen md:max-h-[96vh] lg:max-h-[98vh] overflow-y-auto overflow-x-hidden scrollbar-hide will-change-transform" style={{ transform: 'translate3d(0, 0, 0)' }}>
+                    <DialogPrimitive.Content className="fixed inset-0 md:left-8 md:right-8 md:top-2 md:bottom-2 lg:left-12 lg:right-12 lg:top-4 lg:bottom-4 xl:left-16 xl:right-16 xl:top-6 xl:bottom-6 2xl:left-20 2xl:right-20 2xl:top-8 2xl:bottom-8 z-50 w-full md:w-auto border-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-2xl dark:shadow-xl duration-200 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-90 data-[state=open]:slide-in-from-bottom-1/4 rounded-none md:rounded-2xl lg:rounded-3xl p-0 max-h-screen md:max-h-[96vh] lg:max-h-[98vh] overflow-y-auto overflow-x-hidden scrollbar-hide will-change-transform" style={{ transform: 'translate3d(0, 0, 0)' }}>
                         {/* Close Button - Sticky within dialog */}
                         <Button
                             onClick={onClose}
