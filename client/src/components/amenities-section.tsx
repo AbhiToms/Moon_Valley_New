@@ -6,7 +6,7 @@ const amenities = [
     icon: Waves,
     title: "Swimming Pool",
     description: "Large swimming pool with mountain views perfect for relaxation and family fun",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
+    image: "https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   },
   {
     icon: ChefHat,
