@@ -74,25 +74,25 @@ export default function RoomsSection() {
         </div>
 
         {/* Rooms Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-7 lg:gap-8">
           {rooms?.map((room, index) => (
             <Card
               key={room.id}
-              className="group bg-white dark:bg-bg-secondary rounded-3xl overflow-hidden border-0 shadow-lg hover:shadow-2xl dark:shadow-xl dark:hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              className="group bg-white dark:bg-bg-secondary rounded-3xl overflow-hidden border border-neutral/10 dark:border-mist/20 shadow-xl hover:shadow-2xl dark:shadow-2xl dark:hover:shadow-2xl transition-all duration-500 hover:-translate-y-3"
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden h-56 sm:h-64">
                 <LazyImage
                   src={room.image}
                   alt={room.name}
-                  className="w-full h-48 sm:h-56 object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-115"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
 
-                <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
                   <Button 
                     size="sm" 
                     onClick={() => openRoomGallery(room)}
-                    className="bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white hover:text-primary"
+                    className="bg-white/95 backdrop-blur-md text-primary border-0 hover:bg-white shadow-lg hover:shadow-xl font-semibold"
                   >
                     <Eye size={16} className="mr-2" />
                     View Details
@@ -100,39 +100,45 @@ export default function RoomsSection() {
                 </div>
               </div>
 
-              <CardContent className="p-4 sm:p-6">
-                <h3 className="text-lg sm:text-xl font-poppins font-bold text-primary dark:text-text-primary mb-2">
-                  {room.name}
-                </h3>
-                <p className="text-gray-600 dark:text-white/70 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
-                  {room.description}
-                </p>
+              <CardContent className="p-5 sm:p-6 space-y-4">
+                <div>
+                  <h3 className="text-lg sm:text-xl font-poppins font-bold text-primary dark:text-text-primary mb-1">
+                    {room.name}
+                  </h3>
+                  <p className="text-gray-500 dark:text-white/60 text-xs sm:text-sm line-clamp-2 font-medium">
+                    {room.description}
+                  </p>
+                </div>
 
                 {/* Price */}
-                <div className="flex items-baseline mb-3 sm:mb-4">
-                  <span className="text-2xl sm:text-3xl font-bold text-primary dark:text-tropical">₹{room.price.toLocaleString()}</span>
-                  <span className="text-gray-500 dark:text-white/60 text-xs sm:text-sm ml-1">/night</span>
+                <div className="flex items-baseline py-2 border-t border-b border-neutral/20 dark:border-mist/20">
+                  <span className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary to-tropical bg-clip-text text-transparent">₹{room.price.toLocaleString()}</span>
+                  <span className="text-gray-500 dark:text-white/60 text-xs sm:text-sm ml-1 font-medium">/night</span>
                 </div>
 
                 {/* Amenities */}
-                <div className="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm text-gray-600 dark:text-white/70 mb-4 sm:mb-6">
-                  <div className="flex items-center">
-                    <Bed size={14} className="mr-1 text-tropical" />
-                    <span>{index < 3 ? 2 : room.beds}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Bath size={14} className="mr-1 text-tropical" />
-                    <span>{room.baths}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Users size={14} className="mr-1 text-tropical" />
-                    <span>{index < 3 ? 6 : room.beds * 2}</span>
+                <div className="flex items-center justify-between text-xs sm:text-sm text-gray-600 dark:text-white/70 bg-gradient-to-r from-tropical/10 to-secondary/10 dark:from-tropical/5 dark:to-secondary/5 rounded-xl p-3">
+                  <div className="flex items-center space-x-3">
+                    <div className="flex items-center">
+                      <Bed size={15} className="mr-1 text-tropical font-bold" />
+                      <span className="font-semibold">{index < 3 ? 2 : room.beds}</span>
+                    </div>
+                    <div className="w-px h-4 bg-neutral/30"></div>
+                    <div className="flex items-center">
+                      <Bath size={15} className="mr-1 text-tropical font-bold" />
+                      <span className="font-semibold">{room.baths}</span>
+                    </div>
+                    <div className="w-px h-4 bg-neutral/30"></div>
+                    <div className="flex items-center">
+                      <Users size={15} className="mr-1 text-tropical font-bold" />
+                      <span className="font-semibold">{index < 3 ? 6 : room.beds * 2}</span>
+                    </div>
                   </div>
                 </div>
 
                 <Button
                   onClick={scrollToBooking}
-                  className="w-full bg-gradient-to-r from-primary to-tropical text-white rounded-full py-2 sm:py-3 text-sm sm:text-base font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
+                  className="w-full bg-gradient-to-r from-primary via-tropical to-secondary text-white rounded-xl py-3 sm:py-3.5 text-sm sm:text-base font-bold hover:shadow-lg transition-all duration-300 hover:-translate-y-1 uppercase tracking-wider"
                 >
                   Reserve Now
                 </Button>
