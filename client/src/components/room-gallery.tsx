@@ -59,34 +59,34 @@ const roomImages: Record<string, string[]> = {
 
 export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGalleryProps) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isImageLoading, setIsImageLoading] = useState(true);
+    const [isImageLoading, setIsImageLoading] = useState(false);
     const [isLiked, setIsLiked] = useState(false);
 
-    // Reset image index when room changes
+    // Reset image index when room changes - optimized
     useEffect(() => {
         if (isOpen && room) {
             setCurrentImageIndex(0);
-            setIsImageLoading(true);
+            setIsImageLoading(false); // Start with false for instant display
 
-            // Fallback timeout to prevent stuck loading state
+            // Fallback timeout
             const loadingTimeout = setTimeout(() => {
                 setIsImageLoading(false);
-            }, 3000); // 3 second timeout
+            }, 1500); // Reduced from 3s
 
             return () => clearTimeout(loadingTimeout);
         }
     }, [room?.id, isOpen]);
 
-    // Add timeout for image loading to prevent stuck state
+    // Simplified image loading timeout
     useEffect(() => {
         if (isImageLoading) {
             const loadingTimeout = setTimeout(() => {
                 setIsImageLoading(false);
-            }, 2000); // 2 second timeout for individual images
+            }, 1500); // Reduced timeout
 
             return () => clearTimeout(loadingTimeout);
         }
-    }, [isImageLoading, currentImageIndex]);
+    }, [isImageLoading]);
 
     // Keyboard navigation
     const handleKeyPress = useCallback((event: KeyboardEvent) => {
@@ -150,7 +150,7 @@ export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGa
             <Dialog open={isOpen}>
                 <DialogPortal>
                     <DialogOverlay />
-                    <DialogPrimitive.Content className="fixed inset-0 md:left-8 md:right-8 md:top-2 md:bottom-2 lg:left-12 lg:right-12 lg:top-4 lg:bottom-4 xl:left-16 xl:right-16 xl:top-6 xl:bottom-6 2xl:left-20 2xl:right-20 2xl:top-8 2xl:bottom-8 z-50 w-full md:w-auto border-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-2xl dark:shadow-xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] rounded-none md:rounded-2xl lg:rounded-3xl p-0 max-h-screen md:max-h-[96vh] lg:max-h-[98vh] overflow-y-auto overflow-x-hidden scrollbar-hide">
+                    <DialogPrimitive.Content className="fixed inset-0 md:left-8 md:right-8 md:top-2 md:bottom-2 lg:left-12 lg:right-12 lg:top-4 lg:bottom-4 xl:left-16 xl:right-16 xl:top-6 xl:bottom-6 2xl:left-20 2xl:right-20 2xl:top-8 2xl:bottom-8 z-50 w-full md:w-auto border-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-2xl dark:shadow-xl duration-150 data-[state=open]:fade-in-0 rounded-none md:rounded-2xl lg:rounded-3xl p-0 max-h-screen md:max-h-[96vh] lg:max-h-[98vh] overflow-y-auto overflow-x-hidden scrollbar-hide will-change-transform" style={{ transform: 'translate3d(0, 0, 0)' }}>
                         {/* Close Button - Sticky within dialog */}
                         <Button
                             onClick={onClose}
@@ -163,31 +163,33 @@ export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGa
                         <div className="relative w-full">
 
                             {/* Main Image */}
-                            <div className="group relative w-full h-[60vh] sm:h-[65vh] md:h-[70vh] lg:h-[75vh] xl:h-[80vh] overflow-hidden rounded-t-none md:rounded-t-xl lg:rounded-t-2xl bg-gray-100 dark:bg-gray-800">
-                                {/* Loading Skeleton */}
+                            <div className="group relative w-full h-[60vh] sm:h-[65vh] md:h-[70vh] lg:h-[75vh] xl:h-[80vh] overflow-hidden rounded-t-none md:rounded-t-xl lg:rounded-t-2xl bg-gray-100 dark:bg-gray-800" style={{ contain: 'strict' }}>
+                                {/* Loading Skeleton - simplified */}
                                 {isImageLoading && (
-                                    <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse flex items-center justify-center">
-                                        <div className="text-gray-400 dark:text-gray-500">Loading...</div>
+                                    <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                                        <div className="text-gray-400 dark:text-gray-500 text-sm">Loading...</div>
                                     </div>
                                 )}
 
                                 <img
                                     src={images[currentImageIndex]}
                                     alt={`${room.name} - Image ${currentImageIndex + 1}`}
-                                    className={`w-full h-full object-cover object-center transition-opacity duration-300 ${isImageLoading ? 'opacity-0' : 'opacity-100'
+                                    className={`w-full h-full object-cover object-center transition-opacity duration-200 ${isImageLoading ? 'opacity-0' : 'opacity-100'
                                         }`}
                                     onLoad={handleImageLoad}
                                     onError={handleImageError}
                                     loading="eager"
+                                    decoding="async"
+                                    style={{ willChange: 'opacity' }}
                                 />
 
                                 {/* Image Overlay Controls */}
-                                <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex gap-2">
+                                <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex gap-2" style={{ willChange: 'auto' }}>
                                     <Button
                                         onClick={toggleLike}
                                         variant="ghost"
                                         size="sm"
-                                        className={`backdrop-blur-xl rounded-full w-11 h-11 sm:w-10 sm:h-10 p-0 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 touch-manipulation before:absolute before:inset-0 before:rounded-full before:pointer-events-none ${isLiked
+                                        className={`backdrop-blur-xl rounded-full w-11 h-11 sm:w-10 sm:h-10 p-0 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation before:absolute before:inset-0 before:rounded-full before:pointer-events-none ${isLiked
                                             ? 'bg-red-500/40 dark:bg-red-500/35 border-2 border-red-300/60 dark:border-red-400/50 hover:bg-red-500/60 dark:hover:bg-red-500/55 hover:border-red-300/80 dark:hover:border-red-400/70 text-red-100 before:bg-gradient-to-br before:from-red-200/20 before:to-red-800/10'
                                             : 'bg-black/40 dark:bg-black/30 border-2 border-white/60 dark:border-white/50 hover:bg-black/60 dark:hover:bg-black/50 hover:border-white/80 dark:hover:border-white/70 text-white before:bg-gradient-to-br before:from-white/15 before:to-black/10'
                                             }`}
@@ -203,7 +205,7 @@ export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGa
                                             onClick={prevImage}
                                             variant="ghost"
                                             size="sm"
-                                            className="absolute left-1 sm:left-3 md:left-4 top-1/2 -translate-y-1/2 bg-black/40 dark:bg-black/30 backdrop-blur-xl hover:bg-black/60 dark:hover:bg-black/50 text-white border-2 border-white/60 dark:border-white/50 hover:border-white/80 dark:hover:border-white/70 rounded-full w-12 h-12 sm:w-11 sm:h-11 md:w-12 md:h-12 p-0 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 opacity-90 hover:opacity-100 z-10 touch-manipulation disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:scale-100 before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-white/15 before:to-black/10 before:pointer-events-none"
+                                            className="absolute left-1 sm:left-3 md:left-4 top-1/2 -translate-y-1/2 bg-black/40 dark:bg-black/30 backdrop-blur-xl hover:bg-black/60 dark:hover:bg-black/50 text-white border-2 border-white/60 dark:border-white/50 hover:border-white/80 dark:hover:border-white/70 rounded-full w-12 h-12 sm:w-11 sm:h-11 md:w-12 md:h-12 p-0 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 active:scale-95 opacity-90 hover:opacity-100 z-10 touch-manipulation disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:scale-100 before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-white/15 before:to-black/10 before:pointer-events-none"
                                             disabled={isImageLoading}
                                         >
                                             <ChevronLeft size={18} className="sm:w-5 sm:h-5 md:w-5 md:h-5 relative z-10 drop-shadow-lg" />
@@ -212,7 +214,7 @@ export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGa
                                             onClick={nextImage}
                                             variant="ghost"
                                             size="sm"
-                                            className="absolute right-1 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 bg-black/40 dark:bg-black/30 backdrop-blur-xl hover:bg-black/60 dark:hover:bg-black/50 text-white border-2 border-white/60 dark:border-white/50 hover:border-white/80 dark:hover:border-white/70 rounded-full w-12 h-12 sm:w-11 sm:h-11 md:w-12 md:h-12 p-0 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] hover:shadow-[0_8px_32px_0_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 opacity-90 hover:opacity-100 z-10 touch-manipulation disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:scale-100 before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-white/15 before:to-black/10 before:pointer-events-none"
+                                            className="absolute right-1 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 bg-black/40 dark:bg-black/30 backdrop-blur-xl hover:bg-black/60 dark:hover:bg-black/50 text-white border-2 border-white/60 dark:border-white/50 hover:border-white/80 dark:hover:border-white/70 rounded-full w-12 h-12 sm:w-11 sm:h-11 md:w-12 md:h-12 p-0 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 active:scale-95 opacity-90 hover:opacity-100 z-10 touch-manipulation disabled:opacity-20 disabled:cursor-not-allowed disabled:hover:scale-100 before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-br before:from-white/15 before:to-black/10 before:pointer-events-none"
                                             disabled={isImageLoading}
                                         >
                                             <ChevronRight size={18} className="sm:w-5 sm:h-5 md:w-5 md:h-5 relative z-10 drop-shadow-lg" />
