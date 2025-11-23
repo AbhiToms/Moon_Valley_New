@@ -1,8 +1,8 @@
+import { Link as WouterLink } from "wouter";
 import { Mountain, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 const quickLinks = ["Home", "Rooms", "Amenities", "Gallery", "Contact"];
 const services = ["Swimming Pool", "Common Kitchen", "Nature Trails", "Free WiFi"];
-const legalLinks = ["Privacy Policy", "Terms & Conditions", "Cookie Policy"];
 
 export default function Footer() {
   const scrollToSection = (id: string) => {
@@ -94,11 +94,15 @@ export default function Footer() {
               © 2025 Moon Valley - A Tropical Hut. All rights reserved.
             </p>
             <div className="flex space-x-8 mt-6 md:mt-0">
-              {legalLinks.map((link) => (
-                <a key={link} href="#" className="text-white/60 dark:text-white/70 hover:text-tropical text-lg transition-colors duration-300">
-                  {link}
-                </a>
-              ))}
+              <WouterLink href="/privacy-policy" className="text-white/60 dark:text-white/70 hover:text-tropical text-lg transition-colors duration-300">
+                Privacy Policy
+              </WouterLink>
+              <WouterLink href="/terms-and-conditions" className="text-white/60 dark:text-white/70 hover:text-tropical text-lg transition-colors duration-300">
+                Terms & Conditions
+              </WouterLink>
+              <WouterLink href="/cookie-policy" className="text-white/60 dark:text-white/70 hover:text-tropical text-lg transition-colors duration-300">
+                Cookie Policy
+              </WouterLink>
             </div>
           </div>
         </div>
