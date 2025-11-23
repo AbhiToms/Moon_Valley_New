@@ -50,10 +50,10 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
           {/* Contact Info - Left Side */}
-          <div>
-            <Card className="bg-surface dark:bg-bg-primary rounded-xl sm:rounded-2xl card-shadow border-0 dark:border dark:border-mist/20 h-full">
+          <div className="w-full">
+            <Card className="bg-surface dark:bg-bg-primary rounded-xl sm:rounded-2xl card-shadow border-0 dark:border dark:border-mist/20">
               <CardContent className="p-4 sm:p-6 lg:p-8">
                 <div className="space-y-4 sm:space-y-6">
                   {contactInfo.map((info, index) => {
@@ -80,20 +80,17 @@ export default function ContactSection() {
           </div>
 
           {/* Google Map - Right Side */}
-          <div className="flex">
-            <Card className="bg-surface dark:bg-bg-primary rounded-xl sm:rounded-2xl card-shadow border-0 dark:border dark:border-mist/20 overflow-hidden w-full">
-              <div className="w-full h-80 sm:h-96">
-                <iframe
-                  src="https://www.google.com/maps?q=Moon+Valley+A+Tropical+Hut+Palakkayam+Thattu+Kannur+Kerala&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Moon Valley Location"
-                />
-              </div>
+          <div className="w-full">
+            <Card className="bg-surface dark:bg-bg-primary rounded-xl sm:rounded-2xl card-shadow border-0 dark:border dark:border-mist/20 overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps?q=Moon+Valley+A+Tropical+Hut+Palakkayam+Thattu+Kannur+Kerala&output=embed"
+                className="w-full"
+                style={{ height: '320px', border: 'none' }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Moon Valley Location"
+              />
             </Card>
           </div>
         </div>
