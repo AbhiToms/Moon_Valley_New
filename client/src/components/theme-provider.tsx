@@ -26,18 +26,12 @@ export function ThemeProvider({
   storageKey = "moon-valley-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
-  const [mounted, setMounted] = useState(false);
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return defaultTheme;
+    return (localStorage.getItem(storageKey) as Theme) || defaultTheme;
+  });
 
   useEffect(() => {
-    const storedTheme = (typeof window !== 'undefined' ? localStorage.getItem(storageKey) : null) as Theme;
-    setTheme(storedTheme || defaultTheme);
-    setMounted(true);
-  }, [defaultTheme, storageKey]);
-
-  useEffect(() => {
-    if (!mounted) return;
-    
     const root = window.document.documentElement;
 
     root.classList.remove("light", "dark");
@@ -53,7 +47,7 @@ export function ThemeProvider({
     }
 
     root.classList.add(theme);
-  }, [theme, mounted]);
+  }, [theme]);
 
   const value = {
     theme,

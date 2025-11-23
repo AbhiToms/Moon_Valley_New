@@ -1,10 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa";
-import { useTheme } from "@/components/theme-provider";
-import { useEffect, useState } from "react";
-
-
 
 const contactInfo = [
   {
@@ -36,18 +32,6 @@ const socialLinks = [
 ];
 
 export default function ContactSection() {
-  const { theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isDark = mounted && theme === 'dark';
-  const mapUrl = isDark 
-    ? "https://www.google.com/maps?q=Moon+Valley+A+Tropical+Hut+Palakkayam+Thattu+Kannur+Kerala&output=embed&mode=dark"
-    : "https://www.google.com/maps?q=Moon+Valley+A+Tropical+Hut+Palakkayam+Thattu+Kannur+Kerala&output=embed";
-
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-bg-secondary">
       <div className="container mx-auto px-4 sm:px-6">
@@ -95,18 +79,15 @@ export default function ContactSection() {
           {/* Google Map - Right Side */}
           <div className="w-full">
             <Card className="bg-surface dark:bg-bg-primary rounded-xl sm:rounded-2xl card-shadow border-0 dark:border dark:border-mist/20 overflow-hidden">
-              {mounted && (
-                <iframe
-                  key={isDark ? 'dark' : 'light'}
-                  src={mapUrl}
-                  className="w-full"
-                  style={{ height: '320px', border: 'none' }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Moon Valley Location"
-                />
-              )}
+              <iframe
+                src="https://www.google.com/maps?q=Moon+Valley+A+Tropical+Hut+Palakkayam+Thattu+Kannur+Kerala&output=embed"
+                className="w-full"
+                style={{ height: '320px', border: 'none' }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Moon Valley Location"
+              />
             </Card>
           </div>
         </div>
