@@ -353,15 +353,6 @@ export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGa
                                                 <div className="text-xs text-gray-600 dark:text-white/70 font-medium">Guests</div>
                                             </div>
                                         </div>
-                                        <div className="flex items-center p-3 md:p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 touch-manipulation">
-                                            <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-tropical/20 to-secondary/20 rounded-lg flex items-center justify-center mr-2 md:mr-3">
-                                                <Wifi size={16} className="text-tropical md:w-5 md:h-5" />
-                                            </div>
-                                            <div>
-                                                <div className="font-bold text-primary dark:text-text-primary text-sm md:text-base">Free</div>
-                                                <div className="text-xs text-gray-600 dark:text-white/70 font-medium">WiFi</div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -384,7 +375,7 @@ export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGa
                                 <div className="bg-gradient-to-r from-surface/50 to-neutral/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-lg p-3 md:p-4 lg:p-5 border border-primary/10 dark:border-gray-600/30">
                                     <div className="flex items-center mb-3">
                                         <div className="w-7 h-7 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg flex items-center justify-center mr-2">
-                                            <Wifi className="text-primary dark:text-primary" size={16} />
+                                            <Star className="text-primary dark:text-primary" size={16} />
                                         </div>
                                         <h3 className="text-sm md:text-base font-poppins font-bold text-primary dark:text-text-primary">Amenities</h3>
                                     </div>
