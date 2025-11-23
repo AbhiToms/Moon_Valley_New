@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Waves, Flame, Heart, ChefHat, Wifi, Trees } from "lucide-react";
+import { Waves, Flame, Binoculars, ChefHat, Wifi, Trees } from "lucide-react";
 
 const amenities = [
   {
@@ -33,10 +33,10 @@ const amenities = [
     image: "https://images.unsplash.com/photo-1555939594-58d7cb561e1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   },
   {
-    icon: Heart,
-    title: "Adventure Activities",
-    description: "Mountain trekking, rock climbing, and outdoor adventures for thrill-seekers",
-    image: "https://images.unsplash.com/photo-1551896836-6e169b8f4d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
+    icon: Binoculars,
+    title: "Bird Watching & Wildlife",
+    description: "Guided bird watching tours with exotic species and wildlife encounters in pristine forests",
+    image: "https://images.unsplash.com/photo-1495567720989-cebdbdd97913?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   }
 ];
 
