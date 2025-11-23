@@ -1,54 +1,104 @@
-import { useState, Suspense, lazy } from "react";
+import { useState, lazy, Suspense } from "react";
 import LazyImage from "./lazy-image";
 
 const ImageLightbox = lazy(() => import("./image-lightbox"));
 
 const galleryImages = [
-  { src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600", alt: "Mountain landscape", thumb: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" },
-  { src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600", alt: "Resort pool", thumb: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" },
-  { src: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600", alt: "Luxury bedroom", thumb: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" },
-  { src: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600", alt: "Ocean view suite", thumb: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" },
-  { src: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600", alt: "Forest retreat", thumb: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" },
-  { src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600", alt: "Spa facility", thumb: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" },
-  { src: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600", alt: "Dining area", thumb: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" },
-  { src: "https://images.unsplash.com/photo-1464822759844-d150baec0494?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600", alt: "Garden view", thumb: "https://images.unsplash.com/photo-1464822759844-d150baec0494?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100" }
+  {
+    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+    alt: "Sunrise over mountain peaks",
+    thumb: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+    alt: "Resort exterior blending with natural surroundings",
+    thumb: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+    alt: "Infinity pool with mountain reflections",
+    thumb: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+    alt: "Luxury suite with panoramic windows",
+    thumb: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+    alt: "Forest hiking trail with mountain views",
+    thumb: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+    alt: "Spa treatment room with natural elements",
+    thumb: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+    alt: "Fine dining with sunset valley views",
+    thumb: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1464822759844-d150baec0494?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+    alt: "Guests enjoying mountain adventures",
+    thumb: "https://images.unsplash.com/photo-1464822759844-d150baec0494?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
+  }
 ];
 
 export default function GallerySection() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  const openLightbox = (index: number) => {
+    setCurrentImageIndex(index);
+    setLightboxOpen(true);
+  };
+
   return (
-    <section id="gallery" className="py-20 md:py-32 bg-white dark:bg-slate-900">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Resort <span className="text-emerald-600 dark:text-emerald-400">Gallery</span>
+    <section id="gallery" className="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-bg-secondary">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
+            <span className="text-primary dark:text-tropical font-semibold text-xs sm:text-sm">GALLERY</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-poppins font-bold text-primary dark:text-text-primary mb-4 sm:mb-6">
+            Resort <span className="text-tropical">Gallery</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Discover the beauty that awaits you at Moon Valley
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-white/80 max-w-3xl mx-auto leading-relaxed px-4">
+            Discover the beauty and serenity that awaits you at Moon Valley Resort through our curated collection of moments.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {galleryImages.map((image, idx) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4">
+          {galleryImages.map((image, index) => (
             <div
-              key={idx}
-              onClick={() => {
-                setCurrentImageIndex(idx);
-                setLightboxOpen(true);
-              }}
-              className="relative h-48 md:h-64 rounded-lg overflow-hidden cursor-pointer group"
+              key={index}
+              className="aspect-square overflow-hidden rounded-lg sm:rounded-xl hover-lift cursor-pointer"
+              onClick={() => openLightbox(index)}
             >
-              <LazyImage src={image} alt="Gallery" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all" />
+              <LazyImage
+                src={image.thumb}
+                alt={image.alt}
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
             </div>
           ))}
         </div>
+
+
       </div>
 
-      <Suspense fallback={null}>
-        {lightboxOpen && <ImageLightbox images={galleryImages} currentIndex={currentImageIndex} isOpen={lightboxOpen} onClose={() => setLightboxOpen(false)} onNavigate={setCurrentImageIndex} />}
+      <Suspense fallback={<div />}>
+        {lightboxOpen && (
+          <ImageLightbox
+            images={galleryImages}
+            currentIndex={currentImageIndex}
+            isOpen={lightboxOpen}
+            onClose={() => setLightboxOpen(false)}
+            onNavigate={setCurrentImageIndex}
+          />
+        )}
       </Suspense>
     </section>
   );

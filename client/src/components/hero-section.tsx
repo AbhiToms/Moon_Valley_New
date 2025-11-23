@@ -1,70 +1,90 @@
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Leaf } from "lucide-react";
+import { ChevronDown, Play, Sparkles } from "lucide-react";
 
 export default function HeroSection() {
   const scrollToRooms = () => {
     const element = document.getElementById("accommodations");
-    if (element) element.scrollIntoView({ behavior: "smooth" });
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <section id="home" className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-emerald-900 via-emerald-800 to-slate-900">
-      {/* Background */}
-      <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
-      }} />
-
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-          <Leaf size={16} className="text-emerald-400" />
-          <span className="text-sm font-semibold text-emerald-300">Luxury Mountain Retreat</span>
+    <section id="home" className="relative h-[70vh] sm:h-[80vh] md:h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Image with Parallax Effect */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110 transition-transform duration-1000"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
+        }}
+      />
+      
+      {/* Modern Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-tropical/60 to-accent/70 dark:from-primary/70 dark:via-tropical/50 dark:to-accent/60" />
+      
+      {/* Floating Elements */}
+      <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-24 h-24 bg-secondary/20 rounded-full blur-lg animate-pulse" style={{ animationDelay: "1s" }}></div>
+      
+      <div className="relative z-10 text-center text-white max-w-5xl px-6">
+        <div className="mb-4 flex justify-center">
+          <div className="bg-white/20 dark:bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 border border-white/30 dark:border-white/20">
+            <span className="text-sm font-medium flex items-center text-white">
+              <Sparkles className="mr-2" size={16} />
+              Palakkayam Thattu, Kerala
+            </span>
+          </div>
         </div>
-
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-          Moon Valley
-          <span className="block text-emerald-300 mt-2">Tropical Huts</span>
+        
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-poppins font-bold mb-4 sm:mb-6 leading-tight">
+          <span className="block bg-gradient-to-r from-white via-white to-secondary dark:from-white dark:via-neutral dark:to-tropical bg-clip-text text-transparent animate-fadeInUp">
+            Moon Valley
+          </span>
+          <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mt-1 sm:mt-2 text-white animate-fadeInUp" style={{ animationDelay: "0.2s" }}>
+            A Tropical Hut Experience
+          </span>
         </h1>
-
-        <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-8 leading-relaxed">
-          Experience authentic luxury at 3,500 feet above sea level. Breathtaking panoramic views, world-class amenities, and immersive nature encounters await you in Kerala's Western Ghats.
+        
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed font-light animate-fadeInUp px-4" style={{ animationDelay: "0.4s" }}>
+          Perched at <strong>3,500 feet</strong> above sea level, experience breathtaking 360° panoramic views, 
+          luxury accommodations, and immersive nature encounters in the heart of Kerala's Western Ghats.
         </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <Button
+        
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fadeInUp px-4" style={{ animationDelay: "0.6s" }}>
+          <Button 
             onClick={scrollToRooms}
-            className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-all hover:shadow-lg"
+            className="bg-white dark:bg-neutral text-primary dark:text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-neutral dark:hover:bg-white hover:scale-105 transition-all duration-300 shadow-2xl w-full sm:w-auto"
           >
-            Explore Rooms
+            Discover Rooms
           </Button>
-          <Button
+          <Button 
             variant="outline"
-            className="border-white/30 text-white hover:bg-white/10 px-8 py-3 rounded-lg font-semibold"
+            className="hidden border-2 border-white/50 dark:border-white/40 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-white/20 dark:hover:bg-white/10 backdrop-blur-sm transition-all duration-300 bg-transparent w-full sm:w-auto"
           >
-            Learn More
+            <Play className="mr-2" size={16} />
+            Virtual Tour
           </Button>
         </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-6 max-w-xl mx-auto text-center">
-          <div>
-            <div className="text-3xl font-bold text-emerald-300">4.4★</div>
-            <p className="text-sm text-gray-300 mt-1">Google Rating</p>
+        
+        {/* Statistics */}
+        <div className="mt-6 sm:mt-8 md:mt-12 grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 max-w-lg sm:max-w-xl mx-auto animate-fadeInUp px-4" style={{ animationDelay: "0.8s" }}>
+          <div className="text-center">
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-secondary">4.4★</div>
+            <div className="text-xs opacity-80 leading-tight">Google Rating</div>
           </div>
-          <div>
-            <div className="text-3xl font-bold text-emerald-300">360°</div>
-            <p className="text-sm text-gray-300 mt-1">Views</p>
+          <div className="text-center">
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-secondary">360°</div>
+            <div className="text-xs opacity-80 leading-tight">Panoramic Views</div>
           </div>
-          <div>
-            <div className="text-3xl font-bold text-emerald-300">3,500ft</div>
-            <p className="text-sm text-gray-300 mt-1">Altitude</p>
+          <div className="text-center">
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-secondary">3,500ft</div>
+            <div className="text-xs opacity-80 leading-tight">Above Sea Level</div>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <ChevronDown size={32} className="text-emerald-300" />
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/80 animate-bounce">
+        <ChevronDown size={40} strokeWidth={1} />
       </div>
     </section>
   );
