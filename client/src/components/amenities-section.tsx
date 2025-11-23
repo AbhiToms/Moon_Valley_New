@@ -27,16 +27,16 @@ const amenities = [
     image: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   },
   {
-    icon: Heart,
-    title: "Yoga & Meditation",
-    description: "Peaceful pavilion with morning yoga sessions and meditation overlooking the valley",
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
+    icon: Flame,
+    title: "Campfire & BBQ Nights",
+    description: "Cozy campfire gatherings with BBQ grilling and authentic outdoor dining experiences",
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561e1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   },
   {
-    icon: Flame,
-    title: "Bonfire & Stargazing",
-    description: "Cozy bonfire gatherings with stargazing experiences and mountain night skies",
-    image: "https://images.unsplash.com/photo-1505228395891-9a51e7e86e81?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
+    icon: Heart,
+    title: "Adventure Activities",
+    description: "Mountain trekking, rock climbing, and outdoor adventures for thrill-seekers",
+    image: "https://images.unsplash.com/photo-1551896836-6e169b8f4d30?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   }
 ];
 
