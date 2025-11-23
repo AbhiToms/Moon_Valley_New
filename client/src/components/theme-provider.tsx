@@ -1,5 +1,3 @@
-'use client';
-
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = "light" | "dark" | "system";
@@ -27,45 +25,31 @@ export function ThemeProvider({
   defaultTheme = "light",
   storageKey = "moon-valley-theme",
 }: ThemeProviderProps) {
-  const [mounted, setMounted] = useState(false);
   const [theme, setThemeState] = useState<Theme>(defaultTheme);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     const storedTheme = localStorage.getItem(storageKey) as Theme | null;
-    setThemeState(storedTheme || defaultTheme);
-    setMounted(true);
-  }, [storageKey, defaultTheme]);
+    if (storedTheme) {
+      setThemeState(storedTheme);
+    }
+  }, [storageKey]);
 
   useEffect(() => {
-    if (!mounted) return;
-    
-    const root = window.document.documentElement;
+    if (!isClient) return;
+    const root = document.documentElement;
     root.classList.remove("light", "dark");
-
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
-      root.classList.add(systemTheme);
-      return;
-    }
-
     root.classList.add(theme);
-  }, [theme, mounted]);
+  }, [theme, isClient]);
 
   const setTheme = (newTheme: Theme) => {
-    localStorage.setItem(storageKey, newTheme);
     setThemeState(newTheme);
-  };
-
-  const value = {
-    theme,
-    setTheme,
+    localStorage.setItem(storageKey, newTheme);
   };
 
   return (
-    <ThemeProviderContext.Provider value={value}>
+    <ThemeProviderContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeProviderContext.Provider>
   );
@@ -73,9 +57,8 @@ export function ThemeProvider({
 
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
-
-  if (context === undefined)
+  if (!context) {
     throw new Error("useTheme must be used within a ThemeProvider");
-
+  }
   return context;
 };
