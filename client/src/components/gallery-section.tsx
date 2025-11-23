@@ -21,7 +21,7 @@ const galleryImages = [
   },
   {
     src: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
-    alt: "Luxury suite with panoramic windows",
+    alt: "Premium suite with panoramic windows",
     thumb: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400"
   },
   {

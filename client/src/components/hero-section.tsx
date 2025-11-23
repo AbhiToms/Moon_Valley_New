@@ -47,7 +47,7 @@ export default function HeroSection() {
         
         <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed font-light animate-fadeInUp px-4" style={{ animationDelay: "0.4s" }}>
           Perched at <strong>3,500 feet</strong> above sea level, experience breathtaking 360° panoramic views, 
-          luxury accommodations, and immersive nature encounters in the heart of Kerala's Western Ghats.
+          premium accommodations, and immersive nature encounters in the heart of Kerala's Western Ghats.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fadeInUp px-4" style={{ animationDelay: "0.6s" }}>
