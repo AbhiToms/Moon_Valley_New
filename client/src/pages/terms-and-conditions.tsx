@@ -49,7 +49,7 @@ export default function TermsAndConditions() {
             <section>
               <h2 className="text-2xl font-semibold text-primary dark:text-text-primary mb-4">4. Check-In and Check-Out</h2>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Check-in time: 3:00 PM</li>
+                <li>Check-in time: 2:00 PM</li>
                 <li>Check-out time: 12:00 PM (Noon)</li>
                 <li>Early check-in and late check-out are subject to availability and may incur additional charges</li>
               </ul>
