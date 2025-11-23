@@ -5,8 +5,18 @@ import LazyImage from "./lazy-image";
 
 const RoomGalleryModal = lazy(() => import("./room-gallery"));
 
+interface Room {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  beds: number;
+  baths: number;
+  image: string;
+}
+
 export default function RoomsSection() {
-  const [selectedRoom, setSelectedRoom] = useState(null);
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const scrollToBooking = () => {
@@ -82,7 +92,7 @@ export default function RoomsSection() {
       </div>
 
       <Suspense fallback={null}>
-        {selectedRoom && <RoomGalleryModal room={selectedRoom} onClose={() => setSelectedRoom(null)} />}
+        {selectedRoom && <RoomGalleryModal room={selectedRoom} isOpen={!!selectedRoom} onClose={() => setSelectedRoom(null)} onBookNow={scrollToBooking} />}
       </Suspense>
     </section>
   );
