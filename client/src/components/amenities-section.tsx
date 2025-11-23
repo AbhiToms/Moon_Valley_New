@@ -1,85 +1,37 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Waves, Utensils, Dumbbell, ChefHat, Wifi, Trees } from "lucide-react";
+import { Waves, ChefHat, Trees, Wifi, Dumbbell, Utensils } from "lucide-react";
 
 const amenities = [
-  {
-    icon: Waves,
-    title: "Swimming Pool",
-    description: "Large swimming pool with mountain views perfect for relaxation and family fun",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
-  },
-  {
-    icon: ChefHat,
-    title: "Common Kitchen",
-    description: "Fully equipped communal kitchen with dining area for cooking enthusiasts and families",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
-  },
-  {
-    icon: Trees,
-    title: "Nature Trails",
-    description: "Direct access to hiking trails and mountain paths for outdoor enthusiasts",
-    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
-  },
-  {
-    icon: Wifi,
-    title: "Free WiFi",
-    description: "High-speed internet connectivity throughout the resort for your convenience",
-    image: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
-  },
-  {
-    icon: Dumbbell,
-    title: "Fitness Area",
-    description: "Basic fitness equipment with stunning mountain views for your workout routine",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
-  },
-  {
-    icon: Utensils,
-    title: "Dining Options",
-    description: "On-site dining with local cuisine featuring fresh mountain ingredients",
-    image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
-  }
+  { icon: Waves, title: "Swimming Pool", desc: "Large pool with mountain views" },
+  { icon: ChefHat, title: "Common Kitchen", desc: "Fully equipped for cooking" },
+  { icon: Trees, title: "Nature Trails", desc: "Direct access to hiking paths" },
+  { icon: Wifi, title: "Free WiFi", desc: "High-speed internet throughout" },
+  { icon: Dumbbell, title: "Fitness Area", desc: "Workout equipment available" },
+  { icon: Utensils, title: "Dining", desc: "On-site dining with local cuisine" },
 ];
 
 export default function AmenitiesSection() {
   return (
-    <section id="amenities" className="py-12 sm:py-16 lg:py-24 bg-white dark:bg-bg-primary">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 bg-tropical/10 px-4 py-2 rounded-full border border-tropical/30 mb-6">
-            <span className="w-2 h-2 bg-tropical rounded-full"></span>
-            <span className="text-tropical font-semibold text-sm">WORLD-CLASS FACILITIES</span>
-          </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-            Premium <span className="text-tropical">Amenities</span>
+    <section id="amenities" className="py-20 md:py-32 bg-gray-50 dark:bg-slate-800">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            World-Class <span className="text-emerald-600 dark:text-emerald-400">Amenities</span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            Every facility is thoughtfully designed to enhance your connection with nature while providing modern comfort and convenience for an unforgettable stay.
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Everything you need for a perfect mountain retreat
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {amenities.map((amenity, index) => {
-            const IconComponent = amenity.icon;
+        <div className="grid md:grid-cols-3 gap-8">
+          {amenities.map((amenity, idx) => {
+            const Icon = amenity.icon;
             return (
-              <div key={index} className="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-gray-100 dark:border-slate-700 hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-                <div className="relative overflow-hidden h-48 sm:h-56">
-                  <img 
-                    src={amenity.image} 
-                    alt={amenity.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-all duration-300" />
-                  <div className="absolute top-4 left-4 p-3 bg-tropical/90 rounded-lg">
-                    <IconComponent size={24} className="text-white" />
-                  </div>
+              <div key={idx} className="bg-white dark:bg-slate-700 p-8 rounded-xl shadow-md hover:shadow-lg transition-all">
+                <div className="p-3 bg-emerald-500/10 w-fit rounded-lg mb-4">
+                  <Icon size={28} className="text-emerald-600 dark:text-emerald-400" />
                 </div>
-                
-                <div className="p-5 sm:p-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{amenity.title}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    {amenity.description}
-                  </p>
-                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{amenity.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400">{amenity.desc}</p>
               </div>
             );
           })}
