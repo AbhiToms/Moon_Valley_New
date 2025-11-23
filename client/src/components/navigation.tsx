@@ -5,17 +5,32 @@ import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 80);
+      const currentScrollY = window.scrollY;
+      
+      setIsScrolled(currentScrollY > 80);
+      
+      // Show header when scrolling up, hide when scrolling down
+      if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down (but not at the top)
+        setIsVisible(false);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [lastScrollY]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -33,10 +48,13 @@ export default function Navigation() {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
       ? "bg-white/90 dark:bg-slate-900/95 backdrop-blur-md shadow-xl border-b border-neutral/20 dark:border-slate-700/50"
       : "bg-transparent"
-      }`}>
+      } ${isVisible ? "translate-y-0" : "-translate-y-full"}`} style={{
+        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
+        transition: 'transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out'
+      }}>
       <div className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
           <Link href="/" className="text-xl sm:text-2xl md:text-3xl font-poppins font-bold text-primary dark:text-text-primary flex items-center group cursor-pointer">
