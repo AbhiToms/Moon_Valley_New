@@ -111,6 +111,18 @@
     @apply border-border;
   }
 
+  /* Smooth transitions for interactive elements */
+  button, a, input, select, textarea, [role="button"], 
+  [type="button"], [type="submit"], [type="reset"] {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: auto;
+  }
+
+  /* GPU acceleration for smoother rendering */
+  button:hover, a:hover, [role="button"]:hover {
+    will-change: transform, box-shadow, background-color;
+  }
+
   html,
   body {
     margin: 0;
@@ -121,6 +133,8 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   html {
@@ -572,11 +586,13 @@
 }
 
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 .hover-lift:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
   box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
 }
 
@@ -907,7 +923,42 @@ mobile optimizations for room gallery */
 
 /* Smooth spring animation */
 .spring-bounce {
-  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  will-change: transform;
+}
+
+/* Smooth backdrop blur transitions */
+.backdrop-blur-md {
+  transition: backdrop-filter 0.4s ease-in-out;
+}
+
+/* Card and surface smooth transitions */
+[class*="card"], [class*="surface"], [class*="bg-surface"], 
+[data-radix-dialog-content] {
+  transition: background-color 0.35s ease-in-out,
+              border-color 0.35s ease-in-out,
+              box-shadow 0.35s ease-in-out;
+}
+
+/* Smooth opacity transitions */
+.opacity-transition {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Smooth scale animations */
+.scale-smooth {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Smooth color transitions for text */
+p, span, h1, h2, h3, h4, h5, h6 {
+  transition: color 0.3s ease-in-out;
+}
+
+/* Scroll padding for smooth scroll behavior */
+html {
+  scroll-padding-top: 100px;
 }
 
 /* Elastic easing for more natural feel */

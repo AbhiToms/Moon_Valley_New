@@ -39,10 +39,12 @@ export function ThemeProvider({
     window.dispatchEvent(new Event("theme-transition-start"));
     
     // Wait for overlay to fade in, then change theme
-    setTimeout(() => {
-      root.classList.remove("light", "dark");
-      root.classList.add(theme);
-    }, 150);
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        root.classList.remove("light", "dark");
+        root.classList.add(theme);
+      }, 130);
+    });
   }, [theme]);
 
   const setTheme = (newTheme: Theme) => {

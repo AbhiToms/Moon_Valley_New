@@ -8,7 +8,7 @@ export function ThemeTransitionOverlay() {
       setIsVisible(true);
       const timer = setTimeout(() => {
         setIsVisible(false);
-      }, 350);
+      }, 320);
       return () => clearTimeout(timer);
     };
 
@@ -25,8 +25,10 @@ export function ThemeTransitionOverlay() {
         width: "100%",
         height: "100%",
         backgroundColor: "var(--background)",
-        opacity: isVisible ? 0.7 : 0,
-        transition: isVisible ? "opacity 0.3s ease-in" : "opacity 0.3s ease-out",
+        opacity: isVisible ? 0.65 : 0,
+        transition: isVisible 
+          ? "opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1)" 
+          : "opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
         pointerEvents: "none",
         zIndex: 9999,
       }}
