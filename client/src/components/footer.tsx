@@ -94,9 +94,6 @@ export default function Footer() {
               © 2025 Moon Valley - A Tropical Hut. All rights reserved.
             </p>
             <div className="flex space-x-8 mt-6 md:mt-0">
-              <WouterLink href="/privacy-policy" className="text-white/60 dark:text-white/70 hover:text-tropical text-lg transition-colors duration-300">
-                Privacy Policy
-              </WouterLink>
               <WouterLink href="/terms-and-conditions" className="text-white/60 dark:text-white/70 hover:text-tropical text-lg transition-colors duration-300">
                 Terms & Conditions
               </WouterLink>

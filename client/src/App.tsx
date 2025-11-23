@@ -8,7 +8,6 @@ import { lazy, Suspense } from "react";
 
 // Lazy load pages for better performance
 const Home = lazy(() => import("@/pages/home"));
-const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy"));
 const TermsAndConditions = lazy(() => import("@/pages/terms-and-conditions"));
 const CookiePolicy = lazy(() => import("@/pages/cookie-policy"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -25,7 +24,6 @@ function Router() {
     <Suspense fallback={<PageLoader />}>
       <Switch>
         <Route path="/" component={Home} />
-        <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-and-conditions" component={TermsAndConditions} />
         <Route path="/cookie-policy" component={CookiePolicy} />
         <Route component={NotFound} />
