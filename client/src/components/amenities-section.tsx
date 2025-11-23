@@ -36,7 +36,7 @@ const amenities = [
     icon: Flame,
     title: "Bonfire & Stargazing",
     description: "Cozy bonfire gatherings with stargazing experiences and mountain night skies",
-    image: "https://images.unsplash.com/photo-1551599810-f817eab40491?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
+    image: "https://images.unsplash.com/photo-1505228395891-9a51e7e86e81?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250"
   }
 ];
 
