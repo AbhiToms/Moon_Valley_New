@@ -11,6 +11,8 @@ import { Link, useLocation } from "wouter";
 import { Eye, EyeOff, Lock, Mail, User, ArrowLeft, Phone, Check } from "lucide-react";
 import AuthSlideToggle from "@/components/auth-slide-toggle";
 import { usePageTransition } from "@/hooks/use-page-transition";
+import { useAuth } from "@/lib/auth";
+import { useEffect } from "react";
 
 const signupSchema = z.object({
     firstName: z.string()
@@ -41,7 +43,7 @@ type SignupFormData = z.infer<typeof signupSchema>;
 export default function SignupPage() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const { registerMutation, user } = useAuth();
     const [password, setPassword] = useState('');
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -73,37 +75,15 @@ export default function SignupPage() {
         },
     });
 
-    const onSubmit = async (data: SignupFormData) => {
-        setIsLoading(true);
-        try {
-            // Simulate API call - replace with actual registration
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            // Store user data in localStorage (replace with proper auth)
-            localStorage.setItem('user', JSON.stringify({
-                id: '1',
-                firstName: data.firstName,
-                lastName: data.lastName,
-                email: data.email,
-                phone: data.phone,
-                name: `${data.firstName} ${data.lastName}`
-            }));
-
-            toast({
-                title: "Account Created!",
-                description: "Welcome to Moon Valley Resort. You can now book your stay.",
-            });
-
+    useEffect(() => {
+        if (user) {
             setLocation("/dashboard");
-        } catch (error) {
-            toast({
-                title: "Registration Failed",
-                description: "Please try again or contact support.",
-                variant: "destructive",
-            });
-        } finally {
-            setIsLoading(false);
         }
+    }, [user, setLocation]);
+
+    const onSubmit = async (data: SignupFormData) => {
+        const { confirmPassword, ...registrationData } = data;
+        registerMutation.mutate(registrationData);
     };
 
     const handleSlideToggle = () => {
@@ -135,11 +115,10 @@ export default function SignupPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-surface to-neutral dark:from-bg-primary dark:to-bg-secondary flex items-center justify-center p-6">
-            <div className={`w-full max-w-md transition-all duration-300 ease-out ${
-                isTransitioning 
-                    ? 'opacity-0 transform scale-95 translate-y-4' 
+            <div className={`w-full max-w-md transition-all duration-300 ease-out ${isTransitioning
+                    ? 'opacity-0 transform scale-95 translate-y-4'
                     : 'opacity-100 transform scale-100 translate-y-0'
-            }`}>
+                }`}>
                 {/* Back Button */}
                 <Link href="/" className="inline-flex items-center text-primary dark:text-tropical hover:text-primary/80 dark:hover:text-tropical/80 mb-6 transition-colors">
                     <ArrowLeft size={18} className="mr-2" />
@@ -167,7 +146,7 @@ export default function SignupPage() {
 
                 {/* Signup Form */}
                 <Card className="bg-white dark:bg-bg-secondary rounded-2xl card-shadow border-0 dark:border dark:border-mist/20">
-                    <CardContent 
+                    <CardContent
                         className="p-6"
                         onTouchStart={onTouchStart}
                         onTouchMove={onTouchMove}
@@ -391,10 +370,10 @@ export default function SignupPage() {
                                 {/* Submit Button */}
                                 <Button
                                     type="submit"
-                                    disabled={isLoading}
+                                    disabled={registerMutation.isPending}
                                     className="w-full bg-gradient-to-r from-primary to-tropical text-white hover:opacity-90 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 font-semibold py-2 text-base transform hover:scale-[1.02] active:scale-[0.98] h-10"
                                 >
-                                    {isLoading ? "Creating Account..." : "Create Account"}
+                                    {registerMutation.isPending ? "Creating Account..." : "Create Account"}
                                 </Button>
 
 

@@ -3,65 +3,20 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Palmtree, User, LogOut } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-
+import { useAuth } from "@/lib/auth";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
-  const [profilePicture, setProfilePicture] = useState<string | null>(null);
+  const { user, logoutMutation } = useAuth();
+
+  // Use user profile picture or null
+  const profilePicture = user?.profilePicture || null;
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 80);
     };
-
-    // Check if user is logged in
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      try {
-        setUser(JSON.parse(userData));
-      } catch (error) {
-        console.error('Error parsing user data:', error);
-      }
-    }
-
-    // Load profile picture from user data
-    if (userData) {
-      try {
-        const parsedUser = JSON.parse(userData);
-        if (parsedUser.profilePicture) {
-          setProfilePicture(parsedUser.profilePicture);
-        }
-      } catch (error) {
-        console.error('Error parsing user data for profile picture:', error);
-      }
-    }
-
-    // Listen for user data updates (which includes profile picture)
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'user' && e.newValue) {
-        try {
-          const updatedUser = JSON.parse(e.newValue);
-          setUser(updatedUser);
-          setProfilePicture(updatedUser.profilePicture || null);
-        } catch (error) {
-          console.error('Error parsing updated user data:', error);
-        }
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-
-    // Also listen for custom events for same-tab updates
-    const handleProfileUpdate = (e: CustomEvent) => {
-      if (e.detail.user) {
-        setUser(e.detail.user);
-        setProfilePicture(e.detail.user.profilePicture || null);
-      }
-    };
-
-    window.addEventListener('profileUpdated', handleProfileUpdate as EventListener);
 
     // Close menus when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
@@ -76,8 +31,6 @@ export default function Navigation() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("click", handleClickOutside);
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('profileUpdated', handleProfileUpdate as EventListener);
     };
   }, []);
 
@@ -103,8 +56,7 @@ export default function Navigation() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    setUser(null);
+    logoutMutation.mutate();
     setIsUserMenuOpen(false);
   };
 

@@ -18,6 +18,7 @@ import { apiRequest } from "@/lib/queryClient";
 import type { Room } from "@shared/schema";
 import { Lock, Calendar, Users, User, Mail, Phone, Shield, MapPin, Star, Clock } from "lucide-react";
 import { Link } from "wouter";
+import { useAuth } from "@/lib/auth";
 
 const bookingSchema = z.object({
   roomType: z.string().min(1, "Please select a room type"),
@@ -58,19 +59,7 @@ export default function BookingSection() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [, setLocation] = useLocation();
-  const [user, setUser] = useState<any>(null);
-
-  useEffect(() => {
-    // Check if user is logged in
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      try {
-        setUser(JSON.parse(userData));
-      } catch (error) {
-        console.error('Error parsing user data:', error);
-      }
-    }
-  }, []);
+  const { user } = useAuth();
 
   const { data: rooms } = useQuery<Room[]>({
     queryKey: ["/api/rooms"],
@@ -95,56 +84,46 @@ export default function BookingSection() {
 
   const bookingMutation = useMutation({
     mutationFn: async (data: BookingFormData) => {
+      // Calculate total amount
+      const selectedRoom = rooms?.find(r => r.name === data.roomType);
+      const checkIn = new Date(data.checkIn);
+      const checkOut = new Date(data.checkOut);
+      const nights = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
+      const totalAmount = selectedRoom ? selectedRoom.price * Math.max(1, nights) : 0;
+
       const bookingData = {
         ...data,
         checkIn: new Date(data.checkIn),
         checkOut: new Date(data.checkOut),
+        totalAmount,
       };
       return apiRequest("POST", "/api/bookings", bookingData);
     },
-    onSuccess: (response: any) => {
-      // Get the room data for accurate price calculation
-      const selectedRoom = rooms?.find(r => r.name === form.getValues().roomType);
-      const checkIn = new Date(form.getValues().checkIn);
-      const checkOut = new Date(form.getValues().checkOut);
-      const nights = Math.ceil((checkOut.getTime() - checkIn.getTime()) / (1000 * 60 * 60 * 24));
-      const totalAmount = selectedRoom ? selectedRoom.price * Math.max(1, nights) : 0;
+    onSuccess: async (response: Response) => {
+      // Parse the response to get the actual booking data from the server
+      const createdBooking = await response.json();
 
-
-
-      // Store booking details in sessionStorage for the success page
+      // Store the exact booking details from the API response in sessionStorage for the success page
       const bookingDetails = {
-        id: response?.id || "MV-" + Math.random().toString(36).substring(2, 11).toUpperCase(),
-        ...form.getValues(),
-        totalAmount: totalAmount,
-        createdAt: new Date().toISOString(),
+        id: createdBooking.id,
+        name: createdBooking.name,
+        email: createdBooking.email,
+        phone: createdBooking.phone,
+        address: createdBooking.address,
+        roomType: createdBooking.roomType,
+        checkIn: createdBooking.checkIn,
+        checkOut: createdBooking.checkOut,
+        guests: createdBooking.guests,
+        totalAmount: createdBooking.totalAmount,
+        specialRequests: createdBooking.specialRequests,
+        createdAt: createdBooking.createdAt,
       };
       sessionStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
-
-      // Also store in localStorage for the dashboard
-      const dashboardBooking = {
-        id: bookingDetails.id,
-        roomName: form.getValues().roomType,
-        checkIn: form.getValues().checkIn,
-        checkOut: form.getValues().checkOut,
-        guests: form.getValues().guests,
-        totalAmount: totalAmount,
-        status: 'confirmed',
-        createdAt: new Date().toISOString(),
-        guestName: form.getValues().name,
-        guestEmail: form.getValues().email,
-        guestPhone: form.getValues().phone,
-        address: form.getValues().address
-      };
-
-      // Get existing bookings from localStorage
-      const existingBookings = JSON.parse(localStorage.getItem('userBookings') || '[]');
-      existingBookings.push(dashboardBooking);
-      localStorage.setItem('userBookings', JSON.stringify(existingBookings));
 
       // Redirect to success page
       setLocation("/booking-success");
 
+      // Invalidate queries to refresh dashboard data
       queryClient.invalidateQueries({ queryKey: ["/api/bookings"] });
     },
     onError: () => {
