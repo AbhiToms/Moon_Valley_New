@@ -255,6 +255,8 @@ export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGa
                                                     <img
                                                         src={image}
                                                         alt={`Thumbnail ${index + 1}`}
+                                                        loading="lazy"
+                                                        decoding="async"
                                                         className="w-full h-full object-cover"
                                                     />
                                                     {index === currentImageIndex && (
