@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Bed, Bath, Star, Users, Eye } from "lucide-react";
 import LazyImage from "./lazy-image";
+import { openWhatsAppChat } from "@/utils/whatsapp";
 import type { Room } from "@shared/schema";
 
 const RoomGallery = lazy(() => import("@/components/room-gallery"));
@@ -16,11 +17,8 @@ export default function RoomsSection() {
     queryKey: ["/api/rooms"],
   });
 
-  const scrollToBooking = () => {
-    const element = document.getElementById("booking");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleRoomBooking = (roomName: string) => {
+    openWhatsAppChat(roomName);
   };
 
   const openRoomGallery = (room: Room) => {
@@ -131,10 +129,10 @@ export default function RoomsSection() {
                 </div>
 
                 <Button
-                  onClick={scrollToBooking}
+                  onClick={() => handleRoomBooking(room.name)}
                   className="w-full bg-gradient-to-r from-primary to-tropical text-white rounded-full py-2 sm:py-3 text-sm sm:text-base font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
                 >
-                  Reserve Now
+                  Reserve on WhatsApp
                 </Button>
               </CardContent>
             </Card>

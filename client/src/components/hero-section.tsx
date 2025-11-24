@@ -1,12 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Play, Sparkles } from "lucide-react";
+import { openWhatsAppChat } from "@/utils/whatsapp";
 
 export default function HeroSection() {
-  const scrollToRooms = () => {
-    const element = document.getElementById("accommodations");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleBooking = () => {
+    openWhatsAppChat();
   };
 
   return (
@@ -55,10 +53,10 @@ export default function HeroSection() {
         
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fadeInUp px-4" style={{ animationDelay: "0.6s" }}>
           <Button 
-            onClick={scrollToRooms}
+            onClick={handleBooking}
             className="bg-white dark:bg-neutral text-primary dark:text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold hover:bg-neutral dark:hover:bg-white hover:scale-105 transition-all duration-300 shadow-2xl w-full sm:w-auto"
           >
-            Discover Rooms
+            Book on WhatsApp
           </Button>
           <Button 
             variant="outline"

@@ -4,6 +4,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { X, ChevronLeft, ChevronRight, Bed, Bath, Users, Wifi, Star, MapPin } from "lucide-react";
+import { openWhatsAppChat } from "@/utils/whatsapp";
 import type { Room } from "@shared/schema";
 
 interface RoomGalleryProps {
