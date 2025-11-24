@@ -111,7 +111,8 @@ export default function ImageLightbox({
         variant="ghost"
         size="icon"
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 md:left-8 text-white hover:bg-white/20 z-20 rounded-full w-12 h-12 md:w-14 md:h-14 backdrop-blur-sm bg-black/30 transition-all duration-200 hover:scale-110"
+        className="absolute left-2 top-1/2 -translate-y-1/2 md:left-8 text-white hover:bg-white/20 z-20 rounded-full w-12 h-12 md:w-14 md:h-14 backdrop-blur-sm bg-black/30 transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation"
+        aria-label="Previous image"
       >
         <ChevronLeft size={24} className="md:hidden" />
         <ChevronLeft size={28} className="hidden md:block" />
@@ -121,7 +122,8 @@ export default function ImageLightbox({
         variant="ghost"
         size="icon"
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 md:right-8 text-white hover:bg-white/20 z-20 rounded-full w-12 h-12 md:w-14 md:h-14 backdrop-blur-sm bg-black/30 transition-all duration-200 hover:scale-110"
+        className="absolute right-2 top-1/2 -translate-y-1/2 md:right-8 text-white hover:bg-white/20 z-20 rounded-full w-12 h-12 md:w-14 md:h-14 backdrop-blur-sm bg-black/30 transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation"
+        aria-label="Next image"
       >
         <ChevronRight size={24} className="md:hidden" />
         <ChevronRight size={28} className="hidden md:block" />
@@ -185,15 +187,18 @@ export default function ImageLightbox({
           <button
             key={index}
             onClick={() => onNavigate(index)}
-            className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+            className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200 touch-manipulation ${
               index === currentIndex 
                 ? 'border-white shadow-lg scale-110' 
                 : 'border-white/30 hover:border-white/60 hover:scale-105'
             }`}
+            aria-label={`Go to image ${index + 1}`}
           >
             <img
               src={image.thumb}
               alt={image.alt}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
             />
           </button>
