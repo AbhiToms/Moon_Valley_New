@@ -3,7 +3,7 @@ import { Dialog, DialogTitle, DialogPortal, DialogOverlay } from "@/components/u
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { X, ChevronLeft, ChevronRight, Bed, Bath, Users, Wifi, Star, MapPin, Heart } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Bed, Bath, Users, Wifi, Star, MapPin } from "lucide-react";
 import type { Room } from "@shared/schema";
 
 interface RoomGalleryProps {
@@ -60,7 +60,6 @@ const roomImages: Record<string, string[]> = {
 export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGalleryProps) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isImageLoading, setIsImageLoading] = useState(false);
-    const [isLiked, setIsLiked] = useState(false);
 
     // Reset image index when room changes - optimized
     useEffect(() => {
@@ -141,9 +140,6 @@ export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGa
         setIsImageLoading(false);
     };
 
-    const toggleLike = () => {
-        setIsLiked(!isLiked);
-    };
 
     return (
         <>
@@ -183,20 +179,6 @@ export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGa
                                     style={{ willChange: 'opacity' }}
                                 />
 
-                                {/* Image Overlay Controls */}
-                                <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex gap-2" style={{ willChange: 'auto' }}>
-                                    <Button
-                                        onClick={toggleLike}
-                                        variant="ghost"
-                                        size="sm"
-                                        className={`backdrop-blur-xl rounded-full w-11 h-11 sm:w-10 sm:h-10 p-0 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation before:absolute before:inset-0 before:rounded-full before:pointer-events-none ${isLiked
-                                            ? 'bg-red-500/40 dark:bg-red-500/35 border-2 border-red-300/60 dark:border-red-400/50 hover:bg-red-500/60 dark:hover:bg-red-500/55 hover:border-red-300/80 dark:hover:border-red-400/70 text-red-100 before:bg-gradient-to-br before:from-red-200/20 before:to-red-800/10'
-                                            : 'bg-black/40 dark:bg-black/30 border-2 border-white/60 dark:border-white/50 hover:bg-black/60 dark:hover:bg-black/50 hover:border-white/80 dark:hover:border-white/70 text-white before:bg-gradient-to-br before:from-white/15 before:to-black/10'
-                                            }`}
-                                    >
-                                        <Heart size={16} className={`sm:w-4 sm:h-4 relative z-10 drop-shadow-lg ${isLiked ? 'fill-current' : ''}`} />
-                                    </Button>
-                                </div>
 
                                 {/* Navigation Arrows */}
                                 {images.length > 1 && (
