@@ -100,7 +100,7 @@ export default function ImageLightbox({
         variant="ghost"
         size="icon"
         onClick={onClose}
-        className="absolute top-4 right-4 md:top-6 md:right-6 text-white hover:bg-white/20 z-20 rounded-full w-10 h-10 md:w-12 md:h-12 backdrop-blur-sm bg-black/30"
+        className="absolute top-4 right-4 md:top-6 md:right-6 text-white hover:bg-white/20 z-20 rounded-full w-10 h-10 md:w-12 md:h-12 backdrop-blur-sm bg-black/15"
       >
         <X size={18} className="md:hidden" />
         <X size={20} className="hidden md:block" />
@@ -111,7 +111,7 @@ export default function ImageLightbox({
         variant="ghost"
         size="icon"
         onClick={goToPrevious}
-        className="absolute left-2 top-1/2 -translate-y-1/2 md:left-8 text-white hover:bg-white/20 z-20 rounded-full w-12 h-12 md:w-14 md:h-14 backdrop-blur-sm bg-black/30 transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation"
+        className="absolute left-2 top-1/2 -translate-y-1/2 md:left-8 text-white hover:bg-white/20 z-20 rounded-full w-12 h-12 md:w-14 md:h-14 backdrop-blur-sm bg-black/15 transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation"
         aria-label="Previous image"
       >
         <ChevronLeft size={24} className="md:hidden" />
@@ -122,7 +122,7 @@ export default function ImageLightbox({
         variant="ghost"
         size="icon"
         onClick={goToNext}
-        className="absolute right-2 top-1/2 -translate-y-1/2 md:right-8 text-white hover:bg-white/20 z-20 rounded-full w-12 h-12 md:w-14 md:h-14 backdrop-blur-sm bg-black/30 transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation"
+        className="absolute right-2 top-1/2 -translate-y-1/2 md:right-8 text-white hover:bg-white/20 z-20 rounded-full w-12 h-12 md:w-14 md:h-14 backdrop-blur-sm bg-black/15 transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation"
         aria-label="Next image"
       >
         <ChevronRight size={24} className="md:hidden" />
