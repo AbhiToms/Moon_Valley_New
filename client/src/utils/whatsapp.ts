@@ -1,6 +1,6 @@
 // WhatsApp integration utility
-// Update this phone number with your resort's WhatsApp number
-export const RESORT_WHATSAPP_NUMBER = "+918765432109"; // Replace with your number
+// Moon Valley Resort WhatsApp Number
+export const RESORT_WHATSAPP_NUMBER = "+919446986882";
 
 export const createWhatsAppBookingLink = (roomName?: string) => {
   const message = roomName 

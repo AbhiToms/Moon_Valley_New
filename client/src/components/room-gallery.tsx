@@ -394,10 +394,10 @@ export default function RoomGallery({ room, isOpen, onClose, onBookNow }: RoomGa
                             <div className="sticky bottom-4 left-0 right-0 p-4 md:p-6">
                                 <div className="flex justify-center">
                                     <Button
-                                        onClick={onBookNow}
+                                        onClick={() => openWhatsAppChat(room.name)}
                                         className="bg-gradient-to-r from-primary to-tropical text-white rounded-full py-3 md:py-4 px-8 md:px-12 text-sm md:text-base font-poppins font-bold hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl touch-manipulation min-w-[200px] md:min-w-[250px]"
                                     >
-                                        Book This Room
+                                        Book on WhatsApp
                                     </Button>
                                 </div>
                             </div>

@@ -33,7 +33,6 @@ export default function RoomsSection() {
 
   const handleBookFromGallery = () => {
     closeRoomGallery();
-    scrollToBooking();
   };
 
   if (isLoading) {
