@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Play, Sparkles } from "lucide-react";
 import { openWhatsAppChat } from "@/utils/whatsapp";
+import heroImage from "@assets/PHOTO-2025-10-07-15-22-09_1765281531450.jpg";
 
 export default function HeroSection() {
   const handleBooking = () => {
@@ -13,7 +14,7 @@ export default function HeroSection() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110 transition-transform duration-1000 bg-gray-900"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')",
+          backgroundImage: `url(${heroImage})`,
           backgroundAttachment: 'fixed',
           willChange: 'transform',
           backgroundSize: 'cover'
