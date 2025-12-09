@@ -21,8 +21,8 @@ export default function HeroSection() {
         }}
       />
       
-      {/* Modern Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-tropical/60 to-accent/70 dark:from-primary/70 dark:via-tropical/50 dark:to-accent/60" />
+      {/* Subtle Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
       
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>
