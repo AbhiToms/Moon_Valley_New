@@ -100,7 +100,4 @@ export class MemStorage implements IStorage {
   }
 }
 
-import { dbStorage } from "./db";
-
-// Temporarily use memory storage until database issue is resolved
 export const storage = new MemStorage();
