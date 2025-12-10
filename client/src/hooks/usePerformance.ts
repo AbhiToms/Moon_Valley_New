@@ -3,29 +3,14 @@ import { useEffect } from 'react';
 export function usePerformance() {
   useEffect(() => {
     // Preload critical resources (no sensitive data involved)
-    const preloadCriticalImages = () => {
-      const criticalImages = [
-        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400',
-        'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400',
-      ];
+    // Preload critical resources (removed to fix console warnings about unused preloads)
+    // The previous implementation was preloading images that weren't immediately used, causing browser warnings.
 
-      criticalImages.forEach(src => {
-        try {
-          const link = document.createElement('link');
-          link.rel = 'preload';
-          link.as = 'image';
-          link.href = src;
-          document.head.appendChild(link);
-        } catch (error) {
-          // Silent fail - don't log errors that might contain sensitive info
-        }
-      });
-    };
 
     // Optimize scroll performance (no data logging)
     const optimizeScrolling = () => {
       let ticking = false;
-      
+
       const updateScrollPosition = () => {
         ticking = false;
         // Performance optimizations only - no data collection
@@ -39,7 +24,7 @@ export function usePerformance() {
       };
 
       window.addEventListener('scroll', requestScrollUpdate, { passive: true });
-      
+
       return () => {
         window.removeEventListener('scroll', requestScrollUpdate);
       };
@@ -58,7 +43,7 @@ export function usePerformance() {
       }
     };
 
-    preloadCriticalImages();
+
     const cleanupScroll = optimizeScrolling();
     optimizeAnimations();
 

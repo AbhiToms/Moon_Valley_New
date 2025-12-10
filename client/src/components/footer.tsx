@@ -28,16 +28,16 @@ export default function Footer() {
               Experience authentic tropical hut living in harmony with nature at our mountain retreat destination in Kerala's Western Ghats.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-bg-secondary rounded-lg hover:bg-tropical/20">
+              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-white/5 rounded-lg hover:bg-tropical/20 dark:hover:bg-tropical/30 cursor-pointer">
                 <Facebook size={24} />
               </a>
-              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-bg-secondary rounded-lg hover:bg-tropical/20">
+              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-white/5 rounded-lg hover:bg-tropical/20 dark:hover:bg-tropical/30 cursor-pointer">
                 <Instagram size={24} />
               </a>
-              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-bg-secondary rounded-lg hover:bg-tropical/20">
+              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-white/5 rounded-lg hover:bg-tropical/20 dark:hover:bg-tropical/30 cursor-pointer">
                 <Twitter size={24} />
               </a>
-              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-bg-secondary rounded-lg hover:bg-tropical/20">
+              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-white/5 rounded-lg hover:bg-tropical/20 dark:hover:bg-tropical/30 cursor-pointer">
                 <Youtube size={24} />
               </a>
             </div>
@@ -49,9 +49,9 @@ export default function Footer() {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link}>
-                  <button 
+                  <button
                     onClick={() => scrollToSection(link)}
-                    className="text-white/70 dark:text-white/80 hover:text-tropical transition-colors duration-300 text-left text-lg"
+                    className="text-white/70 dark:text-white/80 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 text-left text-lg cursor-pointer"
                   >
                     {link}
                   </button>
@@ -66,9 +66,9 @@ export default function Footer() {
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service}>
-                  <button 
+                  <button
                     onClick={() => scrollToSection("amenities")}
-                    className="text-white/70 dark:text-white/80 hover:text-tropical transition-colors duration-300 text-left text-lg"
+                    className="text-white/70 dark:text-white/80 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 text-left text-lg cursor-pointer"
                   >
                     {service}
                   </button>

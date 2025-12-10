@@ -1,7 +1,10 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { usePerformance } from "@/hooks/usePerformance";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
+import LoadingScreen from "@/components/loading-screen";
+import heroImage from "@assets/hero-perfect-fit.png";
+import { AnimatePresence, motion } from "framer-motion";
 
 // Lazy load non-critical sections
 const AboutSection = lazy(() => import("@/components/about-section"));
@@ -21,39 +24,84 @@ const SectionLoader = () => (
 
 export default function Home() {
   usePerformance();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = heroImage;
+
+    // Ensure loader shows for a brief moment for smoothness even if cached
+    const minLoadTime = 1500;
+    const startTime = Date.now();
+
+    const handleLoad = () => {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+
+      setTimeout(() => {
+        setIsLoading(false);
+      }, remainingTime);
+    };
+
+    if (img.complete) {
+      handleLoad();
+    } else {
+      img.onload = handleLoad;
+      img.onerror = handleLoad;
+    }
+  }, []);
 
   return (
     <div className="font-poppins text-gray-800 dark:text-text-primary dark:bg-bg-primary min-h-screen">
-      <Navigation />
-      <HeroSection />
-      
-      <Suspense fallback={<SectionLoader />}>
-        <AboutSection />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <RoomsSection />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <AmenitiesSection />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <GallerySection />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <TestimonialsSection />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <ContactSection />
-      </Suspense>
-      
-      <Suspense fallback={<SectionLoader />}>
-        <Footer />
-      </Suspense>
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <motion.div
+            key="loader"
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+            className="fixed inset-0 z-50"
+          >
+            <LoadingScreen />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Navigation />
+            <HeroSection />
+
+            <Suspense fallback={<SectionLoader />}>
+              <AboutSection />
+            </Suspense>
+
+            <Suspense fallback={<SectionLoader />}>
+              <RoomsSection />
+            </Suspense>
+
+            <Suspense fallback={<SectionLoader />}>
+              <AmenitiesSection />
+            </Suspense>
+
+            <Suspense fallback={<SectionLoader />}>
+              <GallerySection />
+            </Suspense>
+
+            <Suspense fallback={<SectionLoader />}>
+              <TestimonialsSection />
+            </Suspense>
+
+            <Suspense fallback={<SectionLoader />}>
+              <ContactSection />
+            </Suspense>
+
+            <Suspense fallback={<SectionLoader />}>
+              <Footer />
+            </Suspense>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

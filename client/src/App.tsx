@@ -6,8 +6,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { lazy, Suspense } from "react";
 
-// Lazy load pages for better performance
-const Home = lazy(() => import("@/pages/home"));
+import Home from "@/pages/home";
+
+// Lazy load pages for better performance 
 const TermsAndConditions = lazy(() => import("@/pages/terms-and-conditions"));
 const CookiePolicy = lazy(() => import("@/pages/cookie-policy"));
 const NotFound = lazy(() => import("@/pages/not-found"));
