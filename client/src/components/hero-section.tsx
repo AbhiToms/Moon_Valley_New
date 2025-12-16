@@ -2,21 +2,49 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, Play, Sparkles } from "lucide-react";
 import { openWhatsAppChat } from "@/utils/whatsapp";
 import heroImage from "@assets/hero-perfect-fit.png";
+import { useState, useEffect } from "react";
+import { useTheme } from "@/components/theme-provider";
+import nightModeHero from "@assets/night-mode-hero.jpg";
 
 export default function HeroSection() {
+  const { theme } = useTheme();
+  const [showNightView, setShowNightView] = useState(false);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      setShowNightView(true);
+      const timer = setTimeout(() => {
+        setShowNightView(false);
+      }, 11000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowNightView(false);
+    }
+  }, [theme]);
+
   const handleBooking = () => {
     openWhatsAppChat();
   };
 
   return (
     <section id="home" className="relative h-[70vh] sm:h-[80vh] md:h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax Effect */}
+      {/* Base Background Image (Day) */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110 transition-transform duration-1000 bg-gray-900"
         style={{
           backgroundImage: `url(${heroImage})`,
           backgroundAttachment: 'fixed',
-          willChange: 'transform',
+          backgroundSize: 'cover'
+        }}
+      />
+
+      {/* Overlay Background Image (Night) with Fade Animation */}
+      <div
+        className={`absolute inset-0 bg-cover bg-center bg-no-repeat scale-110 transition-opacity duration-1000 ease-in-out bg-gray-900 ${showNightView ? "opacity-100" : "opacity-0"
+          }`}
+        style={{
+          backgroundImage: `url(${nightModeHero})`,
+          backgroundAttachment: 'fixed',
           backgroundSize: 'cover'
         }}
       />
