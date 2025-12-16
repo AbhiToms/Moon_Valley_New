@@ -43,5 +43,11 @@ export default async function (req: Request, res: Response) {
         routesRegistered = true;
     }
 
+    // Vercel might strip the /api prefix when using rewrites to a function in api/
+    // Ensure the URL passed to Express matches what we defined in routes.ts
+    if (req.url && !req.url.startsWith('/api')) {
+        req.url = '/api' + req.url;
+    }
+
     app(req, res);
 }
