@@ -22,7 +22,10 @@ export default function LazyImage({
   const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    if (priority) return;
+    if (priority) {
+      setIsInView(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -32,8 +35,8 @@ export default function LazyImage({
         }
       },
       { 
-        threshold: 0.01,
-        rootMargin: '200px'
+        threshold: 0,
+        rootMargin: '1000px'
       }
     );
 
@@ -42,7 +45,7 @@ export default function LazyImage({
     }
 
     return () => observer.disconnect();
-  }, [priority]);
+  }, [priority, src]);
 
   // Optimize Unsplash images by adding format and quality parameters
   const optimizedSrc = src.includes('unsplash.com') 
@@ -51,23 +54,21 @@ export default function LazyImage({
 
   return (
     <div className={`relative overflow-hidden bg-gray-100 dark:bg-gray-800 ${className}`}>
-      {(isInView || priority) && (
-        <img
-          ref={imgRef}
-          src={optimizedSrc}
-          alt={alt}
-          width={width}
-          height={height}
-          loading={priority ? 'eager' : 'lazy'}
-          decoding="async"
-          onLoad={() => setIsLoaded(true)}
-          className={`w-full h-full object-cover transition-all duration-700 ${
-            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-          }`}
-        />
-      )}
+      <img
+        ref={imgRef}
+        src={(isInView || priority) ? optimizedSrc : "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={priority ? 'eager' : 'lazy'}
+        decoding="async"
+        onLoad={() => setIsLoaded(true)}
+        className={`w-full h-full object-cover transition-all duration-700 ${
+          isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+        }`}
+      />
       {!isLoaded && (
-        <div className="absolute inset-0 bg-gray-200/50 dark:bg-gray-700/50 animate-pulse" />
+        <div className="absolute inset-0 bg-gray-200/50 dark:bg-gray-700/50 animate-pulse pointer-events-none" />
       )}
     </div>
   );

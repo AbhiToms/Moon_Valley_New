@@ -40,16 +40,19 @@ export default function HeroSection() {
       </div>
 
       {/* Overlay Background Image (Night) with Fade Animation */}
-      <div
-        className={`absolute inset-0 z-10 transition-opacity duration-1000 ease-in-out ${showNightView ? "opacity-100" : "opacity-0"
-          }`}
-      >
-        <LazyImage
-          src={nightModeHero}
-          alt="Moon Valley Resort Night View"
-          className="w-full h-full"
-        />
-      </div>
+      {theme === 'dark' && (
+        <div
+          className={`absolute inset-0 z-10 transition-opacity duration-1000 ease-in-out ${showNightView ? "opacity-100" : "opacity-0"
+            }`}
+        >
+          <LazyImage
+            src={nightModeHero}
+            alt="Moon Valley Resort Night View"
+            className="w-full h-full"
+            priority={true}
+          />
+        </div>
+      )}
 
       {/* Subtle Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50 z-20" />
