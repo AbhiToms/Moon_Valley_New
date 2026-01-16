@@ -13,12 +13,8 @@ const TermsAndConditions = lazy(() => import("@/pages/terms-and-conditions"));
 const CookiePolicy = lazy(() => import("@/pages/cookie-policy"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
-// Loading component
-const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-  </div>
-);
+// Loading component removed in favor of page-specific loading or global theme-consistent loader
+const PageLoader = () => null;
 
 function Router() {
   return (

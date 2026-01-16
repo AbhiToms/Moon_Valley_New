@@ -43,6 +43,8 @@ export default function Home() {
       }, remainingTime);
     };
 
+    // If hero image is already cached or loaded, still show loader for minLoadTime
+    // to prevent flickering of multiple loading states
     if (img.complete) {
       handleLoad();
     } else {
