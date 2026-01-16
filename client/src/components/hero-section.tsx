@@ -5,6 +5,7 @@ import heroImage from "@assets/hero-perfect-fit.png";
 import { useState, useEffect } from "react";
 import { useTheme } from "@/components/theme-provider";
 import nightModeHero from "@assets/night-mode-hero.jpg";
+import LazyImage from "./lazy-image";
 
 export default function HeroSection() {
   const { theme } = useTheme();
@@ -29,34 +30,35 @@ export default function HeroSection() {
   return (
     <section id="home" className="relative h-[70vh] sm:h-[80vh] md:h-screen flex items-center justify-center overflow-hidden">
       {/* Base Background Image (Day) */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110 transition-transform duration-1000 bg-gray-900"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover'
-        }}
-      />
+      <div className="absolute inset-0 z-0">
+        <LazyImage
+          src={heroImage}
+          alt="Moon Valley Resort View"
+          className="w-full h-full"
+          priority={true}
+        />
+      </div>
 
       {/* Overlay Background Image (Night) with Fade Animation */}
       <div
-        className={`absolute inset-0 bg-cover bg-center bg-no-repeat scale-110 transition-opacity duration-1000 ease-in-out bg-gray-900 ${showNightView ? "opacity-100" : "opacity-0"
+        className={`absolute inset-0 z-10 transition-opacity duration-1000 ease-in-out ${showNightView ? "opacity-100" : "opacity-0"
           }`}
-        style={{
-          backgroundImage: `url(${nightModeHero})`,
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover'
-        }}
-      />
+      >
+        <LazyImage
+          src={nightModeHero}
+          alt="Moon Valley Resort Night View"
+          className="w-full h-full"
+        />
+      </div>
 
       {/* Subtle Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50 z-20" />
 
       {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-10 w-24 h-24 bg-secondary/20 rounded-full blur-lg animate-pulse" style={{ animationDelay: "1s" }}></div>
+      <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse z-20"></div>
+      <div className="absolute bottom-20 right-10 w-24 h-24 bg-secondary/20 rounded-full blur-lg animate-pulse z-20" style={{ animationDelay: "1s" }}></div>
 
-      <div className="relative z-10 text-center text-white max-w-5xl px-6">
+      <div className="relative z-30 text-center text-white max-w-5xl px-6">
         <div className="mb-4 flex justify-center">
           <div className="bg-white/20 dark:bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 border border-white/30 dark:border-white/20">
             <span className="text-sm font-medium flex items-center text-white">
@@ -113,7 +115,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center text-white/80 animate-bounce">
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center text-white/80 animate-bounce z-30">
         <ChevronDown size={40} strokeWidth={1} />
       </div>
     </section>
