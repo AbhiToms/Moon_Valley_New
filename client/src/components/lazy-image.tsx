@@ -4,35 +4,36 @@ interface LazyImageProps {
   src: string;
   alt: string;
   className?: string;
-  placeholder?: string;
-  onLoad?: () => void;
+  width?: number;
+  height?: number;
+  priority?: boolean;
 }
 
-export default function LazyImage({
-  src,
-  alt,
-  className = '',
-  placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5YTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkxvYWRpbmcuLi48L3RleHQ+PC9zdmc+',
-  onLoad
+export default function LazyImage({ 
+  src, 
+  alt, 
+  className = '', 
+  width,
+  height,
+  priority = false 
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
+  const [isInView, setIsInView] = useState(priority);
   const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
+    if (priority) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          // When entering view, we switch to the real source.
-          // Reset loaded state so we show the loader while the real image fetches.
-          setIsLoaded(false);
           observer.disconnect();
         }
       },
-      {
-        threshold: 0.1,
-        rootMargin: '50px'
+      { 
+        threshold: 0.01,
+        rootMargin: '200px'
       }
     );
 
@@ -41,29 +42,32 @@ export default function LazyImage({
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [priority]);
 
-  const handleLoad = () => {
-    setIsLoaded(true);
-    onLoad?.();
-  };
+  // Optimize Unsplash images by adding format and quality parameters
+  const optimizedSrc = src.includes('unsplash.com') 
+    ? `${src}${src.includes('?') ? '&' : '?'}auto=format&q=75&w=${width || 800}`
+    : src;
 
   return (
-    <div className="relative overflow-hidden w-full h-full bg-gray-100 dark:bg-gray-800">
-      <img
-        ref={imgRef}
-        src={isInView ? src : placeholder}
-        alt={alt}
-        className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'
-          } ${className}`}
-        onLoad={handleLoad}
-        loading="lazy"
-        decoding="async"
-      />
-      {(!isLoaded || !isInView) && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-700 z-10">
-          <div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
-        </div>
+    <div className={`relative overflow-hidden bg-gray-100 dark:bg-gray-800 ${className}`}>
+      {(isInView || priority) && (
+        <img
+          ref={imgRef}
+          src={optimizedSrc}
+          alt={alt}
+          width={width}
+          height={height}
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          className={`w-full h-full object-cover transition-all duration-700 ${
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+          }`}
+        />
+      )}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-gray-200/50 dark:bg-gray-700/50 animate-pulse" />
       )}
     </div>
   );

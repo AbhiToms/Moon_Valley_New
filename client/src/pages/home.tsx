@@ -1,5 +1,4 @@
 import { lazy, Suspense, useState, useEffect } from "react";
-import { usePerformance } from "@/hooks/usePerformance";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import LoadingScreen from "@/components/loading-screen";
@@ -23,7 +22,6 @@ const SectionLoader = () => (
 );
 
 export default function Home() {
-  usePerformance();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -40,7 +38,7 @@ export default function Home() {
       img.onload = handleLoad;
       img.onerror = handleLoad;
     }
-  }, []);
+  }, [heroImage]);
 
   return (
     <div className="font-poppins text-gray-800 dark:text-text-primary dark:bg-bg-primary min-h-screen">
