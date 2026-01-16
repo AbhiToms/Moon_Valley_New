@@ -30,21 +30,10 @@ export default function Home() {
     const img = new Image();
     img.src = heroImage;
 
-    // Ensure loader shows for a brief moment for smoothness even if cached
-    const minLoadTime = 1500;
-    const startTime = Date.now();
+    // Show custom Moon Valley loader immediately for a better brand experience
+    // and transition seamlessly to content once ready
+    const handleLoad = () => setIsLoading(false);
 
-    const handleLoad = () => {
-      const elapsedTime = Date.now() - startTime;
-      const remainingTime = Math.max(0, minLoadTime - elapsedTime);
-
-      setTimeout(() => {
-        setIsLoading(false);
-      }, remainingTime);
-    };
-
-    // If hero image is already cached or loaded, still show loader for minLoadTime
-    // to prevent flickering of multiple loading states
     if (img.complete) {
       handleLoad();
     } else {
