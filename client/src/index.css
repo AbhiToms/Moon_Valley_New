@@ -112,14 +112,23 @@
   }
 
   /* Smooth transitions for interactive elements */
-  button, a, input, select, textarea, [role="button"], 
-  [type="button"], [type="submit"], [type="reset"] {
+  button,
+  a,
+  input,
+  select,
+  textarea,
+  [role="button"],
+  [type="button"],
+  [type="submit"],
+  [type="reset"] {
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: auto;
   }
 
   /* GPU acceleration for smoother rendering */
-  button:hover, a:hover, [role="button"]:hover {
+  button:hover,
+  a:hover,
+  [role="button"]:hover {
     will-change: transform, box-shadow, background-color;
   }
 
@@ -246,6 +255,50 @@
 
   .text-mist {
     color: var(--mist);
+  }
+
+  /* Liquid Glass Design Utilities & Backgrounds */
+  .glass-panel {
+    @apply bg-white/10 dark:bg-black/20 backdrop-blur-xl border border-white/30 dark:border-white/10;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  }
+
+  .glass-panel-liquid {
+    @apply bg-white/5 dark:bg-black/10 backdrop-blur-2xl border border-white/40 dark:border-white/20 bg-gradient-to-br from-white/30 to-transparent dark:from-white/10 dark:to-transparent;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  }
+
+  .glass-text-glow {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .dark .glass-text-glow {
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9);
+  }
+
+  /* Dynamic Section Backgrounds for Glass Effect */
+  .glass-bg-mesh {
+    background-color: var(--surface);
+    background-image:
+      radial-gradient(at 40% 20%, hsla(165, 50%, 85%, 0.6) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(20, 85%, 90%, 0.6) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsla(35, 80%, 85%, 0.6) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, hsla(280, 45%, 90%, 0.6) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(165, 50%, 85%, 0.6) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, hsla(20, 85%, 90%, 0.6) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, hsla(35, 80%, 85%, 0.6) 0px, transparent 50%);
+  }
+
+  .dark .glass-bg-mesh {
+    background-color: var(--bg-primary);
+    background-image:
+      radial-gradient(at 40% 20%, hsla(165, 40%, 25%, 0.5) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(20, 75%, 20%, 0.5) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsla(280, 35%, 20%, 0.5) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, hsla(165, 40%, 25%, 0.5) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(20, 75%, 20%, 0.5) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, hsla(280, 35%, 20%, 0.5) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, hsla(165, 40%, 25%, 0.5) 0px, transparent 50%);
   }
 
   .text-gold {
@@ -586,8 +639,8 @@
 }
 
 .hover-lift {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
-              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 
@@ -933,11 +986,13 @@ mobile optimizations for room gallery */
 }
 
 /* Card and surface smooth transitions */
-[class*="card"], [class*="surface"], [class*="bg-surface"], 
+[class*="card"],
+[class*="surface"],
+[class*="bg-surface"],
 [data-radix-dialog-content] {
   transition: background-color 0.35s ease-in-out,
-              border-color 0.35s ease-in-out,
-              box-shadow 0.35s ease-in-out;
+    border-color 0.35s ease-in-out,
+    box-shadow 0.35s ease-in-out;
 }
 
 /* Smooth opacity transitions */
@@ -952,7 +1007,14 @@ mobile optimizations for room gallery */
 }
 
 /* Smooth color transitions for text */
-p, span, h1, h2, h3, h4, h5, h6 {
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   transition: color 0.3s ease-in-out;
 }
 
@@ -1712,6 +1774,7 @@ textarea:not(:placeholder-shown) {
 
 /* Additional Mobile Dashboard Improvements */
 @media (max-width: 640px) {
+
   /* Better mobile stats cards */
   .dashboard-container .stats-card-mobile {
     min-height: 80px;
@@ -1961,9 +2024,12 @@ textarea:not(:placeholder-shown) {
   .dashboard-container .text-xs {
     font-size: 0.6875rem;
   }
-}/* Booking
+}
+
+/* Booking
  Details Modal Mobile Improvements */
 @media (max-width: 640px) {
+
   /* Better modal sizing for mobile */
   .booking-details-modal [data-radix-dialog-content] {
     margin: 0.25rem;
@@ -1973,11 +2039,11 @@ textarea:not(:placeholder-shown) {
   }
 
   /* Improved card spacing in modal */
-  .booking-details-modal .space-y-4 > * + * {
+  .booking-details-modal .space-y-4>*+* {
     margin-top: 1rem;
   }
 
-  .booking-details-modal .space-y-6 > * + * {
+  .booking-details-modal .space-y-6>*+* {
     margin-top: 1rem;
   }
 
@@ -2137,7 +2203,9 @@ textarea:not(:placeholder-shown) {
   .booking-details-modal .text-lg {
     font-size: 1rem;
   }
-}/* F
+}
+
+/* F
 orce hide scrollbars in dialogs */
 [data-radix-dialog-content] {
   scrollbar-width: none !important;

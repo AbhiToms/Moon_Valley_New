@@ -1,9 +1,8 @@
 import { lazy, Suspense, useState, useEffect } from "react";
+import heroImage from "@assets/hero-perfect-fit.png";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
-import LoadingScreen from "@/components/loading-screen";
-import heroImage from "@assets/hero-perfect-fit.png";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Lazy load non-critical sections
 const AboutSection = lazy(() => import("@/components/about-section"));
@@ -42,55 +41,43 @@ export default function Home() {
 
   return (
     <div className="font-poppins text-gray-800 dark:text-text-primary dark:bg-bg-primary min-h-screen">
-      <AnimatePresence mode="wait">
-        {isLoading ? (
-          <motion.div
-            key="loader"
-            exit={{ opacity: 0, transition: { duration: 0.5 } }}
-            className="fixed inset-0 z-50"
-          >
-            <LoadingScreen />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Navigation />
-            <HeroSection />
+      <motion.div
+        key="content"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Navigation />
+        <HeroSection />
 
-            <Suspense fallback={<SectionLoader />}>
-              <AboutSection />
-            </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <AboutSection />
+        </Suspense>
 
-            <Suspense fallback={<SectionLoader />}>
-              <RoomsSection />
-            </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <RoomsSection />
+        </Suspense>
 
-            <Suspense fallback={<SectionLoader />}>
-              <AmenitiesSection />
-            </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <AmenitiesSection />
+        </Suspense>
 
-            <Suspense fallback={<SectionLoader />}>
-              <GallerySection />
-            </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <GallerySection />
+        </Suspense>
 
-            <Suspense fallback={<SectionLoader />}>
-              <TestimonialsSection />
-            </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <TestimonialsSection />
+        </Suspense>
 
-            <Suspense fallback={<SectionLoader />}>
-              <ContactSection />
-            </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <ContactSection />
+        </Suspense>
 
-            <Suspense fallback={<SectionLoader />}>
-              <Footer />
-            </Suspense>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        <Suspense fallback={<SectionLoader />}>
+          <Footer />
+        </Suspense>
+      </motion.div>
     </div>
   );
 }

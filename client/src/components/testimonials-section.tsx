@@ -11,7 +11,7 @@ const testimonials = [
   {
     content: "A wonderful place with amazing views of the surrounding valleys. Perfect for escaping city stress or planning a romantic getaway. The swimming pool and peaceful atmosphere make it an ideal destination.",
     name: "Michel Parra",
-    location: "Google Reviewer • 1 year ago", 
+    location: "Google Reviewer • 1 year ago",
     initials: "MP"
   },
   {
@@ -24,8 +24,8 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-cream dark:bg-bg-primary">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section className="py-12 sm:py-16 lg:py-20 glass-bg-mesh relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
             <span className="text-primary dark:text-tropical font-semibold text-xs sm:text-sm">TESTIMONIALS</span>
@@ -41,7 +41,7 @@ export default function TestimonialsSection() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-white dark:bg-bg-secondary rounded-2xl card-shadow hover-lift border-0 dark:border dark:border-mist/20">
+              <Card key={index} className="glass-panel rounded-2xl hover-lift border-0 dark:border dark:border-mist/20">
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center mb-3 sm:mb-4">
                     <div className="flex text-gold dark:text-gold">
@@ -50,19 +50,18 @@ export default function TestimonialsSection() {
                       ))}
                     </div>
                   </div>
-                  
+
                   <p className="text-sm sm:text-base text-gray-700 dark:text-text-secondary mb-4 sm:mb-6 leading-relaxed">
                     "{testimonial.content}"
                   </p>
-                  
+
                   <div className="flex items-center">
-                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold mr-3 sm:mr-4 flex-shrink-0 ${
-                      index === 0 
-                        ? 'bg-primary text-white dark:bg-primary dark:text-white' 
-                        : index === 1 
-                        ? 'bg-secondary text-white dark:bg-secondary dark:text-white' 
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold mr-3 sm:mr-4 flex-shrink-0 ${index === 0
+                      ? 'bg-primary text-white dark:bg-primary dark:text-white'
+                      : index === 1
+                        ? 'bg-secondary text-white dark:bg-secondary dark:text-white'
                         : 'bg-tropical text-white dark:bg-tropical dark:text-white'
-                    }`}>
+                      }`}>
                       <span className="text-sm sm:text-lg">{testimonial.initials}</span>
                     </div>
                     <div className="min-w-0">

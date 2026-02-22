@@ -30,7 +30,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-toast', '@radix-ui/react-tooltip'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-toast'],
           query: ['@tanstack/react-query'],
           router: ['wouter'],
         },

@@ -54,8 +54,8 @@ export default function RoomsSection() {
   }
 
   return (
-    <section id="accommodations" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section id="accommodations" className="py-12 sm:py-16 lg:py-24 glass-bg-mesh relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-20">
           <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
@@ -75,7 +75,7 @@ export default function RoomsSection() {
           {rooms?.map((room, index) => (
             <Card
               key={room.id}
-              className="group bg-white dark:bg-bg-secondary rounded-3xl overflow-hidden border-0 shadow-lg hover:shadow-2xl dark:shadow-xl dark:hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              className="group glass-panel rounded-3xl overflow-hidden border-0 hover:shadow-2xl dark:shadow-xl dark:hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
             >
               <div className="relative overflow-hidden">
                 <LazyImage
@@ -86,8 +86,8 @@ export default function RoomsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Button 
-                    size="sm" 
+                  <Button
+                    size="sm"
                     onClick={() => openRoomGallery(room)}
                     className="bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white hover:text-primary"
                   >

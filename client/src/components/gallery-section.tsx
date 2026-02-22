@@ -56,8 +56,8 @@ export default function GallerySection() {
   };
 
   return (
-    <section id="gallery" className="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-bg-secondary">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section id="gallery" className="py-12 sm:py-16 lg:py-20 glass-bg-mesh relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
             <span className="text-primary dark:text-tropical font-semibold text-xs sm:text-sm">GALLERY</span>

@@ -42,8 +42,8 @@ const amenities = [
 
 export default function AmenitiesSection() {
   return (
-    <section id="amenities" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-neutral to-surface dark:from-bg-primary dark:to-bg-secondary">
-      <div className="container mx-auto px-4 sm:px-6">
+    <section id="amenities" className="py-12 sm:py-16 lg:py-24 glass-bg-mesh relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-8 sm:mb-12 lg:mb-20">
           <div className="inline-block bg-tropical/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
             <span className="text-tropical font-semibold text-xs sm:text-sm">AMENITIES</span>
@@ -60,10 +60,10 @@ export default function AmenitiesSection() {
           {amenities.map((amenity, index) => {
             const IconComponent = amenity.icon;
             return (
-              <Card key={index} className="group bg-white dark:bg-bg-secondary rounded-3xl overflow-hidden border-0 shadow-lg hover:shadow-2xl dark:shadow-xl dark:hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+              <Card key={index} className="group glass-panel rounded-3xl overflow-hidden border-0 hover:shadow-2xl dark:shadow-xl dark:hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
                 <div className="relative overflow-hidden bg-gray-200 dark:bg-gray-700">
-                  <img 
-                    src={amenity.image} 
+                  <img
+                    src={amenity.image}
                     alt={amenity.title}
                     loading="lazy"
                     decoding="async"
@@ -72,7 +72,7 @@ export default function AmenitiesSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-                
+
                 <CardContent className="p-4 sm:p-6">
                   <div className="text-tropical text-xl sm:text-2xl mb-2 sm:mb-3">
                     <IconComponent size={28} />

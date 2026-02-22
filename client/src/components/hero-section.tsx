@@ -57,14 +57,11 @@ export default function HeroSection() {
       {/* Subtle Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50 z-20" />
 
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse z-20"></div>
-      <div className="absolute bottom-20 right-10 w-24 h-24 bg-secondary/20 rounded-full blur-lg animate-pulse z-20" style={{ animationDelay: "1s" }}></div>
-
-      <div className="relative z-30 text-center text-white max-w-5xl px-6">
+      {/* Floating Elements removed by user request */}
+      <div className="relative z-10 text-center text-white max-w-5xl px-6">
         <div className="mb-4 flex justify-center">
-          <div className="bg-white/20 dark:bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 border border-white/30 dark:border-white/20">
-            <span className="text-sm font-medium flex items-center text-white">
+          <div className="glass-panel-liquid rounded-full px-6 py-2">
+            <span className="text-sm font-medium flex items-center text-white glass-text-glow">
               <Sparkles className="mr-2" size={16} />
               Palakkayam Thattu, Kerala
             </span>

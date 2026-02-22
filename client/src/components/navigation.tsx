@@ -11,9 +11,9 @@ export default function Navigation() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       setIsScrolled(currentScrollY > 80);
-      
+
       // Show header when scrolling up, hide when scrolling down
       if (currentScrollY < lastScrollY) {
         // Scrolling up
@@ -22,7 +22,7 @@ export default function Navigation() {
         // Scrolling down (but not at the top)
         setIsVisible(false);
       }
-      
+
       setLastScrollY(currentScrollY);
     };
 
@@ -49,7 +49,7 @@ export default function Navigation() {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
-      ? "bg-white/90 dark:bg-slate-900/95 backdrop-blur-md shadow-xl border-b border-neutral/20 dark:border-slate-700/50"
+      ? "glass-panel-liquid"
       : "bg-transparent"
       } ${isVisible ? "translate-y-0" : "-translate-y-full"}`} style={{
         transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
@@ -57,9 +57,12 @@ export default function Navigation() {
       }}>
       <div className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-xl sm:text-2xl md:text-3xl font-poppins font-bold text-primary dark:text-text-primary flex items-center group cursor-pointer">
+          <Link href="/" className="text-xl sm:text-2xl md:text-3xl font-poppins font-bold flex items-center group cursor-pointer relative z-10">
+            {/* Added a subtle glow behind the text only when at the top of the page for readability without changing the color */}
+            <div className={`absolute -inset-y-2 -inset-x-4 bg-white/70 dark:bg-black/60 blur-xl rounded-full transition-opacity duration-300 -z-10 ${isScrolled ? 'opacity-0' : 'opacity-100'}`}></div>
+
             <Palmtree className="text-tropical dark:text-tropical mr-2 sm:mr-3 transition-transform duration-300 group-hover:scale-110" size={24} />
-            <span className="bg-gradient-to-r from-primary to-tropical dark:from-tropical dark:to-secondary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary to-tropical dark:from-tropical dark:to-secondary bg-clip-text text-transparent font-black drop-shadow-sm">
               Moon Valley
             </span>
           </Link>
@@ -69,7 +72,7 @@ export default function Navigation() {
               <button
                 key={section}
                 onClick={() => scrollToSection(section === "rooms" ? "accommodations" : section)}
-                className="text-gray-700 hover:text-primary transition-all duration-300 capitalize relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tropical after:transition-all after:duration-300 hover:after:w-full nav-text-enhanced"
+                className={`text-gray-800 dark:text-text-primary hover:text-primary transition-all duration-300 capitalize relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-tropical after:transition-all after:duration-300 hover:after:w-full nav-text-enhanced font-medium ${!isScrolled ? 'drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] dark:drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]' : ''}`}
               >
                 {section}
               </button>
