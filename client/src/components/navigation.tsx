@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Palmtree, Menu, X } from "lucide-react";
+import { Palmtree } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const navSections = [
@@ -15,8 +15,6 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [mobileOpen, setMobileOpen] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -25,7 +23,6 @@ export default function Navigation() {
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
-        setMobileOpen(false);
       }
       setLastScrollY(currentScrollY);
     };
@@ -35,7 +32,6 @@ export default function Navigation() {
   }, [lastScrollY]);
 
   const scrollToSection = (id: string) => {
-    setMobileOpen(false);
     const element = document.getElementById(id);
     if (element) {
       const nav = document.querySelector("nav");
@@ -81,40 +77,12 @@ export default function Navigation() {
             <ThemeToggle />
           </div>
 
-          {/* Mobile: theme toggle + hamburger */}
-          <div className="md:hidden flex items-center gap-3">
+          {/* Mobile: theme toggle only */}
+          <div className="md:hidden">
             <ThemeToggle />
-            <button
-              onClick={() => setMobileOpen((o) => !o)}
-              className={`p-2 rounded-lg transition-colors duration-200 ${
-                isScrolled
-                  ? "text-primary dark:text-white hover:bg-primary/10 dark:hover:bg-white/10"
-                  : "text-white hover:bg-white/20"
-              }`}
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
         </div>
       </div>
-
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="md:hidden bg-white/95 dark:bg-slate-900/98 backdrop-blur-md border-t border-neutral/20 dark:border-slate-700/50 shadow-lg">
-          <div className="container mx-auto px-6 py-4 flex flex-col gap-1">
-            {navSections.map(({ label, id }) => (
-              <button
-                key={id}
-                onClick={() => scrollToSection(id)}
-                className="text-left px-4 py-3 text-gray-700 dark:text-white/80 hover:text-primary dark:hover:text-tropical hover:bg-primary/5 dark:hover:bg-white/5 rounded-lg transition-all duration-200 font-medium capitalize"
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
     </nav>
   );
 }
