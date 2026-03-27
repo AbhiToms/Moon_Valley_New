@@ -4,6 +4,7 @@ interface LazyImageProps {
   src: string;
   alt: string;
   className?: string;
+  imgClassName?: string;
   width?: number;
   height?: number;
   priority?: boolean;
@@ -12,7 +13,8 @@ interface LazyImageProps {
 export default function LazyImage({ 
   src, 
   alt, 
-  className = '', 
+  className = '',
+  imgClassName = '',
   width,
   height,
   priority = false 
@@ -63,7 +65,7 @@ export default function LazyImage({
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
         onLoad={() => setIsLoaded(true)}
-        className={`w-full h-full object-cover transition-all duration-700 ${
+        className={`w-full h-full object-cover transition-all duration-700 ${imgClassName} ${
           isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
         }`}
       />

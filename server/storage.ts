@@ -58,7 +58,7 @@ export class MemStorage implements IStorage {
         image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
       },
       {
-        name: "Luxury Villa",
+        name: "Premium Villa",
         description: "Premium villa with private pool and exclusive mountain access",
         price: 15000,
         rating: "5.0",
