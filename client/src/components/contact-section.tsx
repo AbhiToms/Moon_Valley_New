@@ -27,9 +27,9 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { name: "WhatsApp", href: "#", icon: FaWhatsapp },
-  { name: "Instagram", href: "#", icon: FaInstagram },
-  { name: "Facebook", href: "#", icon: FaFacebook }
+  { name: "WhatsApp", href: "https://wa.me/919446986882", icon: FaWhatsapp },
+  { name: "Instagram", href: "https://www.instagram.com/moonvalley_tropicalhut", icon: FaInstagram },
+  { name: "Facebook", href: "https://www.facebook.com/moonvalleytropicalhut", icon: FaFacebook }
 ];
 
 export default function ContactSection() {

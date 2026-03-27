@@ -1,12 +1,13 @@
 import { Link as WouterLink } from "wouter";
-import { Mountain, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { Mountain, Facebook, Instagram, Youtube } from "lucide-react";
 
 const quickLinks = ["Home", "Rooms", "Amenities", "Gallery", "Contact"];
 const services = ["Swimming Pool", "Common Kitchen", "Nature Trails", "Free WiFi"];
 
 export default function Footer() {
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id.toLowerCase());
+    const sectionId = id.toLowerCase() === "rooms" ? "accommodations" : id.toLowerCase();
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -28,16 +29,13 @@ export default function Footer() {
               Experience authentic tropical hut living in harmony with nature at our mountain retreat destination in Kerala's Western Ghats.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-white/5 rounded-lg hover:bg-tropical/20 dark:hover:bg-tropical/30 cursor-pointer">
+              <a href="https://www.facebook.com/moonvalleytropicalhut" target="_blank" rel="noopener noreferrer" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-white/5 rounded-lg hover:bg-tropical/20 dark:hover:bg-tropical/30 cursor-pointer">
                 <Facebook size={24} />
               </a>
-              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-white/5 rounded-lg hover:bg-tropical/20 dark:hover:bg-tropical/30 cursor-pointer">
+              <a href="https://www.instagram.com/moonvalley_tropicalhut" target="_blank" rel="noopener noreferrer" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-white/5 rounded-lg hover:bg-tropical/20 dark:hover:bg-tropical/30 cursor-pointer">
                 <Instagram size={24} />
               </a>
-              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-white/5 rounded-lg hover:bg-tropical/20 dark:hover:bg-tropical/30 cursor-pointer">
-                <Twitter size={24} />
-              </a>
-              <a href="#" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-white/5 rounded-lg hover:bg-tropical/20 dark:hover:bg-tropical/30 cursor-pointer">
+              <a href="https://wa.me/919446986882" target="_blank" rel="noopener noreferrer" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical transition-colors duration-300 p-2 bg-white/10 dark:bg-white/5 rounded-lg hover:bg-tropical/20 dark:hover:bg-tropical/30 cursor-pointer">
                 <Youtube size={24} />
               </a>
             </div>
@@ -91,7 +89,7 @@ export default function Footer() {
         <div className="border-t border-white/10 dark:border-mist/20 pt-10 mt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-white/60 dark:text-white/70 text-lg">
-              © 2025 Moon Valley - A Tropical Hut. All rights reserved.
+              © {new Date().getFullYear()} Moon Valley - A Tropical Hut. All rights reserved.
             </p>
             <div className="flex space-x-8 mt-6 md:mt-0">
               <WouterLink href="/terms-and-conditions" className="text-white/60 dark:text-white/70 hover:text-tropical dark:hover:text-tropical text-lg transition-colors duration-300 cursor-pointer">

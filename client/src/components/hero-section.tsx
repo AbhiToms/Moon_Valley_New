@@ -34,7 +34,6 @@ export default function HeroSection() {
         alt="Moon Valley Resort"
         className="absolute inset-0 w-full h-full object-cover z-0"
         loading="eager"
-        fetchPriority="high"
       />
 
       {/* Overlay Background Image (Night) with Fade Animation */}
