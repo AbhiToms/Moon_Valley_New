@@ -5,7 +5,6 @@ import heroImage from "@assets/hero-perfect-fit.png";
 import { useState, useEffect } from "react";
 import { useTheme } from "@/components/theme-provider";
 import nightModeHero from "@assets/night-mode-hero.jpg";
-import LazyImage from "./lazy-image";
 
 export default function HeroSection() {
   const { theme } = useTheme();
@@ -30,28 +29,22 @@ export default function HeroSection() {
   return (
     <section id="home" className="relative h-[70vh] sm:h-[80vh] md:h-screen flex items-center justify-center overflow-hidden">
       {/* Base Background Image (Day) */}
-      <div className="absolute inset-0 z-0">
-        <LazyImage
-          src={heroImage}
-          alt="Moon Valley Resort View"
-          className="w-full h-full"
-          priority={true}
-        />
-      </div>
+      <img
+        src={heroImage}
+        alt="Moon Valley Resort"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        loading="eager"
+        fetchPriority="high"
+      />
 
       {/* Overlay Background Image (Night) with Fade Animation */}
       {theme === 'dark' && (
-        <div
-          className={`absolute inset-0 z-10 transition-opacity duration-1000 ease-in-out ${showNightView ? "opacity-100" : "opacity-0"
-            }`}
-        >
-          <LazyImage
-            src={nightModeHero}
-            alt="Moon Valley Resort Night View"
-            className="w-full h-full"
-            priority={true}
-          />
-        </div>
+        <img
+          src={nightModeHero}
+          alt="Moon Valley Resort Night View"
+          className={`absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-1000 ease-in-out ${showNightView ? "opacity-100" : "opacity-0"}`}
+          loading="eager"
+        />
       )}
 
       {/* Subtle Gradient Overlay */}
