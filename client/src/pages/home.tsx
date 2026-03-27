@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
+import WhatsAppFloat from "@/components/whatsapp-float";
 
 const AboutSection = lazy(() => import("@/components/about-section"));
 const RoomsSection = lazy(() => import("@/components/rooms-section"));
@@ -21,6 +22,7 @@ export default function Home() {
     <div className="font-poppins text-gray-800 dark:text-text-primary dark:bg-bg-primary min-h-screen">
       <Navigation />
       <HeroSection />
+      <WhatsAppFloat />
 
       <Suspense fallback={<SectionLoader />}>
         <AboutSection />
