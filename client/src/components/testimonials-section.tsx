@@ -24,7 +24,7 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-cream dark:bg-bg-primary">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-bg-primary">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
@@ -66,7 +66,7 @@ export default function TestimonialsSection() {
                       <span className="text-sm sm:text-lg">{testimonial.initials}</span>
                     </div>
                     <div className="min-w-0">
-                      <div className="font-semibold text-sm sm:text-base text-forest dark:text-text-primary truncate">{testimonial.name}</div>
+                      <div className="font-semibold text-sm sm:text-base text-primary dark:text-text-primary truncate">{testimonial.name}</div>
                       <div className="text-xs sm:text-sm text-gray-600 dark:text-text-secondary">{testimonial.location}</div>
                     </div>
                   </div>
