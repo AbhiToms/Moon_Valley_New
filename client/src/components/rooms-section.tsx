@@ -50,11 +50,11 @@ export default function RoomsSection() {
   }
 
   return (
-    <section id="accommodations" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
+    <section id="accommodations" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-surface to-neutral dark:from-surface dark:to-bg-secondary">
       <div className="container mx-auto px-4 sm:px-6">
 
         {/* Section Header */}
-        <div className="text-center mb-10 sm:mb-14 lg:mb-20">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-14">
           <div className="inline-block bg-primary/10 dark:bg-tropical/20 rounded-full px-5 py-2 mb-5">
             <span className="text-primary dark:text-tropical font-semibold text-xs sm:text-sm tracking-widest">ACCOMMODATIONS</span>
           </div>

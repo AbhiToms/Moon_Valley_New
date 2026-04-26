@@ -43,9 +43,9 @@ const amenities = [
 
 export default function AmenitiesSection() {
   return (
-    <section id="amenities" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-neutral to-surface dark:from-bg-primary dark:to-bg-secondary">
+    <section id="amenities" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-neutral to-surface dark:from-bg-primary dark:to-bg-secondary">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-8 sm:mb-12 lg:mb-20">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-14">
           <div className="inline-block bg-tropical/10 dark:bg-tropical/20 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6">
             <span className="text-tropical font-semibold text-xs sm:text-sm">AMENITIES</span>
           </div>
