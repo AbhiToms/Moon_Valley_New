@@ -53,7 +53,7 @@ export default function ContactSection() {
           <div className="space-y-5">
 
             {/* Contact detail cards */}
-            <div className="bg-gray-50 dark:bg-bg-primary rounded-2xl border border-gray-100 dark:border-mist/20 divide-y divide-gray-100 dark:divide-mist/10 overflow-hidden">
+            <div className="bg-gray-50 dark:bg-bg-primary rounded-2xl divide-y divide-gray-100 dark:divide-mist/10 overflow-hidden">
 
               {/* Location */}
               <div className="flex items-start gap-3 p-4 sm:p-5">
@@ -156,7 +156,7 @@ export default function ContactSection() {
           </div>
 
           {/* Right — Google Map */}
-          <div className="rounded-2xl overflow-hidden border border-gray-100 dark:border-mist/20 shadow-md" style={{ minHeight: "360px" }}>
+          <div className="rounded-2xl overflow-hidden shadow-md" style={{ minHeight: "360px" }}>
             <iframe
               src="https://www.google.com/maps?q=Moon+Valley+A+Tropical+Hut+Palakkayam+Thattu+Kannur+Kerala&output=embed"
               className="w-full h-full"

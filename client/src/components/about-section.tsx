@@ -68,7 +68,7 @@ export default function AboutSection() {
               {features.map(({ icon: Icon, title, desc }) => (
                 <div
                   key={title}
-                  className="flex items-start gap-3 p-3.5 sm:p-4 bg-surface dark:bg-bg-secondary rounded-xl border border-gray-100 dark:border-mist/10"
+                  className="flex items-start gap-3 p-3.5 sm:p-4 bg-surface dark:bg-bg-secondary rounded-xl"
                 >
                   <div className="w-9 h-9 rounded-xl bg-tropical/10 dark:bg-tropical/20 flex items-center justify-center flex-shrink-0">
                     <Icon size={17} className="text-tropical" />
@@ -96,11 +96,11 @@ export default function AboutSection() {
 
             {/* Small overlay info card — positioned inside the image, not overflowing */}
             <div className="absolute bottom-4 left-4 right-4 flex gap-3">
-              <div className="flex-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-xl border border-white/40 dark:border-white/10 text-center">
+              <div className="flex-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-xl text-center">
                 <div className="text-xl font-bold text-primary dark:text-tropical">57+</div>
                 <div className="text-xs text-gray-500 dark:text-white/60">Happy Reviews</div>
               </div>
-              <div className="flex-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-xl border border-white/40 dark:border-white/10 text-center">
+              <div className="flex-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-xl text-center">
                 <div className="text-xl font-bold text-tropical">24/7</div>
                 <div className="text-xs text-gray-500 dark:text-white/60">Open Access</div>
               </div>
