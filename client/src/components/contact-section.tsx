@@ -52,11 +52,11 @@ export default function ContactSection() {
           {/* Left — Contact Info + Socials */}
           <div className="space-y-5">
 
-            {/* Contact detail cards */}
-            <div className="bg-gray-50 dark:bg-bg-primary rounded-2xl divide-y divide-gray-100 dark:divide-mist/10 overflow-hidden">
+            {/* Contact detail items — no borders, no dividers */}
+            <div className="space-y-3">
 
               {/* Location */}
-              <div className="flex items-start gap-3 p-4 sm:p-5">
+              <div className="flex items-start gap-3 p-4 sm:p-5 bg-gray-50 dark:bg-bg-primary rounded-2xl">
                 <div className="w-10 h-10 rounded-xl bg-tropical/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <MapPin size={18} className="text-tropical" />
                 </div>
@@ -76,7 +76,7 @@ export default function ContactSection() {
               </div>
 
               {/* Phone */}
-              <div className="flex items-start gap-3 p-4 sm:p-5">
+              <div className="flex items-start gap-3 p-4 sm:p-5 bg-gray-50 dark:bg-bg-primary rounded-2xl">
                 <div className="w-10 h-10 rounded-xl bg-tropical/10 flex items-center justify-center flex-shrink-0">
                   <Phone size={18} className="text-tropical" />
                 </div>
@@ -93,7 +93,7 @@ export default function ContactSection() {
               </div>
 
               {/* Email */}
-              <div className="flex items-start gap-3 p-4 sm:p-5">
+              <div className="flex items-start gap-3 p-4 sm:p-5 bg-gray-50 dark:bg-bg-primary rounded-2xl">
                 <div className="w-10 h-10 rounded-xl bg-tropical/10 flex items-center justify-center flex-shrink-0">
                   <Mail size={18} className="text-tropical" />
                 </div>
@@ -109,7 +109,7 @@ export default function ContactSection() {
               </div>
 
               {/* Hours */}
-              <div className="flex items-start gap-3 p-4 sm:p-5">
+              <div className="flex items-start gap-3 p-4 sm:p-5 bg-gray-50 dark:bg-bg-primary rounded-2xl">
                 <div className="w-10 h-10 rounded-xl bg-tropical/10 flex items-center justify-center flex-shrink-0">
                   <Clock size={18} className="text-tropical" />
                 </div>
