@@ -39,7 +39,10 @@ const socialLinks = [
 export default function Footer() {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (!el) return;
+    const navHeight = document.querySelector("nav")?.offsetHeight ?? 64;
+    const top = el.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+    window.scrollTo({ top, behavior: "smooth" });
   };
 
   return (

@@ -41,7 +41,7 @@ export default function TestimonialsSection() {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-white dark:bg-bg-secondary rounded-2xl card-shadow hover-lift border-0 dark:border dark:border-mist/20">
+              <Card key={index} className="bg-white dark:bg-bg-secondary rounded-2xl card-shadow hover-lift border-0">
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center mb-3 sm:mb-4">
                     <div className="flex text-gold dark:text-gold">

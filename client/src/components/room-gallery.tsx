@@ -107,7 +107,7 @@ function ImageCarousel({
         <img
           src={images[currentIndex]}
           alt={`Room photo ${currentIndex + 1}`}
-          className={`w-full h-full object-cover transition-opacity duration-400 ${isLoading ? "opacity-0" : "opacity-100"}`}
+          className={`w-full h-full object-cover transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}`}
           loading="eager"
           decoding="async"
           onLoad={onImageLoad}

@@ -167,20 +167,6 @@ export default function ImageLightbox({
         </div>
       </div>
 
-      {/* Mobile Swipe Indicators with animation */}
-      <div className="absolute top-1/2 left-2 -translate-y-1/2 md:hidden">
-        <div className="w-1 h-8 bg-white/30 rounded-full animate-pulse"></div>
-        <div className="text-white/60 text-xs mt-1 -rotate-90 origin-center whitespace-nowrap">
-          Swipe
-        </div>
-      </div>
-      <div className="absolute top-1/2 right-2 -translate-y-1/2 md:hidden">
-        <div className="w-1 h-8 bg-white/30 rounded-full animate-pulse"></div>
-        <div className="text-white/60 text-xs mt-1 rotate-90 origin-center whitespace-nowrap">
-          Swipe
-        </div>
-      </div>
-
       {/* Thumbnail Navigation - Hidden on mobile, visible on desktop */}
       <div className="absolute bottom-20 left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-2 max-w-md overflow-x-auto scrollbar-hide">
         {images.map((image, index) => (
