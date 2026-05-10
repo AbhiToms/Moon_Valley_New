@@ -596,6 +596,46 @@
   box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
 }
 
+/* Scroll-progress bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, hsl(165 50% 45%), hsl(155 60% 20%));
+  z-index: 9999;
+  border-radius: 0 2px 2px 0;
+  pointer-events: none;
+  transition: width 0.12s linear;
+}
+
+/* Tropical glow text */
+.text-glow-tropical {
+  text-shadow: 0 0 20px rgba(71, 201, 160, 0.5), 0 0 40px rgba(71, 201, 160, 0.25);
+}
+
+/* Glass morphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.dark .glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Tropical glow button */
+.btn-tropical-glow:hover {
+  box-shadow: 0 8px 32px rgba(71, 201, 160, 0.45);
+}
+
+/* Will-change helper for parallax */
+.will-change-transform {
+  will-change: transform;
+}
+
 /* Custom
  scrollbar utilities */
 .scrollbar-hide {

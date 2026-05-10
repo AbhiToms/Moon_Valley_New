@@ -50,10 +50,10 @@ const galleryImages: { src: string; alt: string; thumb: string; category: Catego
     category: "Dining",
   },
   {
-    src: "https://images.unsplash.com/photo-1464822759844-d150baec0494?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    thumb: "https://images.unsplash.com/photo-1464822759844-d150baec0494?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=75",
-    alt: "Guests exploring mountain trails and scenic viewpoints",
-    category: "Nature",
+    src: "/gallery-valley-view.jpg",
+    thumb: "/gallery-valley-view.jpg",
+    alt: "Sea of clouds rolling over lush plantation valley",
+    category: "Views",
   },
 ];
 

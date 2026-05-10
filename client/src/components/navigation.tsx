@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Palmtree } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Palmtree, Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useTheme } from "@/components/theme-provider";
 
@@ -17,21 +17,46 @@ export default function Navigation() {
 
   const [isScrolled,  setIsScrolled]  = useState(false);
   const [isVisible,   setIsVisible]   = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [mobileOpen,  setMobileOpen]  = useState(false);
+  const [activeId,    setActiveId]    = useState("home");
+  const lastScrollY = useRef(0);
 
   /* ── scroll behaviour ───────────────────────────────────────── */
   useEffect(() => {
     const onScroll = () => {
       const cur = window.scrollY;
       setIsScrolled(cur > 60);
-      setIsVisible(cur < lastScrollY || cur < 100);
-      setLastScrollY(cur);
+      setIsVisible(cur < lastScrollY.current || cur < 100);
+      lastScrollY.current = cur;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [lastScrollY]);
+  }, []);
+
+  /* ── active section via IntersectionObserver ─────────────────── */
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    navSections.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveId(id); },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach(o => o.disconnect());
+  }, []);
+
+  /* ── lock body scroll when mobile menu is open ───────────────── */
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
   const scrollToSection = (id: string) => {
+    setMobileOpen(false);
     const el = document.getElementById(id);
     if (!el) return;
     const nav = document.querySelector("nav");
@@ -42,26 +67,29 @@ export default function Navigation() {
   /* ── derived states ─────────────────────────────────────────── */
   const isSolid = isScrolled;
 
-  // Nav bar background
   const navBg = isSolid
     ? isDark
       ? "bg-[hsl(155_15%_7%)] border-b border-white/8 shadow-2xl"
       : "bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-200/60"
     : "bg-transparent";
 
-  // Desktop link colours
-  const linkClass = isSolid
-    ? isDark
-      ? "text-white/80 hover:text-tropical"
-      : "text-gray-700 hover:text-primary"
-    : "text-white/90 hover:text-white drop-shadow";
+  const linkBase = `text-sm font-medium transition-all duration-200 relative
+    after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-0.5
+    after:bg-tropical after:transition-all after:duration-300 hover:after:w-full`;
 
-  // Logo text colour
+  const linkColour = (id: string) => {
+    const isActive = activeId === id;
+    if (isSolid) {
+      return isDark
+        ? isActive ? "text-tropical after:w-full" : "text-white/80 hover:text-tropical"
+        : isActive ? "text-primary after:w-full" : "text-gray-700 hover:text-primary";
+    }
+    return isActive ? "text-white after:w-full" : "text-white/90 hover:text-white drop-shadow";
+  };
+
   const logoTextClass = isSolid
-    ? isDark
-      ? "text-white"          // solid white on dark solid nav
-      : "text-primary"        // dark green on white nav
-    : "text-white drop-shadow"; // white over hero
+    ? isDark ? "text-white" : "text-primary"
+    : "text-white drop-shadow";
 
   return (
     <>
@@ -89,18 +117,13 @@ export default function Navigation() {
               </span>
             </button>
 
-            {/* Desktop links + theme toggle — right-aligned, desktop only */}
+            {/* Desktop links + theme toggle */}
             <div className="hidden lg:flex items-center gap-7">
               {navSections.map(({ label, id }) => (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className={`
-                    text-sm font-medium transition-all duration-200 relative
-                    after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-0.5
-                    after:bg-tropical after:transition-all after:duration-300 hover:after:w-full
-                    ${linkClass}
-                  `}
+                  className={`${linkBase} ${linkColour(id)}`}
                 >
                   {label}
                 </button>
@@ -108,14 +131,90 @@ export default function Navigation() {
               <ThemeToggle />
             </div>
 
-            {/* Mobile / tablet: theme toggle only, no burger */}
-            <div className="lg:hidden flex items-center">
+            {/* Mobile: theme toggle + hamburger */}
+            <div className="lg:hidden flex items-center gap-2">
               <ThemeToggle />
+              <button
+                onClick={() => setMobileOpen(v => !v)}
+                aria-label="Toggle navigation menu"
+                className={`p-2 rounded-xl transition-all duration-200 ${
+                  isSolid
+                    ? isDark ? "text-white hover:bg-white/10" : "text-gray-700 hover:bg-gray-100"
+                    : "text-white hover:bg-white/20"
+                }`}
+              >
+                {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+              </button>
             </div>
           </div>
         </div>
       </nav>
 
+      {/* Mobile Drawer Backdrop */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setMobileOpen(false)}
+      />
+
+      {/* Mobile Drawer Panel */}
+      <div
+        className={`fixed top-0 right-0 h-full w-72 z-50 lg:hidden flex flex-col
+          ${isDark ? "bg-[hsl(155_15%_7%)]" : "bg-white"}
+          shadow-2xl transition-transform duration-300 ease-in-out
+          ${mobileOpen ? "translate-x-0" : "translate-x-full"}
+        `}
+      >
+        {/* Drawer header */}
+        <div className={`flex items-center justify-between px-6 h-16 border-b ${isDark ? "border-white/10" : "border-gray-100"}`}>
+          <div className="flex items-center gap-2">
+            <Palmtree size={20} className="text-tropical" />
+            <span className={`font-poppins font-bold ${isDark ? "text-white" : "text-primary"}`}>Moon Valley</span>
+          </div>
+          <button
+            onClick={() => setMobileOpen(false)}
+            className={`p-1.5 rounded-lg ${isDark ? "text-white/70 hover:bg-white/10" : "text-gray-500 hover:bg-gray-100"}`}
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        {/* Drawer links */}
+        <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+          {navSections.map(({ label, id }, i) => (
+            <button
+              key={id}
+              onClick={() => scrollToSection(id)}
+              style={{ transitionDelay: mobileOpen ? `${i * 50}ms` : "0ms" }}
+              className={`w-full text-left px-4 py-3.5 rounded-xl text-sm font-semibold
+                transition-all duration-200
+                ${mobileOpen ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"}
+                ${activeId === id
+                  ? "bg-tropical/10 text-tropical"
+                  : isDark
+                    ? "text-white/80 hover:bg-white/8 hover:text-white"
+                    : "text-gray-700 hover:bg-gray-50 hover:text-primary"
+                }
+              `}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+
+        {/* Drawer footer CTA */}
+        <div className="px-6 pb-8 pt-4 border-t border-gray-100 dark:border-white/10">
+          <a
+            href="https://wa.me/919446986882?text=Hi%2C%20I%20am%20interested%20in%20booking%20at%20Moon%20Valley."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-full py-3 text-sm font-bold shadow-lg transition-all duration-200"
+          >
+            Book on WhatsApp
+          </a>
+        </div>
+      </div>
     </>
   );
 }
