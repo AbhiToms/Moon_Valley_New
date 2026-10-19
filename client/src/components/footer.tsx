@@ -4,19 +4,11 @@ import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa";
 const quickLinks = [
   { label: "Home",      id: "home" },
   { label: "Rooms",     id: "accommodations" },
-  { label: "Amenities", id: "amenities" },
   { label: "Gallery",   id: "gallery" },
   { label: "Contact",   id: "contact" },
 ];
 
-const amenities = [
-  "Swimming Pool",
-  "Common Kitchen",
-  "Nature Trails",
-  "Free WiFi",
-  "Campfire & BBQ",
-  "Scenic Viewpoints",
-];
+
 
 const socialLinks = [
   {
@@ -50,7 +42,7 @@ export default function Footer() {
       <div className="container mx-auto px-5 sm:px-6">
 
         {/* Main grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 mb-10">
 
           {/* Brand — full width on mobile */}
           <div className="col-span-2 md:col-span-1">
@@ -102,24 +94,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Amenities */}
-          <div>
-            <h3 className="text-sm font-poppins font-bold mb-4 text-tropical tracking-widest uppercase">
-              Amenities
-            </h3>
-            <ul className="space-y-2.5">
-              {amenities.map((a) => (
-                <li key={a}>
-                  <button
-                    onClick={() => scrollTo("amenities")}
-                    className="text-sm text-white/65 hover:text-tropical transition-colors duration-200 text-left"
-                  >
-                    {a}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
+
 
           {/* Contact */}
           <div>

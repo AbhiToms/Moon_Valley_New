@@ -10,6 +10,7 @@ vite.config.ts.*
 .vscode/
 .replit
 replit.md
+.playwright-mcp/
 
 # Build artifacts
 *.log
